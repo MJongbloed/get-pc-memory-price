@@ -1,0 +1,58 @@
+---
+import fs from 'fs';
+import path from 'path';
+
+// Read JSON data at build time
+const filePath = path.resolve('public/data/memory-cards.json');
+const rawData = fs.readFileSync(filePath, 'utf-8');
+const memoryCards = JSON.parse(rawData);
+---
+
+<table id="memoryTable">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Capacity (GB)</th>
+        <th>Speed (MHz)</th>
+        <th>Price</th>
+        <th>Link</th>
+    </tr>
+    </thead>
+    <tbody>
+    {memoryCards.map((card) => (
+            <tr data-capacity={card.capacity} data-speed={card.speed} data-price={card.price}>
+                <td>{card.name}</td>
+                <td>{card.capacity}</td>
+                <td>{card.speed}</td>
+                <td>${card.price.toFixed(2)}</td>
+                <td><a href={card.affiliateLink} target="_blank">Buy</a></td>
+            </tr>
+    ))}
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const tableRows = document.querySelectorAll("#memoryTable tbody tr");
+        const filterCapacity = document.getElementById("filter-capacity");
+        const filterSpeed = document.getElementById("filter-speed");
+
+        function applyFilters() {
+            const capacityValue = filterCapacity.value;
+            const speedValue = filterSpeed.value;
+
+            tableRows.forEach(row => {
+                const rowCapacity = row.dataset.capacity;
+                const rowSpeed = row.dataset.speed;
+
+                const capacityMatch = capacityValue === "" || rowCapacity >= capacityValue;
+                const speedMatch = speedValue === "" || rowSpeed >= speedValue;
+
+                row.style.display = (capacityMatch && speedMatch) ? "" : "none";
+            });
+        }
+
+        filterCapacity.addEventListener("change", applyFilters);
+        filterSpeed.addEventListener("change", applyFilters);
+    });
+</script>

@@ -1,0 +1,34 @@
+<div class="filters">
+    <fieldset class="filter-wrapper">
+        <legend class="filter-legend">Capacity</legend>
+        <label for="filter-capacity">Min Capacity (GB):</label>
+        <input type="number" id="filter-capacity" placeholder="Enter min capacity"/>
+    </fieldset>
+
+    <fieldset class="filter-wrapper">
+        <legend class="filter-legend">Speed</legend>
+        <label for="filter-speed">Min Speed (MHz):</label>
+        <input type="number" id="filter-speed" placeholder="Enter min speed"/>
+    </fieldset>
+</div>
+
+<style>
+    .filters {
+        float: left;
+        padding: 0.5em;
+    }
+
+    .filter-wrapper {
+        border: 1px solid black;
+        margin: 0 0 0.5em;
+        width: 10em;
+    }
+
+    .filter-label {
+        display: block;
+    }
+
+    .filter-checkbox {
+        vertical-align: middle;
+    }
+</style>

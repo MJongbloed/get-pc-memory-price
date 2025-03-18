@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1",
+    "name": "Corsair Vengeance LPX 16GB (2x8GB) DDR4 3200MHz",
+    "capacity": 16,
+    "speed": 3200,
+    "latency": "CL16",
+    "technology": "DDR4",
+    "price": 49.99,
+    "affiliateLink": "https://www.amazon.com/dp/example1"
+  },
+  {
+    "id": "2",
+    "name": "G.SKILL Trident Z RGB 32GB (2x16GB) DDR4 3600MHz",
+    "capacity": 32,
+    "speed": 3600,
+    "latency": "CL18",
+    "technology": "DDR4",
+    "price": 89.99,
+    "affiliateLink": "https://www.amazon.com/dp/example2"
+  },
+  {
+    "id": "3",
+    "name": "Kingston Fury Beast 16GB DDR5 5200MHz",
+    "capacity": 16,
+    "speed": 5200,
+    "latency": "CL40",
+    "technology": "DDR5",
+    "price": 69.99,
+    "affiliateLink": "https://www.amazon.com/dp/example3"
+  },
+  {
+    "id": "4",
+    "name": "Corsair Dominator Platinum RGB 64GB (2x32GB) DDR5 6000MHz",
+    "capacity": 64,
+    "speed": 6000,
+    "latency": "CL36",
+    "technology": "DDR5",
+    "price": 199.99,
+    "affiliateLink": "https://www.amazon.com/dp/example4"
+  },
+  {
+    "id": "5",
+    "name": "TeamGroup T-Force Vulcan Z 8GB DDR4 3000MHz",
+    "capacity": 8,
+    "speed": 3000,
+    "latency": "CL16",
+    "technology": "DDR4",
+    "price": 29.99,
+    "affiliateLink": "https://www.amazon.com/dp/example5"
+  },
+  {
+    "id": "6",
+    "name": "Crucial Ballistix 32GB (2x16GB) DDR4 3200MHz",
+    "capacity": 32,
+    "speed": 3200,
+    "latency": "CL16",
+    "technology": "DDR4",
+    "price": 79.99,
+    "affiliateLink": "https://www.amazon.com/dp/example6"
+  },
+  {
+    "id": "7",
+    "name": "PNY XLR8 Gaming 16GB DDR4 4000MHz",
+    "capacity": 16,
+    "speed": 4000,
+    "latency": "CL18",
+    "technology": "DDR4",
+    "price": 59.99,
+    "affiliateLink": "https://www.amazon.com/dp/example7"
+  },
+  {
+    "id": "8",
+    "name": "Samsung 32GB DDR5 4800MHz",
+    "capacity": 32,
+    "speed": 4800,
+    "latency": "CL40",
+    "technology": "DDR5",
+    "price": 139.99,
+    "affiliateLink": "https://www.amazon.com/dp/example8"
+  }
+]
