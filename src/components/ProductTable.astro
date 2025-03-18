@@ -21,8 +21,11 @@ const memoryCards = JSON.parse(rawData);
     </thead>
     <tbody>
     {memoryCards.map((card) => (
-            <tr data-capacity={card.capacity} data-speed={card.speed} data-price={card.price}>
-                <td>${(card.price/card.capacity).toFixed(2)}</td>
+            <tr data-capacity={card.capacity}
+                data-speed={card.speed}
+                data-price={card.price}
+                data-brand={card.brand}>
+                <td>${(card.price / card.capacity).toFixed(2)}</td>
                 <td>${card.price.toFixed(2)}</td>
                 <td>{card.capacity} GB</td>
                 <td>{card.speed} Mhz</td>
@@ -50,27 +53,26 @@ const memoryCards = JSON.parse(rawData);
 </style>
 
 <script>
-    // document.addEventListener("DOMContentLoaded", function() {
-    //     const tableRows = document.querySelectorAll("#memoryTable tbody tr");
-    //     const filterCapacity = document.getElementById("filter-capacity");
-    //     const filterSpeed = document.getElementById("filter-speed");
-    //
-    //     function applyFilters() {
-    //         const capacityValue = filterCapacity.value;
-    //         const speedValue = filterSpeed.value;
-    //
-    //         tableRows.forEach(row => {
-    //             const rowCapacity = row.dataset.capacity;
-    //             const rowSpeed = row.dataset.speed;
-    //
-    //             const capacityMatch = capacityValue === "" || rowCapacity >= capacityValue;
-    //             const speedMatch = speedValue === "" || rowSpeed >= speedValue;
-    //
-    //             row.style.display = (capacityMatch && speedMatch) ? "" : "none";
-    //         });
-    //     }
-    //
-    //     filterCapacity.addEventListener("change", applyFilters);
-    //     filterSpeed.addEventListener("change", applyFilters);
-    // });
+    document.addEventListener("DOMContentLoaded", function () {
+        const selectFilters = document.querySelectorAll(".filter-checkbox");
+
+        selectFilters.forEach(filter => {
+            filter.addEventListener("change", function () {
+                const filterId = filter.id;
+                const filterValue = filter.checked;
+
+                const tableRows = document.querySelectorAll("#memoryTable tbody tr");
+
+                tableRows.forEach(row => {
+                    const filterGroupName = filterId.split('-')[1];
+                    const filterSelectedName = filterId.split('-')[2].toLowerCase();
+
+                    const rowValue = row.getAttribute('data-' + filterGroupName);
+                    const rowMatch = filterValue ? rowValue.toLowerCase() !== filterSelectedName : false;
+                    console.log(filterId, filterSelectedName, rowValue, rowMatch);
+                    row.style.display = rowMatch ? "table-row" : "none";
+                });
+            });
+        });
+    })
 </script>

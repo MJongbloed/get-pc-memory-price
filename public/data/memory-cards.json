@@ -7,7 +7,8 @@
     "latency": "CL16",
     "technology": "DDR4",
     "price": 49.99,
-    "affiliateLink": "https://www.amazon.com/dp/example1"
+    "affiliateLink": "https://www.amazon.com/dp/example1",
+    "brand": "Corsair"
   },
   {
     "id": "2",
@@ -17,7 +18,8 @@
     "latency": "CL18",
     "technology": "DDR4",
     "price": 89.99,
-    "affiliateLink": "https://www.amazon.com/dp/example2"
+    "affiliateLink": "https://www.amazon.com/dp/example2",
+    "brand": "G.SKILL"
   },
   {
     "id": "3",
@@ -27,7 +29,8 @@
     "latency": "CL40",
     "technology": "DDR5",
     "price": 69.99,
-    "affiliateLink": "https://www.amazon.com/dp/example3"
+    "affiliateLink": "https://www.amazon.com/dp/example3",
+    "brand": "Kingston"
   },
   {
     "id": "4",
@@ -37,7 +40,8 @@
     "latency": "CL36",
     "technology": "DDR5",
     "price": 199.99,
-    "affiliateLink": "https://www.amazon.com/dp/example4"
+    "affiliateLink": "https://www.amazon.com/dp/example4",
+    "brand": "Corsair"
   },
   {
     "id": "5",
@@ -47,7 +51,8 @@
     "latency": "CL16",
     "technology": "DDR4",
     "price": 29.99,
-    "affiliateLink": "https://www.amazon.com/dp/example5"
+    "affiliateLink": "https://www.amazon.com/dp/example5",
+    "brand": "TeamGroup"
   },
   {
     "id": "6",
@@ -57,7 +62,8 @@
     "latency": "CL16",
     "technology": "DDR4",
     "price": 79.99,
-    "affiliateLink": "https://www.amazon.com/dp/example6"
+    "affiliateLink": "https://www.amazon.com/dp/example6",
+    "brand": "Crucial"
   },
   {
     "id": "7",
@@ -67,7 +73,8 @@
     "latency": "CL18",
     "technology": "DDR4",
     "price": 59.99,
-    "affiliateLink": "https://www.amazon.com/dp/example7"
+    "affiliateLink": "https://www.amazon.com/dp/example7",
+    "brand": "PNY"
   },
   {
     "id": "8",
@@ -77,6 +84,7 @@
     "latency": "CL40",
     "technology": "DDR5",
     "price": 139.99,
-    "affiliateLink": "https://www.amazon.com/dp/example8"
+    "affiliateLink": "https://www.amazon.com/dp/example8",
+    "brand": "Samsung"
   }
 ]
