@@ -8,51 +8,69 @@ const rawData = fs.readFileSync(filePath, 'utf-8');
 const memoryCards = JSON.parse(rawData);
 ---
 
-<table id="memoryTable">
-    <thead>
+<table class="table" id="memoryTable">
+    <thead class="table-header">
     <tr>
-        <th>Name</th>
-        <th>Capacity (GB)</th>
-        <th>Speed (MHz)</th>
+        <th>Price per GB</th>
         <th>Price</th>
-        <th>Link</th>
+        <th>Capacity</th>
+        <th>Speed</th>
+        <th>Ratings</th>
+        <th>Affiliate Link</th>
     </tr>
     </thead>
     <tbody>
     {memoryCards.map((card) => (
             <tr data-capacity={card.capacity} data-speed={card.speed} data-price={card.price}>
-                <td>{card.name}</td>
-                <td>{card.capacity}</td>
-                <td>{card.speed}</td>
+                <td>${(card.price/card.capacity).toFixed(2)}</td>
                 <td>${card.price.toFixed(2)}</td>
-                <td><a href={card.affiliateLink} target="_blank">Buy</a></td>
+                <td>{card.capacity} GB</td>
+                <td>{card.speed} Mhz</td>
+                <td>{card.ratings}</td>
+                <td><a href={card.affiliateLink} target="_blank">{card.name}</a></td>
             </tr>
     ))}
     </tbody>
 </table>
 
+<style>
+    .table {
+        border-spacing: 5px;
+        padding-left: 10px
+    }
+
+    .table-header {
+        display: table-header-group;
+        vertical-align: middle;
+    }
+
+    .table-header th {
+        text-align: left;
+    }
+</style>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const tableRows = document.querySelectorAll("#memoryTable tbody tr");
-        const filterCapacity = document.getElementById("filter-capacity");
-        const filterSpeed = document.getElementById("filter-speed");
-
-        function applyFilters() {
-            const capacityValue = filterCapacity.value;
-            const speedValue = filterSpeed.value;
-
-            tableRows.forEach(row => {
-                const rowCapacity = row.dataset.capacity;
-                const rowSpeed = row.dataset.speed;
-
-                const capacityMatch = capacityValue === "" || rowCapacity >= capacityValue;
-                const speedMatch = speedValue === "" || rowSpeed >= speedValue;
-
-                row.style.display = (capacityMatch && speedMatch) ? "" : "none";
-            });
-        }
-
-        filterCapacity.addEventListener("change", applyFilters);
-        filterSpeed.addEventListener("change", applyFilters);
-    });
+    // document.addEventListener("DOMContentLoaded", function() {
+    //     const tableRows = document.querySelectorAll("#memoryTable tbody tr");
+    //     const filterCapacity = document.getElementById("filter-capacity");
+    //     const filterSpeed = document.getElementById("filter-speed");
+    //
+    //     function applyFilters() {
+    //         const capacityValue = filterCapacity.value;
+    //         const speedValue = filterSpeed.value;
+    //
+    //         tableRows.forEach(row => {
+    //             const rowCapacity = row.dataset.capacity;
+    //             const rowSpeed = row.dataset.speed;
+    //
+    //             const capacityMatch = capacityValue === "" || rowCapacity >= capacityValue;
+    //             const speedMatch = speedValue === "" || rowSpeed >= speedValue;
+    //
+    //             row.style.display = (capacityMatch && speedMatch) ? "" : "none";
+    //         });
+    //     }
+    //
+    //     filterCapacity.addEventListener("change", applyFilters);
+    //     filterSpeed.addEventListener("change", applyFilters);
+    // });
 </script>
