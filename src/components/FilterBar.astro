@@ -1,14 +1,32 @@
 <div class="filters">
     <fieldset class="filter-wrapper">
-        <legend class="filter-legend">Capacity</legend>
-        <label for="filter-capacity">Min Capacity (GB):</label>
-        <input type="number" id="filter-capacity" placeholder="Enter min capacity"/>
+        <legend class="filter-legend">Condition</legend>
+        <label for="filter-condition-new" class="filter-label">
+        <input type="checkbox" class="filter-checkbox" id="filter-condition-new" checked="checked" />New</label>
+        <label for="filter-condition-used" class="filter-label">
+        <input type="checkbox" class="filter-checkbox" id="filter-condition-used" checked="checked" />Used</label>
     </fieldset>
 
     <fieldset class="filter-wrapper">
-        <legend class="filter-legend">Speed</legend>
-        <label for="filter-speed">Min Speed (MHz):</label>
-        <input type="number" id="filter-speed" placeholder="Enter min speed"/>
+        <legend class="filter-legend">Capacity (GB)</legend>
+        <label for="filter-min-capacity">
+        <input type="number" class="numeric-input" id="filter-min-capacity" />Minimum</label>
+        <label for="filter-max-capacity">
+        <input type="number" class="numeric-input" id="filter-max-capacity" />Maximum</label>
+    </fieldset>
+
+    <fieldset class="filter-wrapper">
+        <legend class="filter-legend">Technology</legend>
+        <label for="filter-condition-new" class="filter-label">
+            <input type="checkbox" class="filter-checkbox" id="filter-condition-ddr" checked="checked" />DDR</label>
+        <label for="filter-condition-used" class="filter-label">
+            <input type="checkbox" class="filter-checkbox" id="filter-condition-ddr2" checked="checked" />DDR2</label>
+        <label for="filter-condition-new" class="filter-label">
+            <input type="checkbox" class="filter-checkbox" id="filter-condition-ddr3" checked="checked" />DDR3</label>
+        <label for="filter-condition-new" class="filter-label">
+            <input type="checkbox" class="filter-checkbox" id="filter-condition-ddr3l" checked="checked" />DDR3L</label>
+        <label for="filter-condition-new" class="filter-label">
+            <input type="checkbox" class="filter-checkbox" id="filter-condition-ddr4" checked="checked" />DDR4</label>
     </fieldset>
 </div>
 
@@ -30,5 +48,10 @@
 
     .filter-checkbox {
         vertical-align: middle;
+    }
+
+    .numeric-input {
+        margin: 0 5px 5px 0;
+        max-width: 45px;
     }
 </style>
