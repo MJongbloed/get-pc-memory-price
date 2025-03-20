@@ -68,9 +68,13 @@ const memoryCards = JSON.parse(rawData);
                     const filterSelectedName = filterId.split('-')[2].toLowerCase();
 
                     const rowValue = row.getAttribute('data-' + filterGroupName);
-                    const rowMatch = filterValue ? rowValue.toLowerCase() !== filterSelectedName : false;
-                    console.log(filterId, filterSelectedName, rowValue, rowMatch);
-                    row.style.display = rowMatch ? "table-row" : "none";
+                    const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
+                    console.log(filterId, filterSelectedName, rowValue, rowMatch, filterValue);
+                    if (rowMatch && !filterValue) {
+                        row.style.display = 'none';
+                    } else if (rowMatch && filterValue) {
+                        row.style.display = '';
+                    }
                 });
             });
         });
