@@ -24,7 +24,8 @@ const memoryCards = JSON.parse(rawData);
             <tr data-capacity={card.capacity}
                 data-speed={card.speed}
                 data-price={card.price}
-                data-brand={card.brand}>
+                data-brand={card.brand}
+                data-technology={card.technology}>
                 <td>${(card.price / card.capacity).toFixed(2)}</td>
                 <td>${card.price.toFixed(2)}</td>
                 <td>{card.capacity} GB</td>
@@ -67,6 +68,7 @@ const memoryCards = JSON.parse(rawData);
                     const filterGroupName = filterId.split('-')[1];
                     const filterSelectedName = filterId.split('-')[2].toLowerCase();
 
+                    console.log(row, filterGroupName);
                     const rowValue = row.getAttribute('data-' + filterGroupName);
                     const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
                     console.log(filterId, filterSelectedName, rowValue, rowMatch, filterValue);
