@@ -59,26 +59,27 @@ const memoryCards = JSON.parse(rawData);
 
         selectFilters.forEach(filter => {
             filter.addEventListener("change", function () {
-                const filterId = filter.id;
-                const filterValue = filter.checked;
-
                 const tableRows = document.querySelectorAll("#memoryTable tbody tr");
 
                 tableRows.forEach(row => {
-                    const filterGroupName = filterId.split('-')[1];
-                    const filterSelectedName = filterId.split('-')[2].toLowerCase();
+                    let rowVisible = true;
 
-                    console.log(row, filterGroupName);
-                    const rowValue = row.getAttribute('data-' + filterGroupName);
-                    const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
-                    console.log(filterId, filterSelectedName, rowValue, rowMatch, filterValue);
-                    if (rowMatch && !filterValue) {
-                        row.style.display = 'none';
-                    } else if (rowMatch && filterValue) {
-                        row.style.display = '';
-                    }
+                    selectFilters.forEach(filter => {
+                        const filterId = filter.id;
+                        const filterValue = filter.checked;
+                        const filterGroupName = filterId.split('-')[1];
+                        const filterSelectedName = filterId.split('-')[2].toLowerCase();
+                        const rowValue = row.getAttribute('data-' + filterGroupName);
+                        const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
+
+                        if (rowMatch && !filterValue) {
+                            rowVisible = false;
+                        }
+                    });
+
+                    row.style.display = rowVisible ? '' : 'none';
                 });
             });
         });
-    })
+    });
 </script>
