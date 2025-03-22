@@ -8,6 +8,7 @@ const rawData = fs.readFileSync(filePath, 'utf-8');
 const memoryCards = JSON.parse(rawData);
 ---
 
+{memoryCards.length > 0 ? (
 <table class="table" id="memoryTable">
     <thead class="table-header">
     <tr>
@@ -20,7 +21,7 @@ const memoryCards = JSON.parse(rawData);
     </tr>
     </thead>
     <tbody>
-    {memoryCards.map((card) => (
+    {memoryCards.map((card: any) => (
             <tr data-capacity={card.capacity}
                 data-speed={card.speed}
                 data-price={card.price}
@@ -36,6 +37,11 @@ const memoryCards = JSON.parse(rawData);
     ))}
     </tbody>
 </table>
+    ) : (
+<div class="no-results">
+    <p>No PC RAM Memory cards found! Please check back later.</p>
+</div>
+    )}
 
 <style>
     .table {
@@ -50,6 +56,14 @@ const memoryCards = JSON.parse(rawData);
 
     .table-header th {
         text-align: left;
+    }
+
+    .no-results {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
     }
 </style>
 
@@ -66,7 +80,7 @@ const memoryCards = JSON.parse(rawData);
 
                     selectFilters.forEach(filter => {
                         const filterId = filter.id;
-                        const filterValue = filter.checked;
+                        const filterValue = (filter as HTMLInputElement).checked;
                         const filterGroupName = filterId.split('-')[1];
                         const filterSelectedName = filterId.split('-')[2].toLowerCase();
                         const rowValue = row.getAttribute('data-' + filterGroupName);
@@ -77,7 +91,7 @@ const memoryCards = JSON.parse(rawData);
                         }
                     });
 
-                    row.style.display = rowVisible ? '' : 'none';
+                    (row as HTMLElement).style.display = rowVisible ? '' : 'none';
                 });
             });
         });
