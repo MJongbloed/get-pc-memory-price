@@ -3,6 +3,16 @@ import Header from '../components/Header.astro'
 import FilterBar from '../components/FilterBar.astro';
 import ProductTable from "../components/ProductTable.astro";
 import Footer from '../components/Footer.astro';
+
+const lastUpdate = new Date().toLocaleString('en-GB', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false,
+  timeZone: 'UTC'
+});
 ---
 
 <style>
@@ -14,4 +24,4 @@ import Footer from '../components/Footer.astro';
 <FilterBar />
 <ProductTable />
 </form>
-<Footer />
+<Footer lastUpdate={lastUpdate} />
