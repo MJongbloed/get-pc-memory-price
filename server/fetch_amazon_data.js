@@ -1,22 +1,51 @@
 import fs from 'fs';
 import fetch from 'node-fetch';
 
-const AMAZON_API_URL = "https://api.example.com/amazon/memory-cards"; // Replace with actual Amazon API
-
-async function fetchMemoryCards() {
-    try {
-        const response = await fetch(AMAZON_API_URL);
-        const data = await response.json();
-
-        fs.writeFileSync("public/data/memory-cards.json", JSON.stringify(data, null, 2));
-        console.log("✅ Amazon data updated");
-
-        // Trigger Astro rebuild
-        console.log("🚀 Rebuilding site...");
-        require("child_process").execSync("npm run build");
-    } catch (error) {
-        console.error("❌ Error fetching Amazon data:", error);
+async function fetchAmazonData() {
+    const query = `
+        query amazonProduct {
+            amazonProductSearchResults(input: {searchTerm: "Computer Memory", domain: US }) {
+            productResults {
+                results {
+                    title
+                    url
+                    asin
+                    brand
+                    price {
+                        value
+                        symbol
+                    }
+                    rating
+                    ratingsTotal
+                    technicalSpecifications {
+                        name
+                        value
+                    }
+                    featureBullets
+                    stockEstimate {
+                        availabilityMessage
+                        inStock
+                    }
+                }
+            }
+        }
     }
+`;
+
+    const response = await fetch('https://graphql.canopyapi.co/', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'API-KEY': '173307e1-8df2-4374-b1dc-a0f99d9d290d',
+        },
+        body: JSON.stringify({query}),
+    });
+
+    const result = await response.json();
+    console.log(result);
+    fs.writeFileSync('public/data/amazon-query-result.json', JSON.stringify(result, null, 2));
+    return result;
 }
 
-fetchMemoryCards();
+fetchAmazonData().then(result => console.log('Data from Amazon received!')).catch(error => console.error(error));
