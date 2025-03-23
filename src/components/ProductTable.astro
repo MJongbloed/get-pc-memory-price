@@ -70,30 +70,56 @@ const memoryCards = JSON.parse(rawData);
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const selectFilters = document.querySelectorAll(".filter-checkbox");
+        const minPriceInput = document.getElementById("filter-price-min");
+        const maxPriceInput = document.getElementById("filter-price-max");
+        const minCapacityInput = document.getElementById("filter-capacity-min");
+        const maxCapacityInput = document.getElementById("filter-capacity-max");
 
-        selectFilters.forEach(filter => {
-            filter.addEventListener("change", function () {
-                const tableRows = document.querySelectorAll("#memoryTable tbody tr");
+        function filterTable() {
+            const tableRows = document.querySelectorAll("#memoryTable tbody tr");
 
-                tableRows.forEach(row => {
-                    let rowVisible = true;
+            tableRows.forEach(row => {
+                let rowVisible = true;
 
-                    selectFilters.forEach(filter => {
-                        const filterId = filter.id;
-                        const filterValue = (filter as HTMLInputElement).checked;
-                        const filterGroupName = filterId.split('-')[1];
-                        const filterSelectedName = filterId.split('-')[2].toLowerCase();
-                        const rowValue = row.getAttribute('data-' + filterGroupName);
-                        const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
+                selectFilters.forEach(filter => {
+                    const filterId = filter.id;
+                    const filterValue = (filter as HTMLInputElement).checked;
+                    const filterGroupName = filterId.split('-')[1];
+                    const filterSelectedName = filterId.split('-')[2].toLowerCase();
+                    const rowValue = row.getAttribute('data-' + filterGroupName);
+                    const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
 
-                        if (rowMatch && !filterValue) {
-                            rowVisible = false;
-                        }
-                    });
-
-                    (row as HTMLElement).style.display = rowVisible ? '' : 'none';
+                    if (rowMatch && !filterValue) {
+                        rowVisible = false;
+                    }
                 });
+
+                const minPrice = parseFloat(minPriceInput.value) || 0;
+                const maxPrice = parseFloat(maxPriceInput.value) || Infinity;
+                const rowPrice = parseFloat(row.getAttribute('data-price'));
+
+                const minCapacity = parseFloat(minCapacityInput.value) || 0;
+                const maxCapacity = parseFloat(maxCapacityInput.value) || Infinity;
+                const rowCapacity = parseFloat(row.getAttribute('data-capacity'));
+
+                // Decide if a row should be visible or not, based on the filters.
+                if (rowPrice < minPrice || rowPrice > maxPrice || rowCapacity < minCapacity || rowCapacity > maxCapacity) {
+                    rowVisible = false;
+                }
+
+                (row as HTMLElement).style.display = rowVisible ? '' : 'none';
             });
+        }
+
+        // Attach event listeners for the checkboxes.
+        selectFilters.forEach(filter => {
+            filter.addEventListener("change", filterTable);
         });
+
+        // Attach event listeners for the numeric inputs.
+        minPriceInput.addEventListener("input", filterTable);
+        maxPriceInput.addEventListener("input", filterTable);
+        minCapacityInput.addEventListener("input", filterTable);
+        maxCapacityInput.addEventListener("input", filterTable);
     });
 </script>
