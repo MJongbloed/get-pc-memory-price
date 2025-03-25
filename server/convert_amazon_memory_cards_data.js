@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { URL } from 'url';
 
 function convertAndSaveData() {
     const __filename = fileURLToPath(import.meta.url);
@@ -9,11 +8,11 @@ function convertAndSaveData() {
     const inputFilePath = path.resolve(__dirname, '../public/data/amazon-query-result.json');
     const outputFilePath = path.resolve(__dirname, '../public/data/memory-cards.json');
 
-    // Read the input file
+    // Read the input file.
     const rawData = fs.readFileSync(inputFilePath, 'utf-8');
     const inputData = JSON.parse(rawData);
 
-    // Extract and convert the data
+    // Extract and convert the data.
     const convertedData = inputData.data.amazonProductCategory.productResults.results.map((item, index) => ({
         id: (index + 1).toString(),
         title: item.title,
@@ -33,13 +32,12 @@ function convertAndSaveData() {
         is_new: item.isNew
     }));
 
-    // Add the current date and time
+    // Add the current date and time in a date element.
     const outputData = {
-        date: new Date().toISOString(),
+        date: new Date().toLocaleString('en-US', { hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }),
         data: convertedData
     };
-
-    // Write the output file
+    // Write the output file.
     fs.writeFileSync(outputFilePath, JSON.stringify(outputData, null, 2), 'utf-8');
 }
 
