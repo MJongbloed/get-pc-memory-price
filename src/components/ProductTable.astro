@@ -6,6 +6,7 @@ import path from 'path';
 const filePath = path.resolve('public/data/memory-cards.json');
 const rawData = fs.readFileSync(filePath, 'utf-8');
 const memoryCards = JSON.parse(rawData).data;
+const accentioAssociatesTag = 'accentiofinde-20';
 ---
 
 {memoryCards.length > 0 ? (
@@ -35,7 +36,7 @@ const memoryCards = JSON.parse(rawData).data;
                 <td>{card.computer_memory_size} GB</td>
                 <td>{card.memory_speed}</td>
                 <td>{card.rating.toFixed(1)} ({card.ratings_total})</td>
-                <td><a href={card.url} target="_blank">{card.title}</a></td>
+                <td><a href={`${card.url}&tag=${accentioAssociatesTag}`} target="_blank">{card.title}</a></td>
             </tr>
     ))}
     </tbody>
