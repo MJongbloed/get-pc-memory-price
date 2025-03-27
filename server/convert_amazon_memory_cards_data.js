@@ -13,24 +13,42 @@ function convertAndSaveData() {
     const inputData = JSON.parse(rawData);
 
     // Extract and convert the data.
-    const convertedData = inputData.data.amazonProductCategory.productResults.results.map((item, index) => ({
-        id: (index + 1).toString(),
-        title: item.title,
-        computer_memory_size: parseInt(item.technicalSpecifications.find(spec => spec.name === 'Computer Memory Size').value),
-        memory_speed: item.technicalSpecifications.find(spec => spec.name === 'Memory Speed').value,
-        latency: item.technicalSpecifications.find(spec => spec.name === 'CAS Latency')?.value || 'N/A',
-        ram_memory_technology: item.technicalSpecifications.find(spec => spec.name === 'RAM Memory Technology').value,
-        price: item.price.value,
-        symbol: item.price.symbol,
-        url: item.url,
-        rating: item.rating,
-        ratings_total: item.ratingsTotal,
-        brand: item.brand,
-        compatible_devices: item.technicalSpecifications.find(spec => spec.name === 'Compatible Devices').value,
-        computer_memory_type: item.technicalSpecifications.find(spec => spec.name === 'Computer Memory Type').value,
-        in_stock: item.stockEstimate.inStock,
-        is_new: item.isNew
-    }));
+    const convertedData = inputData.data.amazonProductCategory.productResults.results
+        // Filter out items without Computer Memory Size which is a critical field
+        .filter(item => {
+            const memSizeSpec = item.technicalSpecifications.find(spec => spec.name === 'Computer Memory Size');
+            if (!memSizeSpec) {
+                console.log(`Skipping item "${item.title}" because it's missing Computer Memory Size specification`);
+                return false;
+            }
+            return true;
+        })
+        .map((item, index) => {
+            // Helper function to safely get specification values with defaults
+            const getSpecValue = (specName, defaultValue = 'N/A') => {
+                const spec = item.technicalSpecifications.find(spec => spec.name === specName);
+                return spec?.value || defaultValue;
+            };
+            
+            return {
+                id: (index + 1).toString(),
+                title: item.title,
+                computer_memory_size: parseInt(getSpecValue('Computer Memory Size', '0')),
+                memory_speed: getSpecValue('Memory Speed'),
+                latency: getSpecValue('CAS Latency'),
+                ram_memory_technology: getSpecValue('RAM Memory Technology'),
+                price: item.price.value,
+                symbol: item.price.symbol,
+                url: item.url,
+                rating: item.rating,
+                ratings_total: item.ratingsTotal,
+                brand: item.brand,
+                compatible_devices: getSpecValue('Compatible Devices'),
+                computer_memory_type: getSpecValue('Computer Memory Type'),
+                in_stock: item.stockEstimate.inStock,
+                is_new: item.isNew
+            };
+        });
 
     // Add the current date and time in a date element.
     const outputData = {

@@ -31,11 +31,11 @@ const accentioAssociatesTag = 'accentiofinde-20';
                 data-compatibility={card.compatible_devices}
                 data-type={card.computer_memory_type}
                 data-stock={card.in_stock}>
-                <td>{card.symbol}{(card.price / card.computer_memory_size).toFixed(2)}</td>
-                <td>{card.symbol}{card.price.toFixed(2)}</td>
-                <td>{card.computer_memory_size} GB</td>
+                <td>{card.symbol}{(card.price && card.computer_memory_size ? (card.price / card.computer_memory_size).toFixed(2) : "0.00")}</td>
+                <td>{card.symbol}{card.price ? card.price.toFixed(2) : "0.00"}</td>
+                <td>{card.computer_memory_size ? card.computer_memory_size : 0} GB</td>
                 <td>{card.memory_speed}</td>
-                <td>{card.rating.toFixed(1)} ({card.ratings_total})</td>
+                <td>{card.rating ? card.rating.toFixed(1) : "N/A"} ({card.ratings_total || 0})</td>
                 <td><a href={`${card.url}&tag=${accentioAssociatesTag}`} target="_blank">{card.title}</a></td>
             </tr>
     ))}
