@@ -60,4 +60,5 @@ function convertAndSaveData() {
 }
 
 // Run the function
-convertAndSaveData();
+convertAndSaveData()
+console.log('Data converted and saved!');
