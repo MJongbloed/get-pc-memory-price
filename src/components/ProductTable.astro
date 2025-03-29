@@ -30,7 +30,8 @@ const accentioAssociatesTag = 'accentiofinde-20';
                 data-technology={card.ram_memory_technology}
                 data-compatibility={card.compatible_devices}
                 data-type={card.computer_memory_type}
-                data-stock={card.in_stock}>
+                data-stock={card.in_stock}
+                data-condition={card.is_new ? 'new' : 'used'}>
                 <td>{card.symbol}{(card.price && card.computer_memory_size ? (card.price / card.computer_memory_size).toFixed(2) : "0.00")}</td>
                 <td>{card.symbol}{card.price ? card.price.toFixed(2) : "0.00"}</td>
                 <td>{card.computer_memory_size ? card.computer_memory_size : 0} GB</td>
@@ -91,10 +92,18 @@ const accentioAssociatesTag = 'accentiofinde-20';
                     const filterGroupName = filterId.split('-')[1];
                     const filterSelectedName = filterId.split('-')[2].toLowerCase();
                     const rowValue = row.getAttribute('data-' + filterGroupName);
-                    const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
-
-                    if (rowMatch && !filterValue) {
-                        rowVisible = false;
+                    
+                    // Special handling for condition filters
+                    if (filterGroupName === 'condition') {
+                        const rowCondition = rowValue?.toLowerCase() || '';
+                        if (rowCondition === filterSelectedName && !filterValue) {
+                            rowVisible = false;
+                        }
+                    } else {
+                        const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
+                        if (rowMatch && !filterValue) {
+                            rowVisible = false;
+                        }
                     }
                 });
 
