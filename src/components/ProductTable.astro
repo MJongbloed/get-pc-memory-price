@@ -75,12 +75,14 @@ const accentioAssociatesTag = 'accentiofinde-20';
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const selectFilters = document.querySelectorAll(".filter-checkbox");
-        const minPriceInput = document.getElementById("filter-price-min");
-        const maxPriceInput = document.getElementById("filter-price-max");
-        const minCapacityInput = document.getElementById("filter-capacity-min");
-        const maxCapacityInput = document.getElementById("filter-capacity-max");
+        const minPriceInput = document.getElementById("filter-price-min") as HTMLInputElement;
+        const maxPriceInput = document.getElementById("filter-price-max") as HTMLInputElement;
+        const minCapacityInput = document.getElementById("filter-capacity-min") as HTMLInputElement;
+        const maxCapacityInput = document.getElementById("filter-capacity-max") as HTMLInputElement;
 
         function filterTable() {
+            if (!minPriceInput || !maxPriceInput || !minCapacityInput || !maxCapacityInput) return;
+            
             const tableRows = document.querySelectorAll("#memoryTable tbody tr");
 
             tableRows.forEach(row => {
@@ -99,7 +101,15 @@ const accentioAssociatesTag = 'accentiofinde-20';
                         if (rowCondition === filterSelectedName && !filterValue) {
                             rowVisible = false;
                         }
-                    } else {
+                    } 
+                    // Special handling for stock filter
+                    else if (filterGroupName === 'stock') {
+                        const isInStock = rowValue === 'true';
+                        if (filterValue && !isInStock) {
+                            rowVisible = false;
+                        }
+                    }
+                    else {
                         const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
                         if (rowMatch && !filterValue) {
                             rowVisible = false;
@@ -109,11 +119,11 @@ const accentioAssociatesTag = 'accentiofinde-20';
 
                 const minPrice = parseFloat(minPriceInput.value) || 0;
                 const maxPrice = parseFloat(maxPriceInput.value) || Infinity;
-                const rowPrice = parseFloat(row.getAttribute('data-price'));
+                const rowPrice = parseFloat(row.getAttribute('data-price') || '0');
 
                 const minCapacity = parseFloat(minCapacityInput.value) || 0;
                 const maxCapacity = parseFloat(maxCapacityInput.value) || Infinity;
-                const rowCapacity = parseFloat(row.getAttribute('data-capacity'));
+                const rowCapacity = parseFloat(row.getAttribute('data-capacity') || '0');
 
                 // Decide if a row should be visible or not, based on the filters.
                 if (rowPrice < minPrice || rowPrice > maxPrice || rowCapacity < minCapacity || rowCapacity > maxCapacity) {
@@ -130,9 +140,11 @@ const accentioAssociatesTag = 'accentiofinde-20';
         });
 
         // Attach event listeners for the numeric inputs.
-        minPriceInput.addEventListener("input", filterTable);
-        maxPriceInput.addEventListener("input", filterTable);
-        minCapacityInput.addEventListener("input", filterTable);
-        maxCapacityInput.addEventListener("input", filterTable);
+        if (minPriceInput && maxPriceInput && minCapacityInput && maxCapacityInput) {
+            minPriceInput.addEventListener("input", filterTable);
+            maxPriceInput.addEventListener("input", filterTable);
+            minCapacityInput.addEventListener("input", filterTable);
+            maxCapacityInput.addEventListener("input", filterTable);
+        }
     });
 </script>
