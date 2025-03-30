@@ -1,6 +1,6 @@
 <div class="filters">
     <fieldset class="filter-wrapper filter-bar-info">
-        <div class="filter-bar-info-message">Links on this page are affiliate links. If you buy through them, we may earn a commission.<br /><a href="/Learn-more.html" target="_blank">Learn more</a>.</div>
+        <div class="filter-bar-info-message">As an Amazon Associate I earn from qualifying purchases.
     </fieldset>
 
     <fieldset class="filter-wrapper">
@@ -14,9 +14,9 @@
         <fieldset class="filter-wrapper">
         <legend class="filter-legend">Capacity (GB)</legend>
         <label for="filter-capacity-min">
-        <input type="number" class="numeric-input" id="filter-capacity-min" />Minimum</label>
+        <input type="number" class="numeric-input" id="filter-capacity-min" />Min</label>
         <label for="filter-capacity-max">
-        <input type="number" class="numeric-input" id="filter-capacity-max" />Maximum</label>
+        <input type="number" class="numeric-input" id="filter-capacity-max" />Max</label>
     </fieldset>
 
     <fieldset class="filter-wrapper">
@@ -38,9 +38,9 @@
     <fieldset class="filter-wrapper">
         <legend class="filter-legend">Price</legend>
         <label for="filter-price-min">
-            <input type="number" class="numeric-input" id="filter-price-min" />Minimum</label>
+            <input type="number" class="numeric-input" id="filter-price-min" />Min</label>
         <label for="filter-price-max">
-            <input type="number" class="numeric-input" id="filter-price-max" />Maximum</label>
+            <input type="number" class="numeric-input" id="filter-price-max" />Max</label>
     </fieldset>
 
     <fieldset class="filter-wrapper">
@@ -100,16 +100,6 @@
     </fieldset>
 
     <fieldset class="filter-wrapper">
-        <legend class="filter-legend">Features</legend>
-        <label for="filter-features-ecc" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-features-ecc" checked="checked" />ECC</label>
-        <label for="filter-features-registered-memory" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-features-registered-memory" checked="checked" />Registered Memory</label>
-        <label for="filter-features-led-lights" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-features-led-lights" checked="checked" />Led Lights</label>
-    </fieldset>
-
-    <fieldset class="filter-wrapper">
         <legend class="filter-legend">In Stock</legend>
         <label for="filter-in-stock" class="filter-label">
             <input type="checkbox" class="filter-checkbox" id="filter-in-stock" />Only items in stock</label>
@@ -118,34 +108,68 @@
 
 <style>
     .filters {
-        float: left;
-        padding: 0.5em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0 0.75rem;
+        width: 160px;
+        max-height: 100vh;
+        overflow-y: auto;
+        position: sticky;
+        top: 1rem;
     }
 
     .filter-wrapper {
-        border: 1px solid black;
-        margin: 0 0 0.5em;
-        width: 10em;
+        border: none;
+        border-radius: 8px;
+        background-color: #f1f3f5;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 0.7rem;
+        margin: 0;
+        transition: box-shadow 0.2s ease;
+    }
+
+    .filter-wrapper:hover {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     }
 
     .filter-bar-info {
-        word-spacing: 0.1em;
+        background-color: #e7f5ff;
+        font-size: 0.85rem;
     }
 
     .filter-legend {
-        font-weight: bold;
+        font-weight: 600;
+        color: #343a40;
+        padding: 0 0.5rem;
     }
 
     .filter-label {
-        display: block;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        color: #495057;
     }
 
     .filter-checkbox {
-        vertical-align: middle;
+        margin-right: 0.5rem;
+        accent-color: #4361ee;
     }
 
     .numeric-input {
-        margin: 0 5px 5px 0;
-        max-width: 45px;
+        width: 60px;
+        padding: 0.3rem;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        margin-right: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .filters {
+            width: 100%;
+            max-height: none;
+            position: static;
+        }
     }
 </style>

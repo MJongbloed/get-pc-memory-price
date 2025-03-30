@@ -49,26 +49,80 @@ const accentioAssociatesTag = 'accentiofinde-20';
     )}
 
 <style>
+    .table-container {
+        flex: 1;
+        min-width: 0;
+    }
+    
     .table {
-        border-spacing: 5px;
-        padding-left: 10px
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
     }
 
     .table-header {
-        display: table-header-group;
-        vertical-align: middle;
+        background-color: #f1f3f5;
     }
 
     .table-header th {
+        padding: 0.1rem 1rem;
         text-align: left;
+        font-weight: 600;
+        color: #343a40;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    tbody tr {
+        transition: background-color 0.2s;
+    }
+
+    tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    tbody td {
+        padding: 0.3rem 1rem;
+        border-bottom: 1px solid #e9ecef;
+        color: #495057;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    tbody a {
+        color: #4361ee;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    tbody a:hover {
+        color: #3249b9;
+        text-decoration: underline;
     }
 
     .no-results {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: 30vh;
         text-align: center;
+        color: #6c757d;
+        font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+        .table {
+            font-size: 0.9rem;
+        }
+        
+        .table-header th, tbody td {
+            padding: 0.6rem;
+        }
     }
 </style>
 
