@@ -30,14 +30,21 @@ function convertAndSaveData() {
                 return spec?.value || defaultValue;
             };
             
+            const memorySize = parseInt(getSpecValue('Computer Memory Size', '0'));
+            const price = item.price.value;
+            
+            // Calculate price per GB
+            const pricePerGB = memorySize > 0 && price ? Number((price / memorySize).toFixed(2)) : 0;
+            
             return {
                 id: (index + 1).toString(),
                 title: item.title,
-                computer_memory_size: parseInt(getSpecValue('Computer Memory Size', '0')),
+                computer_memory_size: memorySize,
                 memory_speed: getSpecValue('Memory Speed'),
                 latency: getSpecValue('CAS Latency'),
                 ram_memory_technology: getSpecValue('RAM Memory Technology'),
-                price: item.price.value,
+                price: price,
+                price_per_gb: pricePerGB,
                 symbol: item.price.symbol,
                 url: item.url,
                 rating: item.rating,
@@ -49,6 +56,9 @@ function convertAndSaveData() {
                 is_new: item.isNew
             };
         });
+        
+    // Sort by price per GB (ascending)
+    convertedData.sort((a, b) => a.price_per_gb - b.price_per_gb);
 
     // Add the current date and time in a date element.
     const outputData = {
