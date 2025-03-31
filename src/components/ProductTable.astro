@@ -8,7 +8,7 @@ const rawData = fs.readFileSync(filePath, 'utf-8');
 const unsortedMemoryCards = JSON.parse(rawData).data;
 
 // Sort the memory cards by price_per_gb
-const memoryCards = unsortedMemoryCards.sort((a, b) => {
+const memoryCards = unsortedMemoryCards.sort((a: any, b: any) => {
     // Calculate price per GB if it doesn't exist
     const aPricePerGB = a.price_per_gb !== undefined ? a.price_per_gb : 
                         (a.price && a.computer_memory_size ? a.price / a.computer_memory_size : Infinity);
@@ -46,7 +46,7 @@ const accentioAssociatesTag = 'accentiofinde-20';
                 data-stock={card.in_stock}
                 data-condition={card.is_new ? 'new' : 'used'}
                 data-latency={card.latency}>
-                <td>{card.symbol}{card.price_per_gb !== undefined ? card.price_per_gb : (card.price && card.computer_memory_size ? (card.price / card.computer_memory_size).toFixed(2) : "0.00")}</td>
+                <td>{card.symbol}{card.price_per_gb_formatted !== undefined ? card.price_per_gb_formatted : (card.price_per_gb !== undefined ? card.price_per_gb.toFixed(2) : (card.price && card.computer_memory_size ? (card.price / card.computer_memory_size).toFixed(2) : "0.00"))}</td>
                 <td>{card.symbol}{card.price ? card.price.toFixed(2) : "0.00"}</td>
                 <td>{card.computer_memory_size ? card.computer_memory_size : 0} GB</td>
                 <td>{card.memory_speed}</td>

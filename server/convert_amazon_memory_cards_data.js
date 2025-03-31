@@ -33,8 +33,14 @@ function convertAndSaveData() {
             const memorySize = parseInt(getSpecValue('Computer Memory Size', '0'));
             const price = item.price.value;
             
-            // Calculate price per GB
-            const pricePerGB = memorySize > 0 && price ? Number((price / memorySize).toFixed(2)) : 0;
+            // Calculate price per GB - store it as a string with fixed 2 decimal places
+            let pricePerGB = 0;
+            if (memorySize > 0 && price) {
+                pricePerGB = parseFloat((price / memorySize).toFixed(2));
+            }
+            
+            // Also create a formatted version for display with 2 decimal places
+            const pricePerGBFormatted = pricePerGB.toFixed(2);
             
             return {
                 id: (index + 1).toString(),
@@ -44,7 +50,8 @@ function convertAndSaveData() {
                 latency: getSpecValue('CAS Latency'),
                 ram_memory_technology: getSpecValue('RAM Memory Technology'),
                 price: price,
-                price_per_gb: pricePerGB,
+                price_per_gb: pricePerGB, // For sorting and calculations
+                price_per_gb_formatted: pricePerGBFormatted, // For display with 2 decimal places
                 symbol: item.price.symbol,
                 url: item.url,
                 rating: item.rating,
@@ -65,8 +72,18 @@ function convertAndSaveData() {
         date: new Date().toLocaleString('en-US', { hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }),
         data: convertedData
     };
+    
+    // Format the price_per_gb with 2 decimal places in the final JSON
+    const outputJson = JSON.stringify(outputData, (key, value) => {
+        // Format price_per_gb values to always have 2 decimal places
+        if (key === 'price_per_gb' && typeof value === 'number') {
+            return parseFloat(value.toFixed(2));
+        }
+        return value;
+    }, 2);
+    
     // Write the output file.
-    fs.writeFileSync(outputFilePath, JSON.stringify(outputData, null, 2), 'utf-8');
+    fs.writeFileSync(outputFilePath, outputJson, 'utf-8');
 }
 
 // Run the function
