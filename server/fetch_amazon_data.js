@@ -1,6 +1,7 @@
 import fs from 'fs';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
+import path from 'path';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -60,22 +61,37 @@ async function fetchAmazonData() {
         const result = await response.json();
         
         // Ensure the directory exists before writing
-        const dir = '../public/data';
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir, { recursive: true });
+        const dir = path.join(__dirname, '../public/data');
+        try {
+            if (!fs.existsSync(dir)) {
+                fs.mkdirSync(dir, { recursive: true });
+            }
+        } catch (dirError) {
+            throw new Error(`Failed to create directory ${dir}: ${dirError.message}`);
         }
 
-        fs.writeFileSync('../public/data/amazon-query-result.json', JSON.stringify(result, null, 2));
+        // Write the file with proper error handling
+        const filePath = path.join(dir, 'amazon-query-result.json');
+        try {
+            fs.writeFileSync(filePath, JSON.stringify(result, null, 2));
+            console.log(`Successfully wrote data to ${filePath}`);
+        } catch (writeError) {
+            throw new Error(`Failed to write file ${filePath}: ${writeError.message}`);
+        }
+
         return result;
     } catch (error) {
-        console.error('Error fetching Amazon data:', error);
+        console.error('Error in fetchAmazonData:', error.message);
+        if (error.stack) {
+            console.error('Stack trace:', error.stack);
+        }
         throw error;
     }
 }
 
 fetchAmazonData()
-    .then(result => console.log('Data from Amazon received!'))
+    .then(result => console.log('Data from Amazon received and saved successfully!'))
     .catch(error => {
-        console.error('Failed to fetch Amazon data:', error);
+        console.error('Failed to complete Amazon data operation:', error.message);
         process.exit(1);
     });
