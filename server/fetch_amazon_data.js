@@ -13,30 +13,52 @@ if (!process.env.CANOPY_API_KEY) {
 
 async function fetchAmazonData() {
     const query = `
-        query amazonProduct {
-            amazonProductCategory(input: {categoryId: "172500", domain: US }) {
-            productResults {
-                results {
-                    title
-                    url
-                    asin
-                    brand
-                    isNew
-                    rating
-                    ratingsTotal
-                    featureBullets
-                    price {
-                        value
-                        symbol
-                    }
-                    technicalSpecifications {
-                        name
-                        value
-                    }
-                }
-            }
+query amazonProduct {
+  amazonProductCategory(input: {categoryId: "172500", domain: US}) {
+    productResults(input: {page: "1", sort: AVERAGE_CUSTOMER_REVIEW}) {
+      pageInfo {
+        hasNextPage
+        hasPrevPage
+      }
+      results {
+        asin
+        brand
+        featureBullets
+        isNew
+        price {
+          value
+          symbol
         }
+        rating
+        ratingsTotal
+        reviewsTotal
+        title
+        technicalSpecifications {
+          name
+          value
+        }
+        url
+        variants {
+          asin
+          attributes {
+            name
+            value
+          }
+          text
+          url
+        }
+        bestSellerRankings {
+          categoryName
+          rank
+        }
+        categories {
+          id
+          name
+        }
+      }
     }
+  }
+}
 `;
 
     try {

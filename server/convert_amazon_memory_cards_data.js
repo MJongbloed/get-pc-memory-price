@@ -29,9 +29,34 @@ function convertAndSaveData() {
                 const spec = item.technicalSpecifications.find(spec => spec.name === specName);
                 return spec?.value || defaultValue;
             };
+
+            // Helper function to extract memory speed from title
+            const extractMemorySpeedFromTitle = (title) => {
+                // Look for patterns like "3200MHz", "3200 MHz", "3200mhz", or "3200 MT/s"
+                const speedMatch = title.match(/(\d+)\s*(?:MHz|mhz|MT\/s)/i);
+                return speedMatch ? `${speedMatch[1]} MHz` : null;
+            };
+
+            // Helper function to clean memory speed value
+            const cleanMemorySpeed = (speed) => {
+                // Remove any MT/s text and extract just the numeric value
+                const cleanSpeed = speed.replace(/MT\/s/i, '').trim();
+                // Extract the numeric value
+                const numericMatch = cleanSpeed.match(/(\d+)/);
+                return numericMatch ? `${numericMatch[1]} MHz` : speed;
+            };
             
             const memorySize = parseInt(getSpecValue('Computer Memory Size', '0'));
             const price = item.price.value;
+            
+            // Get memory speed and validate it
+            let memorySpeed = getSpecValue('Memory Speed');
+            if (!memorySpeed.toLowerCase().includes('mhz')) {
+                const speedFromTitle = extractMemorySpeedFromTitle(item.title);
+                memorySpeed = speedFromTitle || `${memorySpeed} MHz`;
+            }
+            // Clean up the memory speed value
+            memorySpeed = cleanMemorySpeed(memorySpeed);
             
             // Calculate price per GB - store it as a string with fixed 2 decimal places
             let pricePerGB = 0;
@@ -46,7 +71,7 @@ function convertAndSaveData() {
                 id: (index + 1).toString(),
                 title: item.title,
                 computer_memory_size: memorySize,
-                memory_speed: getSpecValue('Memory Speed'),
+                memory_speed: memorySpeed,
                 latency: getSpecValue('CAS Latency'),
                 ram_memory_technology: getSpecValue('RAM Memory Technology'),
                 price: price,
