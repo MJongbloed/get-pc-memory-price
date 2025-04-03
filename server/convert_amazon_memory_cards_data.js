@@ -17,15 +17,21 @@ function convertAndSaveData() {
         // Filter out items without Computer Memory Size which is a critical field
         // and items without a price
         .filter(item => {
+            // Check if item and technicalSpecifications exist before accessing them
+            if (!item || !item.technicalSpecifications) {
+                console.log(`Skipping item (ASIN: ${item?.asin || 'unknown'}) because it's missing technical specifications\n`);
+                return false;
+            }
+            
             const memSizeSpec = item.technicalSpecifications.find(spec => spec.name === 'Computer Memory Size');
             if (!memSizeSpec) {
-                console.log(`Skipping item "${item.title}" because it's missing Computer Memory Size specification`);
+                console.log(`Skipping item (ASIN: ${item.asin}) because it's missing Computer Memory Size specification\n`);
                 return false;
             }
             
             // Skip items without a price
             if (!item.price || item.price === null) {
-                console.log(`Skipping item "${item.title}" because it doesn't have a price`);
+                console.log(`Skipping item (ASIN: ${item.asin}) because it doesn't have a price\n`);
                 return false;
             }
             
@@ -34,6 +40,9 @@ function convertAndSaveData() {
         .map((item, index) => {
             // Helper function to safely get specification values with defaults
             const getSpecValue = (specName, defaultValue = 'N/A') => {
+                if (!item.technicalSpecifications) {
+                    return defaultValue;
+                }
                 const spec = item.technicalSpecifications.find(spec => spec.name === specName);
                 return spec?.value || defaultValue;
             };
