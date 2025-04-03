@@ -15,12 +15,20 @@ function convertAndSaveData() {
     // Extract and convert the data.
     const convertedData = inputData.data.amazonProductCategory.productResults.results
         // Filter out items without Computer Memory Size which is a critical field
+        // and items without a price
         .filter(item => {
             const memSizeSpec = item.technicalSpecifications.find(spec => spec.name === 'Computer Memory Size');
             if (!memSizeSpec) {
                 console.log(`Skipping item "${item.title}" because it's missing Computer Memory Size specification`);
                 return false;
             }
+            
+            // Skip items without a price
+            if (!item.price || item.price === null) {
+                console.log(`Skipping item "${item.title}" because it doesn't have a price`);
+                return false;
+            }
+            
             return true;
         })
         .map((item, index) => {
@@ -47,7 +55,10 @@ function convertAndSaveData() {
             };
             
             const memorySize = parseInt(getSpecValue('Computer Memory Size', '0'));
-            const price = item.price.value;
+            
+            // Handle null price values
+            const price = item.price ? item.price.value : null;
+            const symbol = item.price ? item.price.symbol : '$';
             
             // Get memory speed and validate it
             let memorySpeed = getSpecValue('Memory Speed');
@@ -77,7 +88,7 @@ function convertAndSaveData() {
                 price: price,
                 price_per_gb: pricePerGB, // For sorting and calculations
                 price_per_gb_formatted: pricePerGBFormatted, // For display with 2 decimal places
-                symbol: item.price.symbol,
+                symbol: symbol,
                 url: item.url,
                 rating: item.rating,
                 ratings_total: item.ratingsTotal,

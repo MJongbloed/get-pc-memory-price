@@ -2,9 +2,14 @@ import fs from 'fs';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Load environment variables from .env file
-dotenv.config();
+// Get the directory name for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load environment variables from .env file in the project root
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 // Validate that API key exists
 if (!process.env.CANOPY_API_KEY) {
