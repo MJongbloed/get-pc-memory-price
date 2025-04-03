@@ -59,7 +59,6 @@ function convertAndSaveData() {
                 brand: item.brand,
                 compatible_devices: getSpecValue('Compatible Devices'),
                 computer_memory_type: getSpecValue('Computer Memory Type'),
-                in_stock: item.stockEstimate.inStock,
                 is_new: item.isNew
             };
         });

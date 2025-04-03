@@ -33,10 +33,6 @@ async function fetchAmazonData() {
                         name
                         value
                     }
-                    stockEstimate {
-                        availabilityMessage
-                        inStock
-                    }
                 }
             }
         }
