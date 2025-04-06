@@ -63,7 +63,7 @@ try {
     </fieldset>
 
     <fieldset class="filter-wrapper brands-filter">
-        <legend class="filter-legend">Brands</legend>
+        <legend class="filter-legend">Brands <input type="checkbox" class="filter-checkbox select-all" id="filter-brand-all" checked="checked" data-group="brand" /></legend>
         {brands.map((brand: string) => {
             const brandId = brand.toLowerCase().replace(/[^a-z0-9]/g, '-');
             return (
@@ -156,6 +156,14 @@ try {
         font-weight: 600;
         color: #343a40;
         padding: 0 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .filter-legend .filter-checkbox {
+        margin: 0;
+        transform: translateY(1px);
     }
 
     .filter-label {

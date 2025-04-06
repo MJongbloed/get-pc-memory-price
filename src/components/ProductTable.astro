@@ -141,7 +141,8 @@ const accentioAssociatesTag = 'accentiofinde-20';
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const selectFilters = document.querySelectorAll(".filter-checkbox");
+        const selectFilters = document.querySelectorAll(".filter-checkbox:not(.select-all)");
+        const selectAllFilters = document.querySelectorAll(".filter-checkbox.select-all");
         const minPriceInput = document.getElementById("filter-price-min") as HTMLInputElement;
         const maxPriceInput = document.getElementById("filter-price-max") as HTMLInputElement;
         const minCapacityInput = document.getElementById("filter-capacity-min") as HTMLInputElement;
@@ -202,12 +203,60 @@ const accentioAssociatesTag = 'accentiofinde-20';
             });
         }
 
-        // Attach event listeners for the checkboxes.
-        selectFilters.forEach(filter => {
-            filter.addEventListener("change", filterTable);
+        // Handle "Select All" functionality
+        function handleSelectAll(selectAllCheckbox: HTMLInputElement) {
+            const group = selectAllCheckbox.getAttribute('data-group');
+            const isChecked = selectAllCheckbox.checked;
+            
+            // Find all checkboxes that belong to this group
+            const groupCheckboxes = document.querySelectorAll(`.filter-checkbox[id^="filter-${group}-"]:not(.select-all)`);
+            
+            // Set all checkboxes in the group to match the "Select All" state
+            groupCheckboxes.forEach((checkbox) => {
+                (checkbox as HTMLInputElement).checked = isChecked;
+            });
+            
+            // Update the table filtering
+            filterTable();
+        }
+        
+        // Update "Select All" checkbox state when individual filters change
+        function updateSelectAllState(changedCheckbox: HTMLInputElement) {
+            const filterId = changedCheckbox.id;
+            const filterGroupName = filterId.split('-')[1];
+            const selectAllCheckbox = document.getElementById(`filter-${filterGroupName}-all`) as HTMLInputElement;
+            
+            if (selectAllCheckbox) {
+                const groupCheckboxes = document.querySelectorAll(`.filter-checkbox[id^="filter-${filterGroupName}-"]:not(.select-all)`);
+                let allChecked = true;
+                
+                groupCheckboxes.forEach((checkbox) => {
+                    if (!(checkbox as HTMLInputElement).checked) {
+                        allChecked = false;
+                    }
+                });
+                
+                // Update the "Select All" checkbox without triggering its change event
+                selectAllCheckbox.checked = allChecked;
+            }
+        }
+
+        // Attach event listeners for the "Select All" checkboxes
+        selectAllFilters.forEach(filter => {
+            filter.addEventListener("change", function(this: HTMLInputElement) {
+                handleSelectAll(this);
+            });
         });
 
-        // Attach event listeners for the numeric inputs.
+        // Attach event listeners for the individual checkboxes
+        selectFilters.forEach(filter => {
+            filter.addEventListener("change", function(this: HTMLInputElement) {
+                updateSelectAllState(this);
+                filterTable();
+            });
+        });
+
+        // Attach event listeners for the numeric inputs
         if (minPriceInput && maxPriceInput && minCapacityInput && maxCapacityInput) {
             minPriceInput.addEventListener("input", filterTable);
             maxPriceInput.addEventListener("input", filterTable);
