@@ -51,6 +51,10 @@ query amazonProduct {
           }
           text
           url
+          price {
+            value
+            symbol
+          }
         }
         bestSellerRankings {
           categoryName
