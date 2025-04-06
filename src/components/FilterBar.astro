@@ -1,3 +1,22 @@
+---
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Read the product filters data at build time
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const filtersPath = path.resolve(__dirname, '../../public/data/product-filters.json');
+
+let brands: string[] = [];
+try {
+  const filtersData = JSON.parse(fs.readFileSync(filtersPath, 'utf-8'));
+  brands = filtersData.brands || [];
+} catch (error) {
+  console.error('Error loading product filters:', error);
+}
+---
+
 <div class="filters">
     <fieldset class="filter-wrapper filter-bar-info">
         <div class="filter-bar-info-message">As an Amazon Associate I earn from qualifying purchases.</div>
@@ -43,28 +62,22 @@
             <input type="number" class="numeric-input" id="filter-price-max" />Max</label>
     </fieldset>
 
-    <fieldset class="filter-wrapper">
+    <fieldset class="filter-wrapper brands-filter">
         <legend class="filter-legend">Brands</legend>
-        <label for="filter-brand-brute-networks" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-brand-brute-networks" checked="checked" />Brute Networks</label>
-        <label for="filter-brand-corsair" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-brand-corsair" checked="checked" />Corsair</label>
-        <label for="filter-brand-crucial" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-brand-crucial" checked="checked" />Crucial</label>
-        <label for="filter-brand-g.skill" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-brand-g.skill" checked="checked" />G.SKILL</label>
-        <label for="filter-brand-kingston" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-brand-kingston" checked="checked" />Kingston</label>
-        <label for="filter-brand-pny" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-brand-pny" checked="checked" />PNY</label>
-        <label for="filter-brand-teamgroup" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-brand-teamgroup" checked="checked" />TEAMGROUP</label>
-        <label for="filter-brand-samsung" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-brand-samsung" checked="checked" />Samsung</label>
-        <label for="filter-brand-acer" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-brand-acer" checked="checked" />Acer</label>
-        <label for="filter-brand-thermaltake" class="filter-label">
-            <input type="checkbox" class="filter-checkbox" id="filter-brand-thermaltake" checked="checked" />Thermaltake</label>
+        {brands.map((brand: string) => {
+            const brandId = brand.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            return (
+                <label for={`filter-brand-${brandId}`} class="filter-label">
+                    <input 
+                        type="checkbox" 
+                        class="filter-checkbox" 
+                        id={`filter-brand-${brandId}`} 
+                        data-original-brand={brand}
+                        checked="checked" 
+                    />{brand}
+                </label>
+            );
+        })}
     </fieldset>
 
     <fieldset class="filter-wrapper">
@@ -127,6 +140,11 @@
 
     .filter-wrapper:hover {
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .brands-filter {
+        max-height: 300px;
+        overflow-y: auto;
     }
 
     .filter-bar-info {

@@ -169,6 +169,14 @@ const accentioAssociatesTag = 'accentiofinde-20';
                             rowVisible = false;
                         }
                     } 
+                    // Special handling for brand filters
+                    else if (filterGroupName === 'brand') {
+                        // Get the original brand name from the data attribute
+                        const originalBrand = (filter as HTMLInputElement).getAttribute('data-original-brand');
+                        if (originalBrand && rowValue === originalBrand && !filterValue) {
+                            rowVisible = false;
+                        }
+                    }
                     else {
                         const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
                         if (rowMatch && !filterValue) {
