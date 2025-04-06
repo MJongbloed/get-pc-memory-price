@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate-filters": "node --experimental-json-modules server/generate-product-filters.js"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.3",
