@@ -63,6 +63,20 @@ function convertAndSaveData() {
                 return numericMatch ? `${numericMatch[1]} MHz` : speed;
             };
             
+            // Helper function to clean URL by removing dib and dib_tag parameters
+            const cleanUrl = (url) => {
+                if (!url) return url;
+                try {
+                    const urlObj = new URL(url);
+                    urlObj.searchParams.delete('dib');
+                    urlObj.searchParams.delete('dib_tag');
+                    return urlObj.toString();
+                } catch (error) {
+                    console.log(`Error cleaning URL: ${error.message}. Original URL returned.`);
+                    return url;
+                }
+            };
+            
             const memorySize = parseInt(getSpecValue('Computer Memory Size', '0'));
             
             // Handle null price values
@@ -98,7 +112,7 @@ function convertAndSaveData() {
                 price_per_gb: pricePerGB, // For sorting and calculations
                 price_per_gb_formatted: pricePerGBFormatted, // For display with 2 decimal places
                 symbol: symbol,
-                url: item.url,
+                url: cleanUrl(item.url),
                 rating: item.rating,
                 ratings_total: item.ratingsTotal,
                 brand: item.brand,
