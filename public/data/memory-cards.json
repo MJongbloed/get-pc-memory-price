@@ -1,5 +1,5 @@
 {
-  "date": "04/07/2025, 15:24",
+  "date": "04/07/2025, 16:06",
   "data": [
     {
       "id": "34",
@@ -16,7 +16,7 @@
       "rating": 4.7,
       "ratings_total": 4783,
       "brand": "D DUOMEIQI",
-      "compatible_devices": "Laptop, Desktop",
+      "compatible_devices": "Desktop, Laptop",
       "computer_memory_type": "DDR3 SDRAM, DDR3L-1600 SDRAM",
       "is_new": true
     },
@@ -92,7 +92,7 @@
       "rating": 4.9,
       "ratings_total": 16,
       "brand": "NEMIX RAM",
-      "compatible_devices": "Server, Rack Servers, Workstations, Blade Servers, Major OEM Server and Server Motherboard",
+      "compatible_devices": "Rack Server, Server, Workstation",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -111,7 +111,7 @@
       "rating": 5,
       "ratings_total": 7,
       "brand": "NEMIX RAM",
-      "compatible_devices": "Apple Mac Pro 2019 7,1, Server, Rack Servers, Workstations, Blade Servers",
+      "compatible_devices": "Rack Server, Server, Workstation",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -187,7 +187,7 @@
       "rating": 4.5,
       "ratings_total": 202,
       "brand": "NVTEK",
-      "compatible_devices": "Workstation Computers, Desktop PC's, Non-ECC Unbuffered PC Motherboards",
+      "compatible_devices": "Desktop, Workstation",
       "computer_memory_type": "DDR3 SDRAM",
       "is_new": true
     },
@@ -282,7 +282,7 @@
       "rating": 4.5,
       "ratings_total": 98,
       "brand": "NEMIX RAM",
-      "compatible_devices": "Server, Rack Servers, Workstations, Blade Servers",
+      "compatible_devices": "Rack Server, Server, Workstation",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -681,7 +681,7 @@
       "rating": 4.9,
       "ratings_total": 13,
       "brand": "NEMIX RAM",
-      "compatible_devices": "Desktop, Laptop PC, NAS Storage Device, SFF Small Form Factor Computer",
+      "compatible_devices": "Desktop, Laptop",
       "computer_memory_type": "DDR3 SDRAM",
       "is_new": true
     },
@@ -985,7 +985,7 @@
       "rating": 5,
       "ratings_total": 7,
       "brand": "NEMIX RAM",
-      "compatible_devices": "Desktop, Laptop PC, NAS Storage Device, SFF Small Form Factor Computer",
+      "compatible_devices": "Desktop, Laptop",
       "computer_memory_type": "SODIMM",
       "is_new": true
     },
@@ -1023,7 +1023,7 @@
       "rating": 4.6,
       "ratings_total": 2001,
       "brand": "Patriot Memory",
-      "compatible_devices": "PC",
+      "compatible_devices": "Desktop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1042,7 +1042,7 @@
       "rating": 4.4,
       "ratings_total": 57,
       "brand": "arshray",
-      "compatible_devices": "Laptop Computer",
+      "compatible_devices": "Laptop",
       "computer_memory_type": "N/A",
       "is_new": true
     },
@@ -1061,7 +1061,7 @@
       "rating": 4.6,
       "ratings_total": 35,
       "brand": "OWC",
-      "compatible_devices": "Laptop, POS, Mini PC, All in one PC",
+      "compatible_devices": "Desktop, Laptop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1099,7 +1099,7 @@
       "rating": 4.3,
       "ratings_total": 87,
       "brand": "OWC",
-      "compatible_devices": "Laptop, POS, Mini PC, All in one PC",
+      "compatible_devices": "Desktop, Laptop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1213,7 +1213,7 @@
       "rating": 5,
       "ratings_total": 12,
       "brand": "OWC",
-      "compatible_devices": "(function(f) {var _np=(window.P._namespace(\"DetailPageProductOverviewTemplatesJava\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('A').execute(function(A){ A.on('a:truncate:po-attribute-truncate-4:updated', function(data) { var isTruncated = !data.truncateInstance.getIfTextFits(); var seeMoreElement = document.getElementById('po-attribute-see-more-id-4'); if(seeMoreElement) { seeMoreElement.style.display = isTruncated ? '' : 'none'; } }) });})); Dell OptiPlex 3070 SFF, Dell OptiPlex 3070 Tower, Dell OptiPlex 3060 Tower, Dell OptiPlex 3060 SFF, Dell OptiPlex 5060 SFF See more",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1270,7 +1270,7 @@
       "rating": 4.5,
       "ratings_total": 121,
       "brand": "NVTEK",
-      "compatible_devices": "Workstation Computers, Desktop PC's, Non-ECC Unbuffered PC Motherboards",
+      "compatible_devices": "Desktop, Workstation",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1289,7 +1289,7 @@
       "rating": 4.7,
       "ratings_total": 17,
       "brand": "OWC",
-      "compatible_devices": "Dell Inspiron 3020, Dell Inspiron 3020S, Dell Inspiron 3880, Dell Inspiron 3891, Dell Inspiron 3910",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1308,7 +1308,7 @@
       "rating": 4.4,
       "ratings_total": 72,
       "brand": "SAMSUNG",
-      "compatible_devices": "Laptop, Notebook and other devices that support DDR4 SODIMM",
+      "compatible_devices": "Laptop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1327,7 +1327,7 @@
       "rating": 4.4,
       "ratings_total": 29,
       "brand": "NEMIX RAM",
-      "compatible_devices": "Desktop, Laptop PC, NAS Storage Device, SFF Small Form Factor Computer",
+      "compatible_devices": "Desktop, Laptop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1346,7 +1346,7 @@
       "rating": 4.8,
       "ratings_total": 67,
       "brand": "A-Tech",
-      "compatible_devices": "Server, Workstation, Intel Xeon",
+      "compatible_devices": "Server, Workstation",
       "computer_memory_type": "DDR3 SDRAM",
       "is_new": true
     },
@@ -1384,7 +1384,7 @@
       "rating": 4.6,
       "ratings_total": 91,
       "brand": "OWC",
-      "compatible_devices": "Laptop, POS, Mini PC, All in one PC",
+      "compatible_devices": "Desktop, Laptop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1403,7 +1403,7 @@
       "rating": 4.8,
       "ratings_total": 20,
       "brand": "OWC",
-      "compatible_devices": "(function(f) {var _np=(window.P._namespace(\"DetailPageProductOverviewTemplatesJava\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('A').execute(function(A){ A.on('a:truncate:po-attribute-truncate-4:updated', function(data) { var isTruncated = !data.truncateInstance.getIfTextFits(); var seeMoreElement = document.getElementById('po-attribute-see-more-id-4'); if(seeMoreElement) { seeMoreElement.style.display = isTruncated ? '' : 'none'; } }) });})); Dell Inspiron 15 3525, Dell Inspiron 15 3501, Dell Inspiron 15 3511, Dell Inspiron 15 3530, Dell Inspiron 15 3520 See more",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1441,7 +1441,7 @@
       "rating": 4.9,
       "ratings_total": 12,
       "brand": "OWC",
-      "compatible_devices": "Dell Latitude 5590, Dell Latitude 5580, Dell Latitude 5490, Dell Latitude 7290, Dell Latitude 5495",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1460,7 +1460,7 @@
       "rating": 4.8,
       "ratings_total": 15,
       "brand": "OWC",
-      "compatible_devices": "(function(f) {var _np=(window.P._namespace(\"DetailPageProductOverviewTemplatesJava\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('A').execute(function(A){ A.on('a:truncate:po-attribute-truncate-4:updated', function(data) { var isTruncated = !data.truncateInstance.getIfTextFits(); var seeMoreElement = document.getElementById('po-attribute-see-more-id-4'); if(seeMoreElement) { seeMoreElement.style.display = isTruncated ? '' : 'none'; } }) });})); Dell Inspiron 15 5570, Dell Inspiron 15 3515, Dell Inspiron 15 3585, Dell Inspiron 15 3583, Dell Inspiron 15 3584 See more",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1479,7 +1479,7 @@
       "rating": 4.4,
       "ratings_total": 187,
       "brand": "OLOy",
-      "compatible_devices": "Support XMP 2.0",
+      "compatible_devices": "N/A",
       "computer_memory_type": "N/A",
       "is_new": true
     },
@@ -1498,7 +1498,7 @@
       "rating": 4.8,
       "ratings_total": 11,
       "brand": "OWC",
-      "compatible_devices": "HP EliteBook 850 G6, HP EliteBook 840 G6, HP EliteBook 850 G4, HP EliteBook 850 G5",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1517,7 +1517,7 @@
       "rating": 4.7,
       "ratings_total": 1062,
       "brand": "Lexar",
-      "compatible_devices": "Laptop, Desktop",
+      "compatible_devices": "Desktop, Laptop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1612,7 +1612,7 @@
       "rating": 4.6,
       "ratings_total": 1970,
       "brand": "Patriot Memory",
-      "compatible_devices": "PC",
+      "compatible_devices": "Desktop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1764,7 +1764,7 @@
       "rating": 4.8,
       "ratings_total": 9,
       "brand": "Patriot Memory",
-      "compatible_devices": "PC",
+      "compatible_devices": "Desktop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1859,7 +1859,7 @@
       "rating": 4.8,
       "ratings_total": 41,
       "brand": "HP",
-      "compatible_devices": "Laptop, Netbook",
+      "compatible_devices": "Laptop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -1897,7 +1897,7 @@
       "rating": 4.6,
       "ratings_total": 16,
       "brand": "NVTEK",
-      "compatible_devices": "Workstation Computers, Desktop PC's, Non-ECC Unbuffered PC Motherboards",
+      "compatible_devices": "Desktop, Workstation",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -2144,7 +2144,7 @@
       "rating": 4.6,
       "ratings_total": 52,
       "brand": "Transcend",
-      "compatible_devices": "ノートパソコン",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR5 SDRAM",
       "is_new": true
     },
@@ -2163,7 +2163,7 @@
       "rating": 4.8,
       "ratings_total": 10,
       "brand": "NEMIX RAM",
-      "compatible_devices": "Server, Rack Servers, Workstations, Blade Servers",
+      "compatible_devices": "Rack Server, Server, Workstation",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -2201,7 +2201,7 @@
       "rating": 4.5,
       "ratings_total": 170,
       "brand": "fanxiang",
-      "compatible_devices": "Desktop, intel",
+      "compatible_devices": "Desktop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -2372,7 +2372,7 @@
       "rating": 4.4,
       "ratings_total": 40,
       "brand": "A-Tech",
-      "compatible_devices": "MacPro6,1, A1481, Mac Pro Late 2013, ME253LL/A, MD878LL/A, MQGG2LL/A",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR3 SDRAM",
       "is_new": true
     },
@@ -2429,7 +2429,7 @@
       "rating": 4.7,
       "ratings_total": 23,
       "brand": "OWC",
-      "compatible_devices": "NAS, Server, Network Switched, Synology, Micro Servers",
+      "compatible_devices": "Server",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -2448,7 +2448,7 @@
       "rating": 4.9,
       "ratings_total": 45,
       "brand": "OWC",
-      "compatible_devices": "SYNOLOGY DS1819+, SYNOLOGY DS1618+, SYNOLOGY DS1821+, SYNOLOGY DS923+, SYNOLOGY DS1621+",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -2467,7 +2467,7 @@
       "rating": 4.7,
       "ratings_total": 162,
       "brand": "OWC",
-      "compatible_devices": "SYNOLOGY DS1819+, SYNOLOGY DS1618+, SYNOLOGY DS1821+, SYNOLOGY DS923+, SYNOLOGY DS1621+",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -2486,7 +2486,7 @@
       "rating": 4.9,
       "ratings_total": 23,
       "brand": "OWC",
-      "compatible_devices": "SYNOLOGY DS1819+, SYNOLOGY DS1618+, SYNOLOGY DS1821+, SYNOLOGY DS923+, SYNOLOGY DS1621+",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -2505,7 +2505,7 @@
       "rating": 5,
       "ratings_total": 7,
       "brand": "NEMIX RAM",
-      "compatible_devices": "Synology DiskStation DS923+",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -2581,7 +2581,7 @@
       "rating": 4.9,
       "ratings_total": 15,
       "brand": "NVTEK",
-      "compatible_devices": "Desktop, Laptop PC, NAS Storage Device, SFF Small Form Factor Computer",
+      "compatible_devices": "Desktop, Laptop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -2904,7 +2904,7 @@
       "rating": 4.6,
       "ratings_total": 23,
       "brand": "ADATA",
-      "compatible_devices": "Desktop, Server, Laptop",
+      "compatible_devices": "Desktop, Laptop, Server",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -2923,7 +2923,7 @@
       "rating": 4.9,
       "ratings_total": 9,
       "brand": "A-Tech",
-      "compatible_devices": "Aspire 5",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -2942,7 +2942,7 @@
       "rating": 4.6,
       "ratings_total": 18,
       "brand": "A-Tech",
-      "compatible_devices": "Predator Helios 300",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -2961,7 +2961,7 @@
       "rating": 4.5,
       "ratings_total": 23,
       "brand": "A-Tech",
-      "compatible_devices": "7400, 7300, 5500, 5400, 5300 2-in-1, 5300, 3500, 3400",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -3018,7 +3018,7 @@
       "rating": 4.5,
       "ratings_total": 27,
       "brand": "Patriot Memory",
-      "compatible_devices": "PC",
+      "compatible_devices": "Desktop",
       "computer_memory_type": "N/A",
       "is_new": true
     },
@@ -3075,7 +3075,7 @@
       "rating": 4.4,
       "ratings_total": 37,
       "brand": "TEAMGROUP",
-      "compatible_devices": "Laptop computer",
+      "compatible_devices": "Laptop",
       "computer_memory_type": "DDR5 SDRAM",
       "is_new": true
     },
@@ -3189,7 +3189,7 @@
       "rating": 4.5,
       "ratings_total": 76,
       "brand": "SABRENT",
-      "compatible_devices": "Laptops, Desktops",
+      "compatible_devices": "Desktop, Laptop",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -3360,7 +3360,7 @@
       "rating": 4.4,
       "ratings_total": 36,
       "brand": "Moaffzey",
-      "compatible_devices": "Fully compatible",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR3 SDRAM",
       "is_new": true
     },
@@ -3531,7 +3531,7 @@
       "rating": null,
       "ratings_total": null,
       "brand": "NEMIX RAM",
-      "compatible_devices": "(function(f) {var _np=(window.P._namespace(\"DetailPageProductOverviewTemplatesJava\"));if(_np.guardFatal){_np.guardFatal(f)(_np);}else{f(_np);}}(function(P) { P.when('A').execute(function(A){ A.on('a:truncate:po-attribute-truncate-4:updated', function(data) { var isTruncated = !data.truncateInstance.getIfTextFits(); var seeMoreElement = document.getElementById('po-attribute-see-more-id-4'); if(seeMoreElement) { seeMoreElement.style.display = isTruncated ? '' : 'none'; } }) });})); B850 PRO A WiFi, B850 PRO A, Advanced AI PC Systems, DDR5 UDIMM Motherboards, AMD B850 Chipset Motherboards See more",
+      "compatible_devices": "Desktop",
       "computer_memory_type": "N/A",
       "is_new": true
     },
@@ -3588,7 +3588,7 @@
       "rating": 4.5,
       "ratings_total": 227,
       "brand": "Patriot Memory",
-      "compatible_devices": "PC",
+      "compatible_devices": "Desktop",
       "computer_memory_type": "N/A",
       "is_new": true
     },
@@ -3816,7 +3816,7 @@
       "rating": 4.8,
       "ratings_total": 10,
       "brand": "A-Tech",
-      "compatible_devices": "IdeaPad 3/3i",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -3987,7 +3987,7 @@
       "rating": 4.7,
       "ratings_total": 25,
       "brand": "A-Tech",
-      "compatible_devices": "Networking Platforms, Embedded Systems, Microserver, Mobile Workstation",
+      "compatible_devices": "Server, Workstation",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -4861,7 +4861,7 @@
       "rating": 4.6,
       "ratings_total": 21,
       "brand": "A-Tech",
-      "compatible_devices": "OptiPlex 7050, 5055, 5050, 3050, Tower, SFF",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -5222,7 +5222,7 @@
       "rating": 4.7,
       "ratings_total": 21,
       "brand": "Memoz",
-      "compatible_devices": "Lenovo, Acer, Dell, HP, Asus",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR3 SDRAM",
       "is_new": true
     },
@@ -5868,7 +5868,7 @@
       "rating": 4.6,
       "ratings_total": 80,
       "brand": "Corsair",
-      "compatible_devices": "Intel 300Series,Intel 400 Series,Intel 500 Series,AMD 300 Series,AMD 400 Series,AMD 500 Series",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR4 SDRAM",
       "is_new": true
     },
@@ -5982,7 +5982,7 @@
       "rating": 4.7,
       "ratings_total": 26,
       "brand": "Moaffzey",
-      "compatible_devices": "Fully compatible",
+      "compatible_devices": "N/A",
       "computer_memory_type": "DDR3 SDRAM",
       "is_new": true
     },
@@ -6438,7 +6438,7 @@
       "rating": 4.5,
       "ratings_total": 190,
       "brand": "Adamanta",
-      "compatible_devices": "Laptop, Dell",
+      "compatible_devices": "Laptop",
       "computer_memory_type": "N/A",
       "is_new": true
     },
@@ -6495,7 +6495,7 @@
       "rating": 4.4,
       "ratings_total": 81,
       "brand": "NEMIX RAM",
-      "compatible_devices": "Laptop, Small Form Factor PC, NAS Device",
+      "compatible_devices": "Desktop, Laptop",
       "computer_memory_type": "N/A",
       "is_new": true
     },

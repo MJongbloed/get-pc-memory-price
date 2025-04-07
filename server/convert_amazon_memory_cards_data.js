@@ -77,6 +77,95 @@ function convertAndSaveData() {
                 }
             };
             
+            // Helper function to normalize compatible devices
+            const normalizeCompatibleDevices = (devicesString) => {
+                if (!devicesString || devicesString === 'N/A') {
+                    return 'N/A';
+                }
+                
+                // Define mapping for various device names to standard values
+                const deviceMappings = {
+                    // Desktop mappings
+                    'desktop': 'Desktop',
+                    'pc': 'Desktop',
+                    'computers': 'Desktop',
+                    'computer': 'Desktop',
+                    'personal computer': 'Desktop',
+                    'desktop pc': 'Desktop',
+                    'desktop computer': 'Desktop',
+                    'gaming pc': 'Desktop',
+                    'gaming desktop': 'Desktop',
+                    
+                    // Laptop mappings
+                    'laptop': 'Laptop',
+                    'netbook': 'Laptop',
+                    'notebook': 'Laptop',
+                    'laptop computer': 'Laptop',
+                    'laptop pc': 'Laptop',
+                    'gaming laptop': 'Laptop',
+                    'portable': 'Laptop',
+                    
+                    // Server mappings
+                    'server': 'Server',
+                    'blade server': 'Server',
+                    'blade servers': 'Server',
+                    'servers': 'Server',
+                    'file server': 'Server',
+                    
+                    // Rack Server mappings
+                    'rack server': 'Rack Server',
+                    'rack servers': 'Rack Server',
+                    'rack mount': 'Rack Server',
+                    'rackmount': 'Rack Server',
+                    
+                    // Workstation mappings
+                    'workstation': 'Workstation',
+                    'workstations': 'Workstation',
+                    'work station': 'Workstation',
+                    'professional workstation': 'Workstation'
+                };
+                
+                // Split the input string by commas or other common separators
+                const devicesList = devicesString.split(/[,;&|\/]/).map(d => d.trim().toLowerCase());
+                
+                // Map each device to a standardized version if it exists
+                const normalizedDevices = new Set();
+                
+                devicesList.forEach(device => {
+                    // Try exact match first
+                    if (deviceMappings[device]) {
+                        normalizedDevices.add(deviceMappings[device]);
+                    } else {
+                        // Try partial match with prioritization
+                        // Check for specific matches first before broader ones
+                        if (device.includes('rack server') || device.includes('rackmount') || device.includes('rack mount')) {
+                            normalizedDevices.add('Rack Server');
+                        } else if (device.includes('server')) {
+                            normalizedDevices.add('Server');
+                        } else if (device.includes('workstation') || device.includes('work station')) {
+                            normalizedDevices.add('Workstation');
+                        } else if (device.includes('laptop') || device.includes('notebook') || device.includes('netbook')) {
+                            normalizedDevices.add('Laptop');
+                        } else if (device.includes('desktop') || device.includes('pc') || device.includes('computer')) {
+                            normalizedDevices.add('Desktop');
+                        } else {
+                            // As a fallback, try matching against all mapping keys
+                            for (const [key, value] of Object.entries(deviceMappings)) {
+                                if (device.includes(key)) {
+                                    normalizedDevices.add(value);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // Make sure we return a valid string, sorted alphabetically
+                return normalizedDevices.size > 0 
+                    ? Array.from(normalizedDevices).sort().join(', ')
+                    : 'N/A';
+            };
+            
             const memorySize = parseInt(getSpecValue('Computer Memory Size', '0'));
             
             // Handle null price values
@@ -101,6 +190,9 @@ function convertAndSaveData() {
             // Also create a formatted version for display with 2 decimal places
             const pricePerGBFormatted = pricePerGB.toFixed(2);
             
+            // Get and normalize compatible devices
+            const compatibleDevices = normalizeCompatibleDevices(getSpecValue('Compatible Devices'));
+            
             return {
                 id: (index + 1).toString(),
                 title: item.title,
@@ -116,7 +208,7 @@ function convertAndSaveData() {
                 rating: item.rating,
                 ratings_total: item.ratingsTotal,
                 brand: item.brand,
-                compatible_devices: getSpecValue('Compatible Devices'),
+                compatible_devices: compatibleDevices,
                 computer_memory_type: getSpecValue('Computer Memory Type'),
                 is_new: item.isNew
             };

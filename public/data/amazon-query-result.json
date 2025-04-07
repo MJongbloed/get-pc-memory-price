@@ -22,7 +22,7 @@
               "Every module is backed by a limited lifetime warranty. We always have hundreds in stock! Free technical support from our experienced technicians.",
               "Every single memory module is fully tested by the manufacturer. Our experienced technicians can verify if these parts will work for you with free technical support."
             ],
-            "isNew": true,
+          "isNew": true,
             "technicalSpecifications": [
               {
                 "name": "Product Dimensions",

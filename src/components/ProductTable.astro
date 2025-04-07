@@ -153,8 +153,29 @@ const accentioAssociatesTag = 'accentiofinde-20';
             
             const tableRows = document.querySelectorAll("#memoryTable tbody tr");
 
+            // First, collect all checked compatibility filters
+            const enabledCompatibilityFilters = new Set<string>();
+            selectFilters.forEach(filter => {
+                const filterId = filter.id;
+                const filterValue = (filter as HTMLInputElement).checked;
+                const filterGroupName = filterId.split('-')[1];
+                const filterSelectedName = filterId.split('-')[2].toLowerCase();
+                
+                if (filterGroupName === 'compatibility' && filterValue) {
+                    // Handle the special case for "Rack Server"
+                    const compatibilityName = filterSelectedName === 'rackserver' ? 'rack server' : filterSelectedName;
+                    enabledCompatibilityFilters.add(compatibilityName);
+                }
+            });
+
             tableRows.forEach(row => {
                 let rowVisible = true;
+                let hasCompatibilityFilter = false;
+                let matchesAnyCompatibility = false;
+
+                // Get the row's compatibility values
+                const rowCompatibilityAttr = row.getAttribute('data-compatibility');
+                const rowCompatibilities = rowCompatibilityAttr ? rowCompatibilityAttr.split(',').map(v => v.trim().toLowerCase()) : [];
 
                 selectFilters.forEach(filter => {
                     const filterId = filter.id;
@@ -178,6 +199,18 @@ const accentioAssociatesTag = 'accentiofinde-20';
                             rowVisible = false;
                         }
                     }
+                    // Special handling for compatibility filters - just track if this is a compatibility filter
+                    else if (filterGroupName === 'compatibility') {
+                        hasCompatibilityFilter = true;
+                        
+                        // If it's checked, see if the row matches this compatibility
+                        if (filterValue) {
+                            const compatibilityName = filterSelectedName === 'rackserver' ? 'rack server' : filterSelectedName;
+                            if (rowCompatibilities.includes(compatibilityName)) {
+                                matchesAnyCompatibility = true;
+                            }
+                        }
+                    }
                     else {
                         const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
                         if (rowMatch && !filterValue) {
@@ -185,6 +218,11 @@ const accentioAssociatesTag = 'accentiofinde-20';
                         }
                     }
                 });
+
+                // If we have compatibility filters and the row doesn't match any of them, hide it
+                if (hasCompatibilityFilter && enabledCompatibilityFilters.size > 0 && !matchesAnyCompatibility) {
+                    rowVisible = false;
+                }
 
                 const minPrice = parseFloat(minPriceInput.value) || 0;
                 const maxPrice = parseFloat(maxPriceInput.value) || Infinity;
