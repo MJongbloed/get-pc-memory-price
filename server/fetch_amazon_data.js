@@ -23,7 +23,6 @@ query amazonProduct {
     productResults(input: {page: "%d", sort: AVERAGE_CUSTOMER_REVIEW}) {
       pageInfo {
         hasNextPage
-        hasPrevPage
       }
       results {
         asin
@@ -55,14 +54,6 @@ query amazonProduct {
             value
             symbol
           }
-        }
-        bestSellerRankings {
-          categoryName
-          rank
-        }
-        categories {
-          id
-          name
         }
       }
     }
