@@ -35,7 +35,7 @@ const accentioAssociatesTag = 'accentiofinde-20';
     </tr>
     </thead>
     <tbody>
-    {memoryCards.map((card: any) => (
+    {memoryCards.map((card: any, index: number) => (
             <tr data-capacity={card.computer_memory_size}
                 data-speed={card.memory_speed}
                 data-price={card.price}
@@ -44,7 +44,8 @@ const accentioAssociatesTag = 'accentiofinde-20';
                 data-compatibility={card.compatible_devices}
                 data-type={card.computer_memory_type}
                 data-condition={card.is_new ? 'new' : 'used'}
-                data-latency={card.latency}>
+                data-latency={card.latency}
+            >
                 <td>{card.symbol}{card.price_per_gb_formatted !== undefined ? card.price_per_gb_formatted : (card.price_per_gb !== undefined ? card.price_per_gb.toFixed(2) : (card.price && card.computer_memory_size ? (card.price / card.computer_memory_size).toFixed(2) : "0.00"))}</td>
                 <td>{card.symbol}{card.price ? card.price.toFixed(2) : "0.00"}</td>
                 <td>{card.computer_memory_size ? card.computer_memory_size : 0} GB</td>
@@ -126,6 +127,24 @@ const accentioAssociatesTag = 'accentiofinde-20';
         height: 30vh;
         justify-content: center;
         text-align: center;
+    }
+
+    /* General row hover - needs to be before .top-ten:hover */
+    tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .top-ten {
+        background-color: #c8e6c9; /* Slightly stronger green background */
+    }
+    
+    /* Increase specificity and ensure it's after general hover */
+    tbody tr.top-ten:hover {
+        background-color: #a5d6a7; /* Darker green on hover */
+    }
+
+    tbody .top-ten td {
+        font-weight: 600; /* Make text slightly bolder */
     }
 
     @media (max-width: 768px) {
@@ -239,6 +258,20 @@ const accentioAssociatesTag = 'accentiofinde-20';
 
                 (row as HTMLElement).style.display = rowVisible ? '' : 'none';
             });
+
+            // Apply styling to the top 10 visible rows
+            let visibleRowCount = 0;
+            tableRows.forEach(row => {
+                const htmlRow = row as HTMLElement;
+                // First, remove the class in case it was previously applied
+                htmlRow.classList.remove('top-ten');
+                
+                // Check if the row is visible and we haven't styled 10 rows yet
+                if (htmlRow.style.display !== 'none' && visibleRowCount < 10) {
+                    htmlRow.classList.add('top-ten');
+                    visibleRowCount++;
+                }
+            });
         }
 
         // Handle "Select All" functionality
@@ -301,5 +334,8 @@ const accentioAssociatesTag = 'accentiofinde-20';
             minCapacityInput.addEventListener("input", filterTable);
             maxCapacityInput.addEventListener("input", filterTable);
         }
+
+        // Initial call to apply styles on page load
+        filterTable();
     });
 </script>
