@@ -166,6 +166,37 @@ function convertAndSaveData() {
                     : 'N/A';
             };
             
+            // Helper function to extract CAS Latency from feature bullets or title
+            const extractLatencyFromSource = (bullets, title) => {
+                const allowedLatencies = ['CL11', 'CL13', 'CL16', 'CL17', 'CL18', 'CL22', 'CL28', 'CL30', 'CL32', 'CL34', 'CL36', 'CL38', 'CL40'];
+                const allowedLatencyNumbers = allowedLatencies.map(l => l.substring(2));
+                
+                // 1. Try extracting from bullets first
+                if (bullets && Array.isArray(bullets)) {
+                    const bulletRegex = new RegExp(`CAS Latency(?:[\\s:=of]+)(CL(?:${allowedLatencyNumbers.join('|')}))\\b`, 'i');
+                    for (const bullet of bullets) {
+                        const match = bullet.match(bulletRegex);
+                        if (match && match[1]) {
+                            return match[1].toUpperCase(); 
+                        }
+                    }
+                }
+
+                // 2. If not found in bullets, try extracting from title
+                if (title) {
+                    // Regex to find standalone CLXX values in the title
+                    // Uses word boundaries (\b) to avoid partial matches
+                    const titleRegex = new RegExp(`\\b(CL(?:${allowedLatencyNumbers.join('|')}))\\b`, 'i');
+                    const titleMatch = title.match(titleRegex);
+                    if (titleMatch && titleMatch[1]) {
+                        return titleMatch[1].toUpperCase();
+                    }
+                }
+
+                // 3. If not found in either, return N/A
+                return 'N/A';
+            };
+
             const memorySize = parseInt(getSpecValue('Computer Memory Size', '0'));
             
             // Handle null price values
@@ -193,12 +224,22 @@ function convertAndSaveData() {
             // Get and normalize compatible devices
             const compatibleDevices = normalizeCompatibleDevices(getSpecValue('Compatible Devices'));
             
+            // Extract latency using the enhanced helper function (passing bullets and title)
+            const latency = extractLatencyFromSource(item.featureBullets, item.title);
+
+            // --- DEBUG LOG --- REMOVED --- 
+            // Check the value of latency just before creating the object
+            // Use ASIN if available, otherwise index, for easier identification
+            // const debugId = item.asin ? `ASIN ${item.asin}` : `Index ${index}`;
+            // console.log(`Debug Map [${debugId}]: Latency value before return = ${latency}`); 
+            // --- END DEBUG LOG --- REMOVED ---
+
             return {
                 id: (index + 1).toString(),
                 title: item.title,
                 computer_memory_size: memorySize,
                 memory_speed: memorySpeed,
-                latency: getSpecValue('CAS Latency'),
+                latency: latency, // Use the extracted latency
                 ram_memory_technology: getSpecValue('RAM Memory Technology'),
                 price: price,
                 price_per_gb: pricePerGB, // For sorting and calculations
@@ -224,13 +265,8 @@ function convertAndSaveData() {
     };
     
     // Format the price_per_gb with 2 decimal places in the final JSON
-    const outputJson = JSON.stringify(outputData, (key, value) => {
-        // Format price_per_gb values to always have 2 decimal places
-        if (key === 'price_per_gb' && typeof value === 'number') {
-            return parseFloat(value.toFixed(2));
-        }
-        return value;
-    }, 2);
+    // REMOVED REPLACER FUNCTION FOR TESTING
+    const outputJson = JSON.stringify(outputData, null, 2);
     
     // Write the output file.
     fs.writeFileSync(outputFilePath, outputJson, 'utf-8');
