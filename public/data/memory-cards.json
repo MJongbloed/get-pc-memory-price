@@ -1,5 +1,5 @@
 {
-  "date": "04/08/2025, 14:26",
+  "date": "04/08/2025, 15:28",
   "data": [
     {
       "id": "34",
@@ -17,7 +17,7 @@
       "ratings_total": 4783,
       "brand": "D DUOMEIQI",
       "compatible_devices": "Desktop, Laptop",
-      "computer_memory_type": "DDR3 SDRAM, DDR3L-1600 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -36,7 +36,7 @@
       "ratings_total": 706,
       "brand": "motoeagle",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -55,7 +55,7 @@
       "ratings_total": 20,
       "brand": "A-Tech",
       "compatible_devices": "Server",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -74,7 +74,7 @@
       "ratings_total": 2905,
       "brand": "motoeagle",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -93,7 +93,7 @@
       "ratings_total": 16,
       "brand": "NEMIX RAM",
       "compatible_devices": "Rack Server, Server, Workstation",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "RDIMM",
       "is_new": true
     },
     {
@@ -112,7 +112,7 @@
       "ratings_total": 7,
       "brand": "NEMIX RAM",
       "compatible_devices": "Rack Server, Server, Workstation",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "RDIMM",
       "is_new": true
     },
     {
@@ -131,7 +131,7 @@
       "ratings_total": 10547,
       "brand": "Timetec",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -150,7 +150,7 @@
       "ratings_total": 5252,
       "brand": "TEAMGROUP",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -169,7 +169,7 @@
       "ratings_total": 4147,
       "brand": "Timetec",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -188,7 +188,7 @@
       "ratings_total": 202,
       "brand": "NVTEK",
       "compatible_devices": "Desktop, Workstation",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -207,7 +207,7 @@
       "ratings_total": null,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -226,7 +226,7 @@
       "ratings_total": 565,
       "brand": "Gigastone",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -245,7 +245,7 @@
       "ratings_total": null,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -264,7 +264,7 @@
       "ratings_total": 19,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -283,7 +283,7 @@
       "ratings_total": 98,
       "brand": "NEMIX RAM",
       "compatible_devices": "Rack Server, Server, Workstation",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "RDIMM",
       "is_new": true
     },
     {
@@ -302,7 +302,7 @@
       "ratings_total": null,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -321,7 +321,7 @@
       "ratings_total": 1206,
       "brand": "Yongxinsheng",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -359,7 +359,7 @@
       "ratings_total": 90,
       "brand": "Wlizedle",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -378,7 +378,7 @@
       "ratings_total": 91,
       "brand": "AJO AJOMAN",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR3L-1600 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -397,7 +397,7 @@
       "ratings_total": 1524,
       "brand": "Gigastone",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -416,7 +416,7 @@
       "ratings_total": 63,
       "brand": "Wlizedle",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -435,7 +435,7 @@
       "ratings_total": 865,
       "brand": "Wlizedle",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -454,7 +454,7 @@
       "ratings_total": 1158,
       "brand": "Timetec",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -473,7 +473,7 @@
       "ratings_total": 963,
       "brand": "Timetec",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -492,7 +492,7 @@
       "ratings_total": 201,
       "brand": "D DUOMEIQI",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -511,7 +511,7 @@
       "ratings_total": 3553,
       "brand": "Timetec",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -530,7 +530,7 @@
       "ratings_total": 1234,
       "brand": "SP Silicon Power",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -549,7 +549,7 @@
       "ratings_total": 300,
       "brand": "KLEVV",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -568,7 +568,7 @@
       "ratings_total": 193,
       "brand": "KLEVV",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -587,7 +587,7 @@
       "ratings_total": 115,
       "brand": "DATO",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -606,7 +606,7 @@
       "ratings_total": 2445,
       "brand": "Yongxinsheng",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -625,7 +625,7 @@
       "ratings_total": 221,
       "brand": "D DUOMEIQI",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -644,7 +644,7 @@
       "ratings_total": 121,
       "brand": "KingSpec",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -663,7 +663,7 @@
       "ratings_total": 2821,
       "brand": "Timetec",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -682,7 +682,7 @@
       "ratings_total": 13,
       "brand": "NEMIX RAM",
       "compatible_devices": "Desktop, Laptop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -701,7 +701,7 @@
       "ratings_total": 800,
       "brand": "Timetec",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -720,7 +720,7 @@
       "ratings_total": 138,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -739,7 +739,7 @@
       "ratings_total": 46,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -758,7 +758,7 @@
       "ratings_total": 4098,
       "brand": "Rasalas",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -777,7 +777,7 @@
       "ratings_total": 1103,
       "brand": "Rasalas",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -796,7 +796,7 @@
       "ratings_total": 5501,
       "brand": "Timetec",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -815,7 +815,7 @@
       "ratings_total": 801,
       "brand": "SP Silicon Power",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -834,7 +834,7 @@
       "ratings_total": null,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -853,7 +853,7 @@
       "ratings_total": 10,
       "brand": "Timetec",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -872,7 +872,7 @@
       "ratings_total": 681,
       "brand": "PNY",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -891,7 +891,7 @@
       "ratings_total": 496,
       "brand": "Timetec",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -910,7 +910,7 @@
       "ratings_total": 200,
       "brand": "fanxiang",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -929,7 +929,7 @@
       "ratings_total": 76,
       "brand": "DATO",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -948,7 +948,7 @@
       "ratings_total": 167,
       "brand": "DATO",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -967,7 +967,7 @@
       "ratings_total": 7,
       "brand": "OWC",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -986,7 +986,7 @@
       "ratings_total": 7,
       "brand": "NEMIX RAM",
       "compatible_devices": "Desktop, Laptop",
-      "computer_memory_type": "SODIMM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1005,7 +1005,7 @@
       "ratings_total": 16324,
       "brand": "Crucial",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -1024,7 +1024,7 @@
       "ratings_total": 2001,
       "brand": "Patriot Memory",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1043,7 +1043,7 @@
       "ratings_total": 57,
       "brand": "arshray",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1062,7 +1062,7 @@
       "ratings_total": 35,
       "brand": "OWC",
       "compatible_devices": "Desktop, Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1081,7 +1081,7 @@
       "ratings_total": null,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1100,7 +1100,7 @@
       "ratings_total": 87,
       "brand": "OWC",
       "compatible_devices": "Desktop, Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1119,7 +1119,7 @@
       "ratings_total": 119,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1138,7 +1138,7 @@
       "ratings_total": 41,
       "brand": "A-Tech",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1157,7 +1157,7 @@
       "ratings_total": 88,
       "brand": "SKhynix",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1176,7 +1176,7 @@
       "ratings_total": 287,
       "brand": "SKhynix",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1195,7 +1195,7 @@
       "ratings_total": 476,
       "brand": "Timetec",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1214,7 +1214,7 @@
       "ratings_total": 12,
       "brand": "OWC",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1233,7 +1233,7 @@
       "ratings_total": 232,
       "brand": "Timetec",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1252,7 +1252,7 @@
       "ratings_total": 240,
       "brand": "Lexar",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1271,7 +1271,7 @@
       "ratings_total": 121,
       "brand": "NVTEK",
       "compatible_devices": "Desktop, Workstation",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1290,7 +1290,7 @@
       "ratings_total": 17,
       "brand": "OWC",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -1309,7 +1309,7 @@
       "ratings_total": 72,
       "brand": "SAMSUNG",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1328,7 +1328,7 @@
       "ratings_total": 29,
       "brand": "NEMIX RAM",
       "compatible_devices": "Desktop, Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1347,7 +1347,7 @@
       "ratings_total": 67,
       "brand": "A-Tech",
       "compatible_devices": "Server, Workstation",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1366,7 +1366,7 @@
       "ratings_total": 940,
       "brand": "acer",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1385,7 +1385,7 @@
       "ratings_total": 91,
       "brand": "OWC",
       "compatible_devices": "Desktop, Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1404,7 +1404,7 @@
       "ratings_total": 20,
       "brand": "OWC",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1423,7 +1423,7 @@
       "ratings_total": 92,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1442,7 +1442,7 @@
       "ratings_total": 12,
       "brand": "OWC",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1461,7 +1461,7 @@
       "ratings_total": 15,
       "brand": "OWC",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1480,7 +1480,7 @@
       "ratings_total": 187,
       "brand": "OLOy",
       "compatible_devices": "N/A",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1499,7 +1499,7 @@
       "ratings_total": 11,
       "brand": "OWC",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1518,7 +1518,7 @@
       "ratings_total": 1062,
       "brand": "Lexar",
       "compatible_devices": "Desktop, Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1537,7 +1537,7 @@
       "ratings_total": 64,
       "brand": "HP",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1556,7 +1556,7 @@
       "ratings_total": 28634,
       "brand": "Timetec",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1575,7 +1575,7 @@
       "ratings_total": 189,
       "brand": "A-Tech",
       "compatible_devices": "Server, Workstation",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -1594,7 +1594,7 @@
       "ratings_total": 18,
       "brand": "Micron",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1613,7 +1613,7 @@
       "ratings_total": 1970,
       "brand": "Patriot Memory",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1632,7 +1632,7 @@
       "ratings_total": 91,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1651,7 +1651,7 @@
       "ratings_total": 198,
       "brand": "V-COLOR COLOR YOUR LIFE",
       "compatible_devices": "Server",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -1670,7 +1670,7 @@
       "ratings_total": 181,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1689,7 +1689,7 @@
       "ratings_total": 79,
       "brand": "Timetec",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1708,7 +1708,7 @@
       "ratings_total": 1973,
       "brand": "Crucial",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1727,7 +1727,7 @@
       "ratings_total": 8,
       "brand": "OWC",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "RDIMM",
       "is_new": true
     },
     {
@@ -1746,7 +1746,7 @@
       "ratings_total": 24,
       "brand": "Integral",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -1765,7 +1765,7 @@
       "ratings_total": 9,
       "brand": "Patriot Memory",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1784,7 +1784,7 @@
       "ratings_total": 107,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DIMM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -1803,7 +1803,7 @@
       "ratings_total": 159,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1822,7 +1822,7 @@
       "ratings_total": 228,
       "brand": "SP Silicon Power",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1841,7 +1841,7 @@
       "ratings_total": 10,
       "brand": "SK Hynix",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1860,7 +1860,7 @@
       "ratings_total": 41,
       "brand": "HP",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1879,7 +1879,7 @@
       "ratings_total": 165,
       "brand": "Asgard",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -1898,7 +1898,7 @@
       "ratings_total": 16,
       "brand": "NVTEK",
       "compatible_devices": "Desktop, Workstation",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1917,7 +1917,7 @@
       "ratings_total": 23,
       "brand": "SAMSUNG",
       "compatible_devices": "N/A",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1936,7 +1936,7 @@
       "ratings_total": 161,
       "brand": "A-Tech",
       "compatible_devices": "Desktop, Workstation",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -1955,7 +1955,7 @@
       "ratings_total": 32,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -1974,7 +1974,7 @@
       "ratings_total": 238,
       "brand": "TEAMGROUP",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -1993,7 +1993,7 @@
       "ratings_total": 95,
       "brand": "ist computers",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2012,7 +2012,7 @@
       "ratings_total": 1009,
       "brand": "Timetec",
       "compatible_devices": "Laptop, Server",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2031,7 +2031,7 @@
       "ratings_total": 279,
       "brand": "OLOy",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -2050,7 +2050,7 @@
       "ratings_total": 63,
       "brand": "Kingston FURY",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2069,7 +2069,7 @@
       "ratings_total": 296,
       "brand": "TEAMGROUP",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2088,7 +2088,7 @@
       "ratings_total": 34,
       "brand": "PROXMEM",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2107,7 +2107,7 @@
       "ratings_total": 24,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -2126,7 +2126,7 @@
       "ratings_total": 83,
       "brand": "TEAMGROUP",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -2145,7 +2145,7 @@
       "ratings_total": 52,
       "brand": "Transcend",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2164,7 +2164,7 @@
       "ratings_total": 10,
       "brand": "NEMIX RAM",
       "compatible_devices": "Rack Server, Server, Workstation",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -2183,7 +2183,7 @@
       "ratings_total": 43,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -2202,7 +2202,7 @@
       "ratings_total": 170,
       "brand": "fanxiang",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2221,7 +2221,7 @@
       "ratings_total": 33,
       "brand": "OWC",
       "compatible_devices": "Server",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -2240,7 +2240,7 @@
       "ratings_total": 19,
       "brand": "A-Tech",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2259,7 +2259,7 @@
       "ratings_total": 436,
       "brand": "Lexar",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2278,7 +2278,7 @@
       "ratings_total": 37,
       "brand": "GeIL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2297,7 +2297,7 @@
       "ratings_total": 109,
       "brand": "ADATA",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2316,7 +2316,7 @@
       "ratings_total": 25,
       "brand": "SAMSUNG",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2335,7 +2335,7 @@
       "ratings_total": 176,
       "brand": "Lexar",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -2354,7 +2354,7 @@
       "ratings_total": 15,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop, Server",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2373,7 +2373,7 @@
       "ratings_total": 40,
       "brand": "A-Tech",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -2392,7 +2392,7 @@
       "ratings_total": 284,
       "brand": "Adamanta",
       "compatible_devices": "N/A",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2411,7 +2411,7 @@
       "ratings_total": 211,
       "brand": "fanxiang",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2430,7 +2430,7 @@
       "ratings_total": 23,
       "brand": "OWC",
       "compatible_devices": "Server",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2449,7 +2449,7 @@
       "ratings_total": 45,
       "brand": "OWC",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2468,7 +2468,7 @@
       "ratings_total": 162,
       "brand": "OWC",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2487,7 +2487,7 @@
       "ratings_total": 23,
       "brand": "OWC",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2506,7 +2506,7 @@
       "ratings_total": 7,
       "brand": "NEMIX RAM",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2544,7 +2544,7 @@
       "ratings_total": 1378,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -2563,7 +2563,7 @@
       "ratings_total": 74,
       "brand": "ist computers",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2582,7 +2582,7 @@
       "ratings_total": 15,
       "brand": "NVTEK",
       "compatible_devices": "Desktop, Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2601,7 +2601,7 @@
       "ratings_total": 25,
       "brand": "arshray",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -2620,7 +2620,7 @@
       "ratings_total": 10,
       "brand": "GAICOM",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2639,7 +2639,7 @@
       "ratings_total": 40,
       "brand": "KLEVV",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -2658,7 +2658,7 @@
       "ratings_total": 79,
       "brand": "Lenovo",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2677,7 +2677,7 @@
       "ratings_total": 429,
       "brand": "G.SKILL",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2696,7 +2696,7 @@
       "ratings_total": 2789,
       "brand": "TEAMGROUP",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2715,7 +2715,7 @@
       "ratings_total": 91,
       "brand": "KLEVV",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -2734,7 +2734,7 @@
       "ratings_total": 12,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2753,7 +2753,7 @@
       "ratings_total": 11,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2772,7 +2772,7 @@
       "ratings_total": 103,
       "brand": "TEAMGROUP",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2791,7 +2791,7 @@
       "ratings_total": 162,
       "brand": "A-Tech",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2848,7 +2848,7 @@
       "ratings_total": 243,
       "brand": "TEAMGROUP",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2867,7 +2867,7 @@
       "ratings_total": 172,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DIMM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2886,7 +2886,7 @@
       "ratings_total": 243,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2905,7 +2905,7 @@
       "ratings_total": 23,
       "brand": "ADATA",
       "compatible_devices": "Desktop, Laptop, Server",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -2924,7 +2924,7 @@
       "ratings_total": 9,
       "brand": "A-Tech",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2943,7 +2943,7 @@
       "ratings_total": 18,
       "brand": "A-Tech",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2962,7 +2962,7 @@
       "ratings_total": 23,
       "brand": "A-Tech",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -2981,7 +2981,7 @@
       "ratings_total": 29,
       "brand": "zimablade",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR3L-1600 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -3000,7 +3000,7 @@
       "ratings_total": 1772,
       "brand": "Corsair",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -3019,7 +3019,7 @@
       "ratings_total": 27,
       "brand": "Patriot Memory",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3038,7 +3038,7 @@
       "ratings_total": 13,
       "brand": "Micron",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -3057,7 +3057,7 @@
       "ratings_total": 183,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3076,7 +3076,7 @@
       "ratings_total": 37,
       "brand": "TEAMGROUP",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -3095,7 +3095,7 @@
       "ratings_total": 95,
       "brand": "Adamanta",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -3114,7 +3114,7 @@
       "ratings_total": 128,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DIMM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3133,7 +3133,7 @@
       "ratings_total": 65,
       "brand": "A-Tech",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -3152,7 +3152,7 @@
       "ratings_total": 678,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -3171,7 +3171,7 @@
       "ratings_total": 47,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3190,7 +3190,7 @@
       "ratings_total": 76,
       "brand": "SABRENT",
       "compatible_devices": "Desktop, Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3209,7 +3209,7 @@
       "ratings_total": 24,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3247,7 +3247,7 @@
       "ratings_total": 1205,
       "brand": "TEAMGROUP",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3266,7 +3266,7 @@
       "ratings_total": 25,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3285,7 +3285,7 @@
       "ratings_total": 22,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3304,7 +3304,7 @@
       "ratings_total": 6182,
       "brand": "SP Silicon Power",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3323,7 +3323,7 @@
       "ratings_total": 146,
       "brand": "Adamanta",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -3342,7 +3342,7 @@
       "ratings_total": 13,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3361,7 +3361,7 @@
       "ratings_total": 36,
       "brand": "Moaffzey",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3380,7 +3380,7 @@
       "ratings_total": 299,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3399,7 +3399,7 @@
       "ratings_total": 734,
       "brand": "Crucial",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -3418,7 +3418,7 @@
       "ratings_total": 410,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3437,7 +3437,7 @@
       "ratings_total": 1317,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3456,7 +3456,7 @@
       "ratings_total": 563,
       "brand": "TEAMGROUP",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3475,7 +3475,7 @@
       "ratings_total": 71,
       "brand": "A-Tech",
       "compatible_devices": "Server, Workstation",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -3494,7 +3494,7 @@
       "ratings_total": 1590,
       "brand": "Lexar",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -3513,7 +3513,7 @@
       "ratings_total": 169,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3532,7 +3532,7 @@
       "ratings_total": null,
       "brand": "NEMIX RAM",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3551,7 +3551,7 @@
       "ratings_total": 129,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DIMM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3570,7 +3570,7 @@
       "ratings_total": 143,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3589,7 +3589,7 @@
       "ratings_total": 227,
       "brand": "Patriot Memory",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3627,7 +3627,7 @@
       "ratings_total": 32,
       "brand": "ByteFest",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR3 SDRAM, DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -3646,7 +3646,7 @@
       "ratings_total": 239,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3665,7 +3665,7 @@
       "ratings_total": 49,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3684,7 +3684,7 @@
       "ratings_total": 1050,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3703,7 +3703,7 @@
       "ratings_total": 287,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3722,7 +3722,7 @@
       "ratings_total": 19,
       "brand": "Corsair",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -3741,7 +3741,7 @@
       "ratings_total": 186,
       "brand": "A-Tech",
       "compatible_devices": "Server",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -3760,7 +3760,7 @@
       "ratings_total": 17,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3779,7 +3779,7 @@
       "ratings_total": 72,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3798,7 +3798,7 @@
       "ratings_total": 80,
       "brand": "KLEVV",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3817,7 +3817,7 @@
       "ratings_total": 10,
       "brand": "A-Tech",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -3836,7 +3836,7 @@
       "ratings_total": 7,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -3855,7 +3855,7 @@
       "ratings_total": 38,
       "brand": "ZECHNOLOGY",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -3874,7 +3874,7 @@
       "ratings_total": 1533,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3893,7 +3893,7 @@
       "ratings_total": 1127,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3912,7 +3912,7 @@
       "ratings_total": 1071,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3931,7 +3931,7 @@
       "ratings_total": 208,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3950,7 +3950,7 @@
       "ratings_total": 154,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -3969,7 +3969,7 @@
       "ratings_total": 28,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -3988,7 +3988,7 @@
       "ratings_total": 25,
       "brand": "A-Tech",
       "compatible_devices": "Server, Workstation",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -4026,7 +4026,7 @@
       "ratings_total": 24,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4045,7 +4045,7 @@
       "ratings_total": 100,
       "brand": "Asgard",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4064,7 +4064,7 @@
       "ratings_total": 116,
       "brand": "OLOy",
       "compatible_devices": "Desktop, Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4083,7 +4083,7 @@
       "ratings_total": 55,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4102,7 +4102,7 @@
       "ratings_total": 7,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4121,7 +4121,7 @@
       "ratings_total": 64,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4140,7 +4140,7 @@
       "ratings_total": 11,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4159,7 +4159,7 @@
       "ratings_total": 285,
       "brand": "KLEVV",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4178,7 +4178,7 @@
       "ratings_total": 757,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4197,7 +4197,7 @@
       "ratings_total": 340,
       "brand": "Gloway",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4216,7 +4216,7 @@
       "ratings_total": 2549,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4235,7 +4235,7 @@
       "ratings_total": 97,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4254,7 +4254,7 @@
       "ratings_total": 116,
       "brand": "OLOy",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4273,7 +4273,7 @@
       "ratings_total": 87,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DIMM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4292,7 +4292,7 @@
       "ratings_total": 31,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4311,7 +4311,7 @@
       "ratings_total": 27,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -4330,7 +4330,7 @@
       "ratings_total": 3367,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4349,7 +4349,7 @@
       "ratings_total": 48,
       "brand": "XPG",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4368,7 +4368,7 @@
       "ratings_total": 80,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4387,7 +4387,7 @@
       "ratings_total": 321,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4406,7 +4406,7 @@
       "ratings_total": 27,
       "brand": "XPG",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4425,7 +4425,7 @@
       "ratings_total": 93,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4444,7 +4444,7 @@
       "ratings_total": 76,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4463,7 +4463,7 @@
       "ratings_total": 22,
       "brand": "Generic",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -4482,7 +4482,7 @@
       "ratings_total": 22,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -4520,7 +4520,7 @@
       "ratings_total": 969,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4539,7 +4539,7 @@
       "ratings_total": 885,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4558,7 +4558,7 @@
       "ratings_total": 129,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4577,7 +4577,7 @@
       "ratings_total": 12,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4615,7 +4615,7 @@
       "ratings_total": 7,
       "brand": "V-COLOR COLOR YOUR LIFE",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4634,7 +4634,7 @@
       "ratings_total": 18,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DIMM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4653,7 +4653,7 @@
       "ratings_total": 19,
       "brand": "SAMSUNG",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -4672,7 +4672,7 @@
       "ratings_total": 183,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4691,7 +4691,7 @@
       "ratings_total": 279,
       "brand": "Timetec",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4710,7 +4710,7 @@
       "ratings_total": 100,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -4729,7 +4729,7 @@
       "ratings_total": 196,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4748,7 +4748,7 @@
       "ratings_total": 54,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4767,7 +4767,7 @@
       "ratings_total": 1594,
       "brand": "Corsair",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4786,7 +4786,7 @@
       "ratings_total": 34,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4805,7 +4805,7 @@
       "ratings_total": 7,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4843,7 +4843,7 @@
       "ratings_total": 37,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -4862,7 +4862,7 @@
       "ratings_total": 21,
       "brand": "A-Tech",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4881,7 +4881,7 @@
       "ratings_total": 40,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -4900,7 +4900,7 @@
       "ratings_total": 1124,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4919,7 +4919,7 @@
       "ratings_total": 92,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -4938,7 +4938,7 @@
       "ratings_total": 165,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4957,7 +4957,7 @@
       "ratings_total": 37,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -4995,7 +4995,7 @@
       "ratings_total": 79,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5014,7 +5014,7 @@
       "ratings_total": 7,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -5033,7 +5033,7 @@
       "ratings_total": 217,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5052,7 +5052,7 @@
       "ratings_total": 159,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5071,7 +5071,7 @@
       "ratings_total": 129,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -5090,7 +5090,7 @@
       "ratings_total": 60,
       "brand": "Adamanta",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -5109,7 +5109,7 @@
       "ratings_total": 149,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5128,7 +5128,7 @@
       "ratings_total": 89,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -5147,7 +5147,7 @@
       "ratings_total": 2815,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5166,7 +5166,7 @@
       "ratings_total": 197,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5185,7 +5185,7 @@
       "ratings_total": 20,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5204,7 +5204,7 @@
       "ratings_total": 65,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5223,7 +5223,7 @@
       "ratings_total": 21,
       "brand": "Memoz",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -5242,7 +5242,7 @@
       "ratings_total": 242,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -5261,7 +5261,7 @@
       "ratings_total": 110,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5280,7 +5280,7 @@
       "ratings_total": 8,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -5299,7 +5299,7 @@
       "ratings_total": 318,
       "brand": "Lexar",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5318,7 +5318,7 @@
       "ratings_total": 8501,
       "brand": "Crucial",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -5337,7 +5337,7 @@
       "ratings_total": 8,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -5356,7 +5356,7 @@
       "ratings_total": 5326,
       "brand": "Timetec",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -5375,7 +5375,7 @@
       "ratings_total": 168,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5394,7 +5394,7 @@
       "ratings_total": 70,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5413,7 +5413,7 @@
       "ratings_total": 40,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -5451,7 +5451,7 @@
       "ratings_total": 71,
       "brand": "Kingston",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -5470,7 +5470,7 @@
       "ratings_total": 37,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5508,7 +5508,7 @@
       "ratings_total": 78,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5527,7 +5527,7 @@
       "ratings_total": 282,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5546,7 +5546,7 @@
       "ratings_total": 42,
       "brand": "Adamanta",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -5565,7 +5565,7 @@
       "ratings_total": 92,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -5584,7 +5584,7 @@
       "ratings_total": 40,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5603,7 +5603,7 @@
       "ratings_total": 29,
       "brand": "Adamanta",
       "compatible_devices": "N/A",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -5622,7 +5622,7 @@
       "ratings_total": 146,
       "brand": "Adamanta",
       "compatible_devices": "N/A",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -5660,7 +5660,7 @@
       "ratings_total": 140,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -5679,7 +5679,7 @@
       "ratings_total": 40,
       "brand": "Adamanta",
       "compatible_devices": "N/A",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -5698,7 +5698,7 @@
       "ratings_total": 20,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -5717,7 +5717,7 @@
       "ratings_total": 48,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5736,7 +5736,7 @@
       "ratings_total": 172,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5755,7 +5755,7 @@
       "ratings_total": 69,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5774,7 +5774,7 @@
       "ratings_total": 242,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5793,7 +5793,7 @@
       "ratings_total": 248,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5812,7 +5812,7 @@
       "ratings_total": 166,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DIMM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5831,7 +5831,7 @@
       "ratings_total": 278,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5850,7 +5850,7 @@
       "ratings_total": 47,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -5869,7 +5869,7 @@
       "ratings_total": 80,
       "brand": "Corsair",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5888,7 +5888,7 @@
       "ratings_total": 10,
       "brand": "A-Tech",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -5907,7 +5907,7 @@
       "ratings_total": 163,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5926,7 +5926,7 @@
       "ratings_total": 10367,
       "brand": "Timetec",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR3L-1600 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -5945,7 +5945,7 @@
       "ratings_total": 49,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5964,7 +5964,7 @@
       "ratings_total": 375,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -5983,7 +5983,7 @@
       "ratings_total": 26,
       "brand": "Moaffzey",
       "compatible_devices": "N/A",
-      "computer_memory_type": "DDR3 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -6002,7 +6002,7 @@
       "ratings_total": 37,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -6021,7 +6021,7 @@
       "ratings_total": 8,
       "brand": "Generic",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -6040,7 +6040,7 @@
       "ratings_total": 24,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -6059,7 +6059,7 @@
       "ratings_total": 13,
       "brand": "Kingston",
       "compatible_devices": "Server",
-      "computer_memory_type": "SODIMM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -6078,7 +6078,7 @@
       "ratings_total": 2152,
       "brand": "Crucial",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -6097,7 +6097,7 @@
       "ratings_total": 181,
       "brand": "SP Silicon Power",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -6116,7 +6116,7 @@
       "ratings_total": 229,
       "brand": "SP Silicon Power",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -6135,7 +6135,7 @@
       "ratings_total": 117,
       "brand": "G.SKILL",
       "compatible_devices": "N/A",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -6154,7 +6154,7 @@
       "ratings_total": 1050,
       "brand": "Kingston",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -6173,7 +6173,7 @@
       "ratings_total": 35,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -6192,7 +6192,7 @@
       "ratings_total": 67,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 RAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -6211,7 +6211,7 @@
       "ratings_total": 20,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -6230,7 +6230,7 @@
       "ratings_total": 58,
       "brand": "Kingston",
       "compatible_devices": "Server",
-      "computer_memory_type": "DIMM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -6249,7 +6249,7 @@
       "ratings_total": 101,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -6268,7 +6268,7 @@
       "ratings_total": 282,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -6306,7 +6306,7 @@
       "ratings_total": 128,
       "brand": "Crucial",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -6325,7 +6325,7 @@
       "ratings_total": 7,
       "brand": "Lexar",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -6363,7 +6363,7 @@
       "ratings_total": 285,
       "brand": "Corsair",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -6382,7 +6382,7 @@
       "ratings_total": 200,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -6401,7 +6401,7 @@
       "ratings_total": null,
       "brand": "Adamanta",
       "compatible_devices": "N/A",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -6420,7 +6420,7 @@
       "ratings_total": 38,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -6439,7 +6439,7 @@
       "ratings_total": 190,
       "brand": "Adamanta",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -6458,7 +6458,7 @@
       "ratings_total": 206,
       "brand": "XPG",
       "compatible_devices": "Laptop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -6477,7 +6477,7 @@
       "ratings_total": 7,
       "brand": "Mushkin",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -6496,7 +6496,7 @@
       "ratings_total": 81,
       "brand": "NEMIX RAM",
       "compatible_devices": "Desktop, Laptop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "SO-DIMM",
       "is_new": true
     },
     {
@@ -6515,7 +6515,7 @@
       "ratings_total": 100,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -6534,7 +6534,7 @@
       "ratings_total": 19,
       "brand": "G.SKILL",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "SDRAM",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     },
     {
@@ -6553,7 +6553,7 @@
       "ratings_total": 815,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR5 SDRAM",
+      "computer_memory_type": "N/A",
       "is_new": true
     },
     {
@@ -6572,7 +6572,7 @@
       "ratings_total": 42,
       "brand": "Kingston",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "DDR4 SDRAM",
+      "computer_memory_type": "DIMM",
       "is_new": true
     },
     {
@@ -6591,7 +6591,7 @@
       "ratings_total": null,
       "brand": "Gigastone",
       "compatible_devices": "Desktop",
-      "computer_memory_type": "N/A",
+      "computer_memory_type": "UDIMM",
       "is_new": true
     }
   ]

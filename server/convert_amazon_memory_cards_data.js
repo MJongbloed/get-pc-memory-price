@@ -197,6 +197,47 @@ function convertAndSaveData() {
                 return 'N/A';
             };
 
+            // Helper function to extract Form Factor from bullets or title
+            const extractFormFactor = (bullets, title) => {
+                // Define form factors and their regex patterns with variations
+                // Order determines priority (most specific first)
+                const formFactors = [
+                    { name: 'SO-DIMM',   regex: new RegExp('\\b(SO-?DIMM|Small\\s*Outline(?:\\s*DIMM)?)\\b', 'i') },
+                    { name: 'MicroDIMM', regex: new RegExp('\\b(Micro-?DIMM)\\b', 'i') },
+                    { name: 'LR-DIMM',   regex: new RegExp('\\b(LR-?DIMM|Load\\s*Reduced(?:\\s*DIMM)?)\\b', 'i') },
+                    { name: 'RDIMM',     regex: new RegExp('\\b(R-?DIMM|Registered(?:\\s*DIMM)?)\\b', 'i') },
+                    { name: 'FB-DIMM',   regex: new RegExp('\\b(FB-?DIMM|Fully\\s*Buffered(?:\\s*DIMM)?)\\b', 'i') },
+                    { name: 'UDIMM',     regex: new RegExp('\\b(U-?DIMM|Unbuffered(?:\\s*DIMM)?)\\b', 'i') },
+                    { name: 'DIMM',      regex: new RegExp('\\b(DIMM)\\b', 'i') } // Generic DIMM last
+                ];
+
+                // Function to search a text source (bullet or title)
+                const searchSource = (source) => {
+                    if (!source) return null;
+                    for (const ff of formFactors) {
+                        if (ff.regex.test(source)) {
+                            return ff.name; // Return the standardized name
+                        }
+                    }
+                    return null;
+                };
+
+                // 1. Try extracting from bullets first
+                if (bullets && Array.isArray(bullets)) {
+                    for (const bullet of bullets) {
+                        const found = searchSource(bullet);
+                        if (found) return found;
+                    }
+                }
+
+                // 2. If not found in bullets, try extracting from title
+                const foundInTitle = searchSource(title);
+                if (foundInTitle) return foundInTitle;
+                
+                // 3. If not found in either, return N/A
+                return 'N/A';
+            };
+
             const memorySize = parseInt(getSpecValue('Computer Memory Size', '0'));
             
             // Handle null price values
@@ -250,7 +291,7 @@ function convertAndSaveData() {
                 ratings_total: item.ratingsTotal,
                 brand: item.brand,
                 compatible_devices: compatibleDevices,
-                computer_memory_type: getSpecValue('Computer Memory Type'),
+                computer_memory_type: extractFormFactor(item.featureBullets, item.title), // Use the new extractor
                 is_new: item.isNew
             };
         });
