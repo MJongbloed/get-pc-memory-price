@@ -30,12 +30,12 @@ try {
         <input type="checkbox" class="filter-checkbox" id="filter-condition-used" checked="checked" />Used</label>
     </fieldset>
 
-        <fieldset class="filter-wrapper">
+    <fieldset class="filter-wrapper">
         <legend class="filter-legend">Capacity (GB)</legend>
         <label for="filter-capacity-min">
-        <input type="number" class="numeric-input" id="filter-capacity-min" />Min</label>
+        <input type="number" class="numeric-input" id="filter-capacity-min" min="0" />Min</label>
         <label for="filter-capacity-max">
-        <input type="number" class="numeric-input" id="filter-capacity-max" />Max</label>
+        <input type="number" class="numeric-input" id="filter-capacity-max" min="0" />Max</label>
     </fieldset>
 
     <fieldset class="filter-wrapper">
@@ -57,9 +57,9 @@ try {
     <fieldset class="filter-wrapper">
         <legend class="filter-legend">Price</legend>
         <label for="filter-price-min">
-            <input type="number" class="numeric-input" id="filter-price-min" />Min</label>
+            <input type="number" class="numeric-input" id="filter-price-min" min="0" />Min</label>
         <label for="filter-price-max">
-            <input type="number" class="numeric-input" id="filter-price-max" />Max</label>
+            <input type="number" class="numeric-input" id="filter-price-max" min="0" />Max</label>
     </fieldset>
 
     <fieldset class="filter-wrapper brands-filter">
