@@ -1,0 +1,96 @@
+--- 
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title || "Blog Post"}</title>
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJMVEBH5EH"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-CJMVEBH5EH');
+		</script>
+
+		<!-- Link to global styles -->
+		<link rel="stylesheet" href="/src/styles/global.css">
+
+		<!-- Basic Blog Post Styles -->
+		<style>
+			body {
+				font-family: sans-serif;
+				line-height: 1.7;
+				margin: 2rem;
+				background-color: #f9f9f9;
+				color: #333;
+				font-size: 16px;
+			}
+			.content-wrapper {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 2rem;
+				background-color: #fff;
+				border-radius: 8px;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+			}
+			article img {
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				max-width: 70%;
+				height: auto;
+				border-radius: 4px;
+				margin-bottom: 1rem;
+			}
+			article h1, article h2 {
+				color: #2c3e50;
+				margin-top: 1.5em;
+				margin-bottom: 0.5em;
+			}
+      article h1 {
+        font-size: 2.5em;
+      }
+      article h2 {
+        font-size: 2em;
+      }
+			article p, article ul, article table {
+				margin-bottom: 1.1rem;
+				font-size: 1.05em;
+			}
+			article ul {
+				padding-left: 25px;
+			}
+			article table {
+				width: 100%;
+				border-collapse: collapse;
+			}
+			article th, article td {
+				border: 1px solid #ddd;
+				padding: 8px;
+				text-align: left;
+			}
+			article th {
+				background-color: #f2f2f2;
+			}
+      article a {
+        color: #3498db;
+        text-decoration: none;
+      }
+      article a:hover {
+        text-decoration: underline;
+      }
+		</style>
+	</head>
+	<body>
+		<div class="content-wrapper">
+			<slot /> <!-- Where the content from the .astro file will go -->
+		</div>
+	</body>
+</html> 
