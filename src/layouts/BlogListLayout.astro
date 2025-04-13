@@ -1,0 +1,50 @@
+---
+// src/layouts/BlogListLayout.astro
+const { pageTitle } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{pageTitle || 'Blog'}</title>
+
+		<!-- Meta Tags -->
+		<meta name="description" content="Blog posts about PC memory, RAM speeds, compatibility, and hardware insights." />
+		<meta name="author" content="Michel Jongbloed" />
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-CJMVEBH5EH"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-CJMVEBH5EH');
+		</script>
+
+		<!-- Link to global styles -->
+		<link rel="stylesheet" href="/src/styles/global.css">
+
+		<!-- Basic Layout Styles (Optional - Adjust as needed) -->
+		<style>
+			body {
+				font-family: sans-serif;
+				line-height: 1.6;
+				margin: 0;
+				padding: 0;
+				background-color: #f4f4f4;
+				color: #333;
+			}
+			/* Add header/footer styles here if needed */
+		</style>
+	</head>
+	<body>
+		<!-- Add Header component here if you have one -->
+		<main>
+			<slot /> <!-- Page content goes here -->
+		</main>
+		<!-- Add Footer component here if you have one -->
+	</body>
+</html> 

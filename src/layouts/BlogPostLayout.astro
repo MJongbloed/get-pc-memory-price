@@ -1,5 +1,12 @@
 ---
-// Destructure props including description and keywords
+// src/layouts/BlogPostLayout.astro
+
+// --- DEBUG LOGGING START ---
+// console.log("--- BlogPostLayout Props Received ---");
+// console.log(JSON.stringify(Astro.props, null, 2));
+// --- DEBUG LOGGING END ---
+
+// Expect frontmatter data directly as props
 const { title, description, keywords } = Astro.props;
 ---
 <!doctype html>

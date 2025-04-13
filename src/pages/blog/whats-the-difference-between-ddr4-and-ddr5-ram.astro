@@ -1,13 +1,14 @@
 ---
-import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
-const title = "What's the difference between DDR4 and DDR5 RAM";
-const description = "Discover the key differences between DDR4 and DDR5 RAM, including speed, bandwidth, voltage, compatibility, and performance impact for gaming and productivity.";
-const keywords = "DDR4 vs DDR5, DDR5 RAM, DDR4 RAM, difference between DDR4 and DDR5, RAM comparison, memory upgrade, PC RAM";
----
-<BlogPostLayout title={title} description={description} keywords={keywords}>
-  <article>
-    <h1>{title}</h1>
+export const title = "What's the difference between DDR4 and DDR5 RAM";
+export const description = "Discover the key differences between DDR4 and DDR5 RAM, including speed, bandwidth, voltage, compatibility, and performance impact for gaming and productivity.";
+export const keywords = "DDR4 vs DDR5, DDR5 RAM, DDR4 RAM, difference between DDR4 and DDR5, RAM comparison, memory upgrade, PC RAM";
 
+import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
+---
+
+<BlogPostLayout title={title} description={description}>
+  <article>
+    <h1>What's the difference between DDR4 and DDR5 RAM</h1>
     <img
       src="/images/close-up-of-ddr4-and-ddr5-ram.png" 
       alt="Close-up of DDR4 and DDR5 RAM sticks side by side on a motherboard" 
