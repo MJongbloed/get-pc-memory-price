@@ -1,140 +1,17 @@
 ---
-// src/pages/blog/index.astro
-import BlogListLayout from '../../layouts/BlogListLayout.astro';
-
-// Define expected structure for data we'll use
-interface PostData {
-  url: string;
-  title?: string;
-  description?: string;
-}
-
-// Use import.meta.glob - let it infer the return type
-const postImporters = import.meta.glob('./*.astro');
-
-// Process the importers to get post data
-const postsDataPromises = Object.entries(postImporters)
-    // Filter out the index file itself before processing
-    .filter(([path, _importer]) => path !== './index.astro') 
-    // Map over the remaining importers
-    .map(async ([_path, importer]) => {
-        // Execute the importer function to get the module exports
-        const postModule = await importer() as any; // Using 'as any' for simplicity
-        
-        // --- Debug log removed ---
-
-        // Extract data directly from module exports
-        return {
-            url: postModule.url as string | undefined,
-            title: postModule.title as string | undefined, // Expect 'title' exported from post
-            description: postModule.description as string | undefined, // Expect 'description' exported
-        } as PostData;
-    });
-
-// Wait for all post data promises to resolve
-const allPostsData = await Promise.all(postsDataPromises);
-
-// Filter for posts with valid URLs and sort
-const posts = allPostsData
-  .filter((post): post is PostData & { url: string } => typeof post?.url === 'string') 
-  .sort((a, b) => {
-    // Sort by title, falling back to URL slug
-    const titleA = a.title ?? a.url?.split('/').pop() ?? '';
-    const titleB = b.title ?? b.url?.split('/').pop() ?? '';
-    return titleA.localeCompare(titleB); // Sort A-Z
-  });
-
-
-const pageTitle = "Blog";
+import { getCollection } from 'astro:content';
+const posts = await getCollection('blog');
 ---
-<BlogListLayout pageTitle={pageTitle}>
-  <div class="container">
-    <h1>{pageTitle}</h1>
-    <p>Discover insights, guides, and updates related to PC memory and hardware.</p>
-    
-    {posts.length === 0 ? (
-      <p>No blog posts found yet. Check back soon!</p>
-    ) : (
-      <ul class="blog-post-list">
-        {posts.map((post) => {
-          // Access properties directly from the processed PostData object
-          const title = post.title ?? 'Untitled Post'; // Use title directly
-          const description = post.description; // Use description directly
-          const url = post.url;
 
-          if (!url) return null; 
-
-          return (
-            <li class="blog-post-item">
-              <a href={url} class="blog-post-link">
-                <h2>{title}</h2>
-                {description && (
-                  <p class="blog-post-description">{description}</p>
-                )}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    )}
-  </div>
-
-  <style>
-    .container {
-      max-width: 800px;
-      margin: 3rem auto; /* Increased top/bottom margin */
-      padding: 0 1rem;
-    }
-    h1 {
-      font-size: 2.8rem; /* Slightly larger */
-      margin-bottom: 0.75rem;
-      color: #2a2a2a; /* Darker heading color */
-      font-weight: 700;
-    }
-    p {
-      color: #555; /* Slightly darker text */
-      margin-bottom: 2.5rem; /* Increased bottom margin */
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-    .blog-post-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .blog-post-item {
-      margin-bottom: 2.5rem; /* Increased spacing */
-      /* Removed border-bottom */
-    }
-    /* Removed last-child rule as border is gone */
-
-    .blog-post-link {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      padding: 1.5rem; /* Increased padding */
-      border-radius: 8px; /* More rounded corners */
-      background-color: #ffffff; /* White background for card effect */
-      border: 1px solid #e0e0e0; /* Subtle border */
-      transition: transform 0.2s ease, box-shadow 0.2s ease; /* Added transform transition */
-    }
-    .blog-post-link:hover {
-      transform: translateY(-3px); /* Slight lift on hover */
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow on hover */
-      /* Removed background-color change on hover, rely on shadow/transform */
-    }
-    .blog-post-link h2 {
-      margin-top: 0;
-      margin-bottom: 0.75rem; /* Increased spacing */
-      font-size: 1.8rem; /* Slightly adjusted size */
-      color: #3b5bdb; /* Slightly adjusted blue */
-      font-weight: 600;
-    }
-    .blog-post-description {
-      color: #666; /* Slightly adjusted color */
-      font-size: 1rem;
-      line-height: 1.5;
-      margin: 0;
-    }
-  </style>
-</BlogListLayout> 
+<h1 class="text-3xl font-bold px-4 py-6">Blog</h1>
+<ul class="px-4 space-y-4">
+    {posts.map(({ slug, data }) => (
+        <li>
+            <a class="text-blue-600 hover:underline" href={`/blog/${slug}`}>
+              <h2 class="text-xl font-semibold">{data.title}</h2>
+            </a>
+            <p class="text-gray-500 text-sm">{new Date(data.pubDate).toLocaleDateString()}</p>
+            <p>{data.description}</p>
+        </li>
+    ))}
+</ul>
