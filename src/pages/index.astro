@@ -1,0 +1,192 @@
+---
+import FilterBar from '../components/FilterBar.astro';
+import ProductTable from '../components/ProductTable.astro';
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro';
+import fs from 'fs';
+import path from 'path';
+
+// Read JSON data at build time
+const filePath = path.resolve('public/data/memory-cards.json');
+const rawData = fs.readFileSync(filePath, 'utf-8');
+const lastUpdate = JSON.parse(rawData).date;
+---
+
+<html lang="en">
+  <Header />
+  <body>
+    <main>
+      <div class="product-layout">
+        <FilterBar />
+        <div class="table-container">
+          <ProductTable />
+        </div>
+      </div>
+    </main>
+    <Footer lastUpdate={lastUpdate} />
+  </body>
+</html>
+
+<style>
+  html {
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+  }
+
+  main {
+    margin: 0 auto;
+    padding: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .product-layout {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .table-container {
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  :global(.table th), 
+  :global(.table td) {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+
+  :global(.table tbody tr) {
+    height: auto;
+  }
+
+  :global(.table tbody td) {
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  :global(.table td:last-child a) {
+    display: block;
+    max-width: 400px;
+    white-space: normal;
+    line-height: 1.2;
+  }
+
+  :global(.table-header th) {
+    font-size: 0.7rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.  4rem;
+  }
+
+  :global(.filter-legend) {
+    font-size: 0.9rem !important;
+  }
+
+  :global(.filter-label) {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  @media (max-width: 768px) {
+    .product-layout {
+      flex-direction: column;
+    }
+    
+    .table-container {
+      width: 100%;
+    }
+
+    body {
+      font-size: 15px;
+    }
+  }
+
+  /* Control column widths */
+  :global(.table th:first-child),
+  :global(.table td:first-child) {
+    width: 40px; /* Make Price per GB column narrower */
+    max-width: 60px;
+  }
+
+  :global(.table th:nth-child(2)),
+  :global(.table td:nth-child(2)) {
+    width: 40px; /* Price column */
+    max-width: 70px;
+  }
+
+  :global(.table th:nth-child(3)),
+  :global(.table td:nth-child(3)) {
+    width: 40px; /* Capacity column */
+    max-width: 80px;
+  }
+
+  :global(.table th:nth-child(4)),
+  :global(.table td:nth-child(4)) {
+    width: 45px; /* Speed column */
+    max-width: 90px;
+  }
+
+  :global(.table th:nth-child(5)),
+  :global(.table td:nth-child(5)) {
+    width: 45px; /* Ratings column */
+    max-width: 100px;
+  }
+
+  :global(.table th:last-child),
+  :global(.table td:last-child) {
+    width: auto; /* Let the product title take remaining space */
+    min-width: 350px; /* Ensure enough width for titles */
+  }
+
+  /* Prevent wrapping in data columns but allow controlled wrapping in title */
+  :global(.table td:not(:last-child)) {
+    white-space: nowrap;
+  }
+
+  :global(.table td:last-child a) {
+    display: inline; /* Change from block to inline */
+    white-space: nowrap; /* Prevent wrapping to keep rows compact */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Show ellipsis for very long titles */
+  }
+
+  /* Table layout fixed helps maintain column widths */
+  :global(.table) {
+    width: 100%;
+  }
+
+  /* Add footer spacing */
+  :global(.page-footer) {
+    margin-top: 2rem;
+    padding: 1rem;
+    clear: both;
+  }
+</style>
