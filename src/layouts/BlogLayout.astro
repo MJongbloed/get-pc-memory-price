@@ -1,16 +1,24 @@
 ---
-const { title, description, pubDate, tags, image } = Astro.props;
+const { title, pubDate, tags, description, image } = Astro.props;
 ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    {/* You might want to add other meta tags like description here */}
+    {/* Link to your CSS file(s) if not handled by Astro integration */} 
+</head>
+<body>
+    <article class="prose mx-auto px-4 py-8 dark:prose-invert">
+      <slot />
 
-<article class="prose mx-auto px-4 py-8">
-    <h1>{title}</h1>
-    <p class="text-sm text-gray-500">Published on {new Date(pubDate).toLocaleDateString()}</p>
-    <p class="italic">{description}</p>
-
-    <slot />
-
-    <div class="mt-8">
-        <strong>Tags:</strong> {tags.join(", ")}
-    </div>
-</article>
-
+      <div class="mt-10 text-sm text-gray-600">
+        {tags && tags.length > 0 && (
+          <><strong>Tags:</strong> {tags.join(', ')}</>
+        )}
+      </div>
+    </article>
+</body>
+</html>

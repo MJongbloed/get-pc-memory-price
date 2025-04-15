@@ -1,15 +1,23 @@
 ---
-import { getEntryBySlug } from 'astro:content';
-import BlogPostLayout from '../../layouts/BlogLayout.astro';
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
 
-const { slug } = Astro.params;
-const post = await getEntryBySlug('blog', slug);
+// 🔧 This tells Astro which pages to generate
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
 
-if (!post) throw new Error(`Post not found: ${slug}`);
+// 🔄 Get the post data passed via props
+const { post } = Astro.props;
 
-const { Content, data } = post;
+const { data } = post;
+const { Content } = await post.render();
 ---
 
 <BlogLayout {...data}>
-    <Content />
+  <Content />
 </BlogLayout>
