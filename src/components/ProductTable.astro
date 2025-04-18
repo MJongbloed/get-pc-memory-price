@@ -134,17 +134,9 @@ const accentioAssociatesTag = 'accentiofinde-20';
         background-color: #f8f9fa;
     }
 
-    .top-ten {
-        background-color: #c8e6c9; /* Slightly stronger green background */
-    }
-    
     /* Increase specificity and ensure it's after general hover */
     tbody tr.top-ten:hover {
         background-color: #a5d6a7; /* Darker green on hover */
-    }
-
-    tbody .top-ten td {
-        font-weight: 600; /* Make text slightly bolder */
     }
 
     @media (max-width: 768px) {
@@ -161,184 +153,168 @@ const accentioAssociatesTag = 'accentiofinde-20';
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // Defer execution by 1 second
-        setTimeout(() => {
-            const selectFilters = document.querySelectorAll(".filter-checkbox:not(.select-all)");
-            const selectAllFilters = document.querySelectorAll(".filter-checkbox.select-all");
-            const minPriceInput = document.getElementById("filter-price-min") as HTMLInputElement;
-            const maxPriceInput = document.getElementById("filter-price-max") as HTMLInputElement;
-            const minCapacityInput = document.getElementById("filter-capacity-min") as HTMLInputElement;
-            const maxCapacityInput = document.getElementById("filter-capacity-max") as HTMLInputElement;
+        const selectFilters = document.querySelectorAll(".filter-checkbox:not(.select-all)");
+        const selectAllFilters = document.querySelectorAll(".filter-checkbox.select-all");
+        const minPriceInput = document.getElementById("filter-price-min") as HTMLInputElement;
+        const maxPriceInput = document.getElementById("filter-price-max") as HTMLInputElement;
+        const minCapacityInput = document.getElementById("filter-capacity-min") as HTMLInputElement;
+        const maxCapacityInput = document.getElementById("filter-capacity-max") as HTMLInputElement;
 
-            function filterTable() {
-                if (!minPriceInput || !maxPriceInput || !minCapacityInput || !maxCapacityInput) return;
+        function filterTable() {
+            if (!minPriceInput || !maxPriceInput || !minCapacityInput || !maxCapacityInput) return;
+            
+            const tableRows = document.querySelectorAll("#memoryTable tbody tr");
+
+            // First, collect all checked compatibility filters
+            const enabledCompatibilityFilters = new Set<string>();
+            selectFilters.forEach(filter => {
+                const filterId = filter.id;
+                const filterValue = (filter as HTMLInputElement).checked;
+                const filterGroupName = filterId.split('-')[1];
+                const filterSelectedName = filterId.split('-')[2].toLowerCase();
                 
-                const tableRows = document.querySelectorAll("#memoryTable tbody tr");
+                if (filterGroupName === 'compatibility' && filterValue) {
+                    // Handle the special case for "Rack Server"
+                    const compatibilityName = filterSelectedName === 'rackserver' ? 'rack server' : filterSelectedName;
+                    enabledCompatibilityFilters.add(compatibilityName);
+                }
+            });
 
-                // First, collect all checked compatibility filters
-                const enabledCompatibilityFilters = new Set<string>();
+            tableRows.forEach(row => {
+                let rowVisible = true;
+                let hasCompatibilityFilter = false;
+                let matchesAnyCompatibility = false;
+
+                // Get the row's compatibility values
+                const rowCompatibilityAttr = row.getAttribute('data-compatibility');
+                const rowCompatibilities = rowCompatibilityAttr ? rowCompatibilityAttr.split(',').map(v => v.trim().toLowerCase()) : [];
+
                 selectFilters.forEach(filter => {
                     const filterId = filter.id;
                     const filterValue = (filter as HTMLInputElement).checked;
                     const filterGroupName = filterId.split('-')[1];
                     const filterSelectedName = filterId.split('-')[2].toLowerCase();
+                    const rowValue = row.getAttribute('data-' + filterGroupName);
                     
-                    if (filterGroupName === 'compatibility' && filterValue) {
-                        // Handle the special case for "Rack Server"
-                        const compatibilityName = filterSelectedName === 'rackserver' ? 'rack server' : filterSelectedName;
-                        enabledCompatibilityFilters.add(compatibilityName);
+                    // Special handling for condition filters
+                    if (filterGroupName === 'condition') {
+                        const rowCondition = rowValue?.toLowerCase() || '';
+                        if (rowCondition === filterSelectedName && !filterValue) {
+                            rowVisible = false;
+                        }
+                    } 
+                    // Special handling for brand filters
+                    else if (filterGroupName === 'brand') {
+                        // Get the original brand name from the data attribute
+                        const originalBrand = (filter as HTMLInputElement).getAttribute('data-original-brand');
+                        if (originalBrand && rowValue === originalBrand && !filterValue) {
+                            rowVisible = false;
+                        }
                     }
-                });
-
-                tableRows.forEach(row => {
-                    let rowVisible = true;
-                    let hasCompatibilityFilter = false;
-                    let matchesAnyCompatibility = false;
-
-                    // Get the row's compatibility values
-                    const rowCompatibilityAttr = row.getAttribute('data-compatibility');
-                    const rowCompatibilities = rowCompatibilityAttr ? rowCompatibilityAttr.split(',').map(v => v.trim().toLowerCase()) : [];
-
-                    selectFilters.forEach(filter => {
-                        const filterId = filter.id;
-                        const filterValue = (filter as HTMLInputElement).checked;
-                        const filterGroupName = filterId.split('-')[1];
-                        const filterSelectedName = filterId.split('-')[2].toLowerCase();
-                        const rowValue = row.getAttribute('data-' + filterGroupName);
+                    // Special handling for compatibility filters - just track if this is a compatibility filter
+                    else if (filterGroupName === 'compatibility') {
+                        hasCompatibilityFilter = true;
                         
-                        // Special handling for condition filters
-                        if (filterGroupName === 'condition') {
-                            const rowCondition = rowValue?.toLowerCase() || '';
-                            if (rowCondition === filterSelectedName && !filterValue) {
-                                rowVisible = false;
-                            }
-                        } 
-                        // Special handling for brand filters
-                        else if (filterGroupName === 'brand') {
-                            // Get the original brand name from the data attribute
-                            const originalBrand = (filter as HTMLInputElement).getAttribute('data-original-brand');
-                            if (originalBrand && rowValue === originalBrand && !filterValue) {
-                                rowVisible = false;
+                        // If it's checked, see if the row matches this compatibility
+                        if (filterValue) {
+                            const compatibilityName = filterSelectedName === 'rackserver' ? 'rack server' : filterSelectedName;
+                            if (rowCompatibilities.includes(compatibilityName)) {
+                                matchesAnyCompatibility = true;
                             }
                         }
-                        // Special handling for compatibility filters - just track if this is a compatibility filter
-                        else if (filterGroupName === 'compatibility') {
-                            hasCompatibilityFilter = true;
-                            
-                            // If it's checked, see if the row matches this compatibility
-                            if (filterValue) {
-                                const compatibilityName = filterSelectedName === 'rackserver' ? 'rack server' : filterSelectedName;
-                                if (rowCompatibilities.includes(compatibilityName)) {
-                                    matchesAnyCompatibility = true;
-                                }
-                            }
-                        }
-                        else {
-                            const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
-                            if (rowMatch && !filterValue) {
-                                rowVisible = false;
-                            }
-                        }
-                    });
-
-                    // If we have compatibility filters and the row doesn't match any of them, hide it
-                    if (hasCompatibilityFilter && enabledCompatibilityFilters.size > 0 && !matchesAnyCompatibility) {
-                        rowVisible = false;
                     }
-
-                    const minPrice = parseFloat(minPriceInput.value) || 0;
-                    const maxPrice = parseFloat(maxPriceInput.value) || Infinity;
-                    const rowPrice = parseFloat(row.getAttribute('data-price') || '0');
-
-                    const minCapacity = parseFloat(minCapacityInput.value) || 0;
-                    const maxCapacity = parseFloat(maxCapacityInput.value) || Infinity;
-                    const rowCapacity = parseFloat(row.getAttribute('data-capacity') || '0');
-
-                    // Decide if a row should be visible or not, based on the filters.
-                    if (rowPrice < minPrice || rowPrice > maxPrice || rowCapacity < minCapacity || rowCapacity > maxCapacity) {
-                        rowVisible = false;
-                    }
-
-                    (row as HTMLElement).style.display = rowVisible ? '' : 'none';
-                });
-
-                // Apply styling to the top 10 visible rows
-                let visibleRowCount = 0;
-                tableRows.forEach(row => {
-                    const htmlRow = row as HTMLElement;
-                    // First, remove the class in case it was previously applied
-                    htmlRow.classList.remove('top-ten');
-                    
-                    // Check if the row is visible and we haven't styled 10 rows yet
-                    if (htmlRow.style.display !== 'none' && visibleRowCount < 10) {
-                        htmlRow.classList.add('top-ten');
-                        visibleRowCount++;
+                    else {
+                        const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
+                        if (rowMatch && !filterValue) {
+                            rowVisible = false;
+                        }
                     }
                 });
-            }
 
-            // Handle "Select All" functionality
-            function handleSelectAll(selectAllCheckbox: HTMLInputElement) {
-                const group = selectAllCheckbox.getAttribute('data-group');
-                const isChecked = selectAllCheckbox.checked;
-                
-                // Find all checkboxes that belong to this group
-                const groupCheckboxes = document.querySelectorAll(`.filter-checkbox[id^="filter-${group}-"]:not(.select-all)`);
-                
-                // Set all checkboxes in the group to match the "Select All" state
-                groupCheckboxes.forEach((checkbox) => {
-                    (checkbox as HTMLInputElement).checked = isChecked;
-                });
-                
-                // Update the table filtering
-                filterTable();
-            }
-            
-            // Update "Select All" checkbox state when individual filters change
-            function updateSelectAllState(changedCheckbox: HTMLInputElement) {
-                const filterId = changedCheckbox.id;
-                const filterGroupName = filterId.split('-')[1];
-                const selectAllCheckbox = document.getElementById(`filter-${filterGroupName}-all`) as HTMLInputElement;
-                
-                if (selectAllCheckbox) {
-                    const groupCheckboxes = document.querySelectorAll(`.filter-checkbox[id^="filter-${filterGroupName}-"]:not(.select-all)`);
-                    let allChecked = true;
-                    
-                    groupCheckboxes.forEach((checkbox) => {
-                        if (!(checkbox as HTMLInputElement).checked) {
-                            allChecked = false;
-                        }
-                    });
-                    
-                    // Update the "Select All" checkbox without triggering its change event
-                    selectAllCheckbox.checked = allChecked;
+                // If we have compatibility filters and the row doesn't match any of them, hide it
+                if (hasCompatibilityFilter && enabledCompatibilityFilters.size > 0 && !matchesAnyCompatibility) {
+                    rowVisible = false;
                 }
-            }
 
-            // Attach event listeners for the "Select All" checkboxes
-            selectAllFilters.forEach(filter => {
-                filter.addEventListener("change", function(this: HTMLInputElement) {
-                    handleSelectAll(this);
-                });
+                const minPrice = parseFloat(minPriceInput.value) || 0;
+                const maxPrice = parseFloat(maxPriceInput.value) || Infinity;
+                const rowPrice = parseFloat(row.getAttribute('data-price') || '0');
+
+                const minCapacity = parseFloat(minCapacityInput.value) || 0;
+                const maxCapacity = parseFloat(maxCapacityInput.value) || Infinity;
+                const rowCapacity = parseFloat(row.getAttribute('data-capacity') || '0');
+
+                // Decide if a row should be visible or not, based on the filters.
+                if (rowPrice < minPrice || rowPrice > maxPrice || rowCapacity < minCapacity || rowCapacity > maxCapacity) {
+                    rowVisible = false;
+                }
+
+                (row as HTMLElement).style.display = rowVisible ? '' : 'none';
             });
+        }
 
-            // Attach event listeners for the individual checkboxes
-            selectFilters.forEach(filter => {
-                filter.addEventListener("change", function(this: HTMLInputElement) {
-                    updateSelectAllState(this);
-                    filterTable();
-                });
+        // Handle "Select All" functionality
+        function handleSelectAll(selectAllCheckbox: HTMLInputElement) {
+            const group = selectAllCheckbox.getAttribute('data-group');
+            const isChecked = selectAllCheckbox.checked;
+            
+            // Find all checkboxes that belong to this group
+            const groupCheckboxes = document.querySelectorAll(`.filter-checkbox[id^="filter-${group}-"]:not(.select-all)`);
+            
+            // Set all checkboxes in the group to match the "Select All" state
+            groupCheckboxes.forEach((checkbox) => {
+                (checkbox as HTMLInputElement).checked = isChecked;
             });
-
-            // Attach event listeners for the numeric inputs
-            if (minPriceInput && maxPriceInput && minCapacityInput && maxCapacityInput) {
-                minPriceInput.addEventListener("input", filterTable);
-                maxPriceInput.addEventListener("input", filterTable);
-                minCapacityInput.addEventListener("input", filterTable);
-                maxCapacityInput.addEventListener("input", filterTable);
-            }
-
-            // Initial call to apply styles on page load
+            
+            // Update the table filtering
             filterTable();
-        }, 1000); // 1000 milliseconds = 1 second delay
+        }
+        
+        // Update "Select All" checkbox state when individual filters change
+        function updateSelectAllState(changedCheckbox: HTMLInputElement) {
+            const filterId = changedCheckbox.id;
+            const filterGroupName = filterId.split('-')[1];
+            const selectAllCheckbox = document.getElementById(`filter-${filterGroupName}-all`) as HTMLInputElement;
+            
+            if (selectAllCheckbox) {
+                const groupCheckboxes = document.querySelectorAll(`.filter-checkbox[id^="filter-${filterGroupName}-"]:not(.select-all)`);
+                let allChecked = true;
+                
+                groupCheckboxes.forEach((checkbox) => {
+                    if (!(checkbox as HTMLInputElement).checked) {
+                        allChecked = false;
+                    }
+                });
+                
+                // Update the "Select All" checkbox without triggering its change event
+                selectAllCheckbox.checked = allChecked;
+            }
+        }
+
+        // Attach event listeners for the "Select All" checkboxes
+        selectAllFilters.forEach(filter => {
+            filter.addEventListener("change", function(this: HTMLInputElement) {
+                handleSelectAll(this);
+            });
+        });
+
+        // Attach event listeners for the individual checkboxes
+        selectFilters.forEach(filter => {
+            filter.addEventListener("change", function(this: HTMLInputElement) {
+                updateSelectAllState(this);
+                filterTable();
+            });
+        });
+
+        // Attach event listeners for the numeric inputs
+        if (minPriceInput && maxPriceInput && minCapacityInput && maxCapacityInput) {
+            minPriceInput.addEventListener("input", filterTable);
+            maxPriceInput.addEventListener("input", filterTable);
+            minCapacityInput.addEventListener("input", filterTable);
+            maxCapacityInput.addEventListener("input", filterTable);
+        }
+
+        // Initial call to apply styles on page load
+        filterTable();
     });
 </script>
