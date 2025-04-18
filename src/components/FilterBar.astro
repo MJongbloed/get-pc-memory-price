@@ -63,7 +63,11 @@ try {
     </fieldset>
 
     <fieldset class="filter-wrapper brands-filter">
-        <legend class="filter-legend">Brands <input type="checkbox" class="filter-checkbox select-all" id="filter-brand-all" checked="checked" data-group="brand" /></legend>
+        <legend class="filter-legend">
+            <label for="filter-brand-all" class="filter-label select-all-label">
+                Brands <input type="checkbox" class="filter-checkbox select-all" id="filter-brand-all" checked="checked" data-group="brand" />
+            </label>
+        </legend>
         {brands.map((brand: string) => {
             const brandId = brand.toLowerCase().replace(/[^a-z0-9]/g, '-');
             return (
@@ -95,7 +99,11 @@ try {
     </fieldset>
 
     <fieldset class="filter-wrapper">
-        <legend class="filter-legend">CAS Latency <input type="checkbox" class="filter-checkbox select-all" id="filter-latency-all" checked="checked" data-group="latency" /></legend>
+        <legend class="filter-legend">
+            <label for="filter-latency-all" class="filter-label select-all-label">
+                CAS Latency <input type="checkbox" class="filter-checkbox select-all" id="filter-latency-all" checked="checked" data-group="latency" />
+            </label>
+        </legend>
         <label for="filter-latency-cl11" class="filter-label">
             <input type="checkbox" class="filter-checkbox" id="filter-latency-cl11" checked="checked" />CL11</label>
         <label for="filter-latency-cl13" class="filter-label">
@@ -219,6 +227,18 @@ try {
         margin-right: 0.5rem;
         padding: 0.3rem;
         width: 60px;
+    }
+    
+    .select-all-label {
+        font-weight: inherit; /* Inherit font-weight from legend */
+        margin-bottom: 0; /* Override default margin */
+        cursor: pointer; /* Add pointer cursor */
+        white-space: nowrap; /* Prevent text wrapping */
+    }
+
+    /* Add specific styling for the select-all checkbox */
+    .select-all-label .filter-checkbox {
+        margin-left: 0.5rem; /* Add space before the checkbox */
     }
 
     @media (max-width: 768px) {
