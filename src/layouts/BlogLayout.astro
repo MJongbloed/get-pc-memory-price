@@ -42,4 +42,9 @@ const { title, pubDate, tags, description, image } = Astro.props;
   .dark .dark\:prose-invert :where(:not(pre) > code) {
     color: #d1d5db; /* lighter gray for dark mode */
   }
+
+  /* Custom style for blockquotes */
+  .prose blockquote p { /* Target paragraphs within blockquotes in prose */
+    color: #3CB371; /* MediumSeaGreen */
+  }
 </style>

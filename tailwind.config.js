@@ -11,6 +11,7 @@ export default {
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
+            maxWidth: '94ch',
             // --- COLORS FOR LIGHT MODE --- 
             '--tw-prose-body': theme('colors.gray.700'),          
             '--tw-prose-headings': theme('colors.gray.900'),      
