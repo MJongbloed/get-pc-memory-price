@@ -66,7 +66,7 @@ function convertAndSaveData() {
     };
 
     /**
-     * Cleans a URL by removing specific query parameters.
+     * Cleans a URL by removing specific query parameters and adding the required tag parameter.
      * @param {string} url - The original URL.
      * @returns {string} The cleaned URL or the original if cleaning fails.
      */
@@ -76,7 +76,8 @@ function convertAndSaveData() {
             const urlObj = new URL(url);
             urlObj.searchParams.delete('dib');
             urlObj.searchParams.delete('dib_tag');
-            // Add other params to remove if needed in the future
+            // Add the required tag parameter
+            urlObj.searchParams.set('tag', 'accentiofinde-20');
             return urlObj.toString();
         } catch (error) {
             // Log error but return original URL to avoid breaking the process
@@ -312,19 +313,54 @@ function convertAndSaveData() {
     rawResults.forEach((product, index) => {
         // console.log(`Processing product ${index + 1}: ${product.asin}`); // Debug logging
 
-        // Process the main product directly, ignoring variants for now
-        const processedProduct = processItem(product);
+        if (Array.isArray(product.variants) && product.variants.length > 0) {
+            // --- Product has Variants --- 
+            // console.log(`  Product ${product.asin} has ${product.variants.length} variants.`);
+            product.variants.forEach(variant => {
+                // Skip variant if it doesn't have a valid price
+                if (!variant.price?.value) {
+                    // console.log(`  Skipping variant (ASIN: ${variant.asin}) - Missing price.`);
+                    return; // continue to next variant
+                }
 
-        // Add to results ONLY if valid and memory size is greater than 0
-        if (processedProduct && processedProduct.computer_memory_size > 0) {
-            convertedData.push(processedProduct);
+                // Construct item data for the variant, inheriting from parent
+                // but overriding key fields (asin, price, url)
+                const variantItemData = {
+                    ...product, // Start with parent product data
+                    asin: variant.asin,       // Use variant's ASIN
+                    price: variant.price,     // Use variant's price object
+                    url: variant.url,         // Use variant's URL
+                    // Keep parent's title, specs, brand, isNew etc. for processing
+                    // processItem will use these inherited fields for extraction
+                };
+
+                // Process this constructed variant data
+                const processedVariant = processItem(variantItemData);
+
+                // Add to results ONLY if valid and memory size is greater than 0
+                if (processedVariant && processedVariant.computer_memory_size > 0) {
+                    convertedData.push(processedVariant);
+                } else {
+                    // Optional: Log skipped variant
+                    // console.log(`  Skipped processed variant (ASIN: ${variant.asin}) - Invalid result or zero memory size.`);
+                }
+            });
         } else {
-             // Optional: Log if the product was skipped due to missing price or zero memory size
-             // console.log(`Skipped product (ASIN: ${product?.asin || 'unknown'}) - Invalid price or zero memory size.`);
+            // --- Product has No Variants --- 
+            // Process the main product directly
+            const processedProduct = processItem(product);
+
+            // Add to results ONLY if valid and memory size is greater than 0
+            if (processedProduct && processedProduct.computer_memory_size > 0) {
+                convertedData.push(processedProduct);
+            } else {
+                 // Optional: Log if the product was skipped due to missing price or zero memory size
+                 // console.log(`Skipped product (ASIN: ${product?.asin || 'unknown'}) - Invalid price or zero memory size.`);
+            }
         }
     });
 
-    console.log(`Processed ${convertedData.length} valid product items with memory size > 0.`); // Update log message
+    console.log(`Processed ${convertedData.length} valid items (products/variants) with memory size > 0.`); // Update log message
 
     // --- Final Output Structure ---
     const now = new Date();
