@@ -1,318 +1,355 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { URL } from 'url'; // Import URL class for URL cleaning
 
+/**
+ * Rewrites the conversion logic for Amazon memory card data.
+ * Loads raw data, processes products and their variants,
+ * extracts and derives fields based on specified rules,
+ * and saves the structured data.
+ */
 function convertAndSaveData() {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
     const inputFilePath = path.resolve(__dirname, '../public/data/amazon-query-result.json');
     const outputFilePath = path.resolve(__dirname, '../public/data/memory-cards.json');
 
-    // Read the input file.
-    const rawData = fs.readFileSync(inputFilePath, 'utf-8');
-    const inputData = JSON.parse(rawData);
+    console.log(`Loading data from: ${inputFilePath}`);
 
-    // Extract and convert the data.
-    const convertedData = inputData.data.amazonProductCategory.productResults.results
-        // Filter out items without Computer Memory Size which is a critical field
-        // and items without a price
-        .filter(item => {
-            // Check if item and technicalSpecifications exist before accessing them
-            if (!item || !item.technicalSpecifications) {
-                console.log(`Skipping item (ASIN: ${item?.asin || 'unknown'}) because it's missing technical specifications\n`);
-                return false;
+    // --- Load Data ---
+    let rawData;
+    let inputData;
+    try {
+        rawData = fs.readFileSync(inputFilePath, 'utf-8');
+        inputData = JSON.parse(rawData);
+    } catch (error) {
+        console.error(`Error reading or parsing input file ${inputFilePath}:`, error);
+        return; // Exit if loading fails
+    }
+
+    if (!inputData?.data?.amazonProductCategory?.productResults?.results) {
+        console.error('Invalid input data structure. Expected data.amazonProductCategory.productResults.results array.');
+        return; // Exit if structure is not as expected
+    }
+
+    const rawResults = inputData.data.amazonProductCategory.productResults.results;
+    const convertedData = [];
+
+    console.log(`Processing ${rawResults.length} products...`);
+
+    // --- Helper Functions ---
+
+    /**
+     * Safely gets a technical specification value.
+     * @param {Array} specs - The technicalSpecifications array.
+     * @param {string} specName - The name of the specification to find.
+     * @returns {string|null} The value or null if not found.
+     */
+    const getSpecValue = (specs, specName) => {
+        if (!Array.isArray(specs)) return null;
+        const spec = specs.find(s => s?.name?.toLowerCase() === specName?.toLowerCase());
+        return spec?.value || null;
+    };
+
+    /**
+     * Extracts a value from the title using regex.
+     * @param {string} title - The product/variant title.
+     * @param {RegExp} regex - The regular expression to use.
+     * @param {number} [groupIndex=1] - The capturing group index.
+     * @returns {string|null} The extracted value or null.
+     */
+    const extractFromTitle = (title, regex, groupIndex = 1) => {
+        if (!title) return null;
+        const match = title.match(regex);
+        return match?.[groupIndex] || null;
+    };
+
+    /**
+     * Cleans a URL by removing specific query parameters.
+     * @param {string} url - The original URL.
+     * @returns {string} The cleaned URL or the original if cleaning fails.
+     */
+    const cleanUrl = (url) => {
+        if (!url) return url;
+        try {
+            const urlObj = new URL(url);
+            urlObj.searchParams.delete('dib');
+            urlObj.searchParams.delete('dib_tag');
+            // Add other params to remove if needed in the future
+            return urlObj.toString();
+        } catch (error) {
+            // Log error but return original URL to avoid breaking the process
+            // console.warn(`Warning: Could not parse or clean URL "${url}". Returning original. Error: ${error.message}`);
+            return url;
+        }
+    };
+
+    /**
+     * Extracts Computer Memory Size (GB).
+     * Priority: Title -> Technical Spec.
+     * @param {object} item - Product or variant object.
+     * @returns {number} Memory size in GB, or 0 if not found/parsable.
+     */
+    const extractMemorySize = (item) => {
+        // 1. Try title extraction: (\d+)\s?GB (case-insensitive)
+        const titleMatch = extractFromTitle(item.title, /(\d+)\s?GB/i);
+        if (titleMatch) return parseInt(titleMatch, 10) || 0;
+
+        // 2. Fallback: Technical Spec "Computer Memory Size"
+        const specValue = getSpecValue(item.technicalSpecifications, 'Computer Memory Size');
+        if (specValue) {
+            const numericMatch = specValue.match(/(\d+)/);
+            return numericMatch ? parseInt(numericMatch[1], 10) : 0;
+        }
+        return 0;
+    };
+
+    /**
+     * Extracts Memory Speed (MHz).
+     * Priority: Title -> Technical Spec.
+     * @param {object} item - Product or variant object.
+     * @returns {number|null} Memory speed in MHz as a number, or null.
+     */
+    const extractMemorySpeed = (item) => {
+        let speedString = null;
+
+        // 1. Try title extraction: (\d+)\s?MHz (case-insensitive)
+        const titleMatch = extractFromTitle(item.title, /(\d+)\s?MHz/i);
+        if (titleMatch) {
+            speedString = titleMatch; // Store the numeric part string
+        } else {
+            // 2. Fallback: Technical Spec "Memory Speed"
+            const specValue = getSpecValue(item.technicalSpecifications, 'Memory Speed');
+            if (specValue) {
+                 // Extract numeric part from spec value
+                 const numericMatch = specValue.match(/(\d+)/);
+                 if (numericMatch && numericMatch[1]) {
+                    speedString = numericMatch[1]; // Store the numeric part string
+                 }
+                 // If spec value exists but no number, we won't use it here
             }
-            
-            const memSizeSpec = item.technicalSpecifications.find(spec => spec.name === 'Computer Memory Size');
-            if (!memSizeSpec) {
-                console.log(`Skipping item (ASIN: ${item.asin}) because it's missing Computer Memory Size specification\n`);
-                return false;
+        }
+
+        // Parse the extracted numeric string
+        if (speedString) {
+            const speedNumber = parseInt(speedString, 10);
+            if (!isNaN(speedNumber)) {
+                return speedNumber; // Return the parsed number
             }
-            
-            // Skip items without a price
-            if (!item.price || item.price === null) {
-                console.log(`Skipping item (ASIN: ${item.asin}) because it doesn't have a price\n`);
-                return false;
+        }
+
+        return null; // Return null if not found or not numeric
+    };
+
+    /**
+     * Extracts CAS Latency.
+     * Priority: Title -> Technical Spec "Size".
+     * @param {object} item - Product or variant object.
+     * @returns {string} CAS Latency (e.g., "CL16") or "N/A".
+     */
+    const extractLatency = (item) => {
+        // 1. Try title extraction: CL\s?\d+ or cl\s?\d+
+        const titleMatch = extractFromTitle(item.title, /(CL\s?\d+|cl\s?\d+)/i, 0); // Group 0 for the whole match
+        if (titleMatch) {
+            return titleMatch.toUpperCase().replace(/\s+/g, ''); // Uppercase and remove space
+        }
+
+        // 2. Fallback: Technical Spec "Size" containing pattern like '16cl' or 'cl16'
+        const specValue = getSpecValue(item.technicalSpecifications, 'Size');
+        if (specValue) {
+            const specMatch = specValue.match(/(\d+)\s?cl|cl\s?(\d+)/i);
+            if (specMatch) {
+                const latencyNumber = specMatch[1] || specMatch[2];
+                return `CL${latencyNumber}`;
             }
-            
-            return true;
-        })
-        .map((item, index) => {
-            // Helper function to safely get specification values with defaults
-            const getSpecValue = (specName, defaultValue = 'N/A') => {
-                if (!item.technicalSpecifications) {
-                    return defaultValue;
-                }
-                const spec = item.technicalSpecifications.find(spec => spec.name === specName);
-                return spec?.value || defaultValue;
-            };
+        }
+        return 'N/A';
+    };
 
-            // Helper function to extract memory speed from title
-            const extractMemorySpeedFromTitle = (title) => {
-                // Look for patterns like "3200MHz", "3200 MHz", "3200mhz", or "3200 MT/s"
-                const speedMatch = title.match(/(\d+)\s*(?:MHz|mhz|MT\/s)/i);
-                return speedMatch ? `${speedMatch[1]} MHz` : null;
-            };
+    /**
+     * Extracts RAM Memory Technology (DDR type).
+     * Priority: Title -> Specific Technical Specs.
+     * @param {object} item - Product or variant object.
+     * @returns {string} RAM Technology (e.g., "DDR4") or "N/A".
+     */
+    const extractRamTech = (item) => {
+        const title = item.title || '';
+        // 1. Try title extraction (order matters: check DDR5 before DDR4, etc.)
+        if (title.match(/DDR5/i)) return 'DDR5';
+        if (title.match(/DDR4/i)) return 'DDR4';
+        if (title.match(/DDR3L/i)) return 'DDR3L'; // Check DDR3L before DDR3
+        if (title.match(/DDR3/i)) return 'DDR3';
+        if (title.match(/DDR2/i)) return 'DDR2';
+        if (title.match(/DDR\b/i)) return 'DDR'; // Generic DDR last
 
-            // Helper function to clean memory speed value
-            const cleanMemorySpeed = (speed) => {
-                // Remove any MT/s text and extract just the numeric value
-                const cleanSpeed = speed.replace(/MT\/s/i, '').trim();
-                // Extract the numeric value
-                const numericMatch = cleanSpeed.match(/(\d+)/);
-                return numericMatch ? `${numericMatch[1]} MHz` : speed;
-            };
-            
-            // Helper function to clean URL by removing dib and dib_tag parameters
-            const cleanUrl = (url) => {
-                if (!url) return url;
-                try {
-                    const urlObj = new URL(url);
-                    urlObj.searchParams.delete('dib');
-                    urlObj.searchParams.delete('dib_tag');
-                    return urlObj.toString();
-                } catch (error) {
-                    console.log(`Error cleaning URL: ${error.message}. Original URL returned.`);
-                    return url;
-                }
-            };
-            
-            // Helper function to normalize compatible devices
-            const normalizeCompatibleDevices = (devicesString) => {
-                if (!devicesString || devicesString === 'N/A') {
-                    return 'N/A';
-                }
-                
-                // Define mapping for various device names to standard values
-                const deviceMappings = {
-                    // Desktop mappings
-                    'desktop': 'Desktop',
-                    'pc': 'Desktop',
-                    'computers': 'Desktop',
-                    'computer': 'Desktop',
-                    'personal computer': 'Desktop',
-                    'desktop pc': 'Desktop',
-                    'desktop computer': 'Desktop',
-                    'gaming pc': 'Desktop',
-                    'gaming desktop': 'Desktop',
-                    
-                    // Laptop mappings
-                    'laptop': 'Laptop',
-                    'netbook': 'Laptop',
-                    'notebook': 'Laptop',
-                    'laptop computer': 'Laptop',
-                    'laptop pc': 'Laptop',
-                    'gaming laptop': 'Laptop',
-                    'portable': 'Laptop',
-                    
-                    // Server mappings
-                    'server': 'Server',
-                    'blade server': 'Server',
-                    'blade servers': 'Server',
-                    'servers': 'Server',
-                    'file server': 'Server',
-                    
-                    // Rack Server mappings
-                    'rack server': 'Rack Server',
-                    'rack servers': 'Rack Server',
-                    'rack mount': 'Rack Server',
-                    'rackmount': 'Rack Server',
-                    
-                    // Workstation mappings
-                    'workstation': 'Workstation',
-                    'workstations': 'Workstation',
-                    'work station': 'Workstation',
-                    'professional workstation': 'Workstation'
-                };
-                
-                // Split the input string by commas or other common separators
-                const devicesList = devicesString.split(/[,;&|\/]/).map(d => d.trim().toLowerCase());
-                
-                // Map each device to a standardized version if it exists
-                const normalizedDevices = new Set();
-                
-                devicesList.forEach(device => {
-                    // Try exact match first
-                    if (deviceMappings[device]) {
-                        normalizedDevices.add(deviceMappings[device]);
-                    } else {
-                        // Try partial match with prioritization
-                        // Check for specific matches first before broader ones
-                        if (device.includes('rack server') || device.includes('rackmount') || device.includes('rack mount')) {
-                            normalizedDevices.add('Rack Server');
-                        } else if (device.includes('server')) {
-                            normalizedDevices.add('Server');
-                        } else if (device.includes('workstation') || device.includes('work station')) {
-                            normalizedDevices.add('Workstation');
-                        } else if (device.includes('laptop') || device.includes('notebook') || device.includes('netbook')) {
-                            normalizedDevices.add('Laptop');
-                        } else if (device.includes('desktop') || device.includes('pc') || device.includes('computer')) {
-                            normalizedDevices.add('Desktop');
-                        } else {
-                            // As a fallback, try matching against all mapping keys
-                            for (const [key, value] of Object.entries(deviceMappings)) {
-                                if (device.includes(key)) {
-                                    normalizedDevices.add(value);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                });
-                
-                // Make sure we return a valid string, sorted alphabetically
-                return normalizedDevices.size > 0 
-                    ? Array.from(normalizedDevices).sort().join(', ')
-                    : 'N/A';
-            };
-            
-            // Helper function to extract CAS Latency from feature bullets or title
-            const extractLatencyFromSource = (bullets, title) => {
-                const allowedLatencies = ['CL11', 'CL13', 'CL16', 'CL17', 'CL18', 'CL22', 'CL28', 'CL30', 'CL32', 'CL34', 'CL36', 'CL38', 'CL40'];
-                const allowedLatencyNumbers = allowedLatencies.map(l => l.substring(2));
-                
-                // 1. Try extracting from bullets first
-                if (bullets && Array.isArray(bullets)) {
-                    const bulletRegex = new RegExp(`CAS Latency(?:[\\s:=of]+)(CL(?:${allowedLatencyNumbers.join('|')}))\\b`, 'i');
-                    for (const bullet of bullets) {
-                        const match = bullet.match(bulletRegex);
-                        if (match && match[1]) {
-                            return match[1].toUpperCase(); 
-                        }
-                    }
-                }
-
-                // 2. If not found in bullets, try extracting from title
-                if (title) {
-                    // Regex to find standalone CLXX values in the title
-                    // Uses word boundaries (\b) to avoid partial matches
-                    const titleRegex = new RegExp(`\\b(CL(?:${allowedLatencyNumbers.join('|')}))\\b`, 'i');
-                    const titleMatch = title.match(titleRegex);
-                    if (titleMatch && titleMatch[1]) {
-                        return titleMatch[1].toUpperCase();
-                    }
-                }
-
-                // 3. If not found in either, return N/A
-                return 'N/A';
-            };
-
-            // Helper function to extract Form Factor from bullets or title
-            const extractFormFactor = (bullets, title) => {
-                // Define form factors and their regex patterns with variations
-                // Order determines priority (most specific first)
-                const formFactors = [
-                    { name: 'SO-DIMM',   regex: new RegExp('\\b(SO-?DIMM|Small\\s*Outline(?:\\s*DIMM)?)\\b', 'i') },
-                    { name: 'MicroDIMM', regex: new RegExp('\\b(Micro-?DIMM)\\b', 'i') },
-                    { name: 'LR-DIMM',   regex: new RegExp('\\b(LR-?DIMM|Load\\s*Reduced(?:\\s*DIMM)?)\\b', 'i') },
-                    { name: 'RDIMM',     regex: new RegExp('\\b(R-?DIMM|Registered(?:\\s*DIMM)?)\\b', 'i') },
-                    { name: 'FB-DIMM',   regex: new RegExp('\\b(FB-?DIMM|Fully\\s*Buffered(?:\\s*DIMM)?)\\b', 'i') },
-                    { name: 'UDIMM',     regex: new RegExp('\\b(U-?DIMM|Unbuffered(?:\\s*DIMM)?)\\b', 'i') },
-                    { name: 'DIMM',      regex: new RegExp('\\b(DIMM)\\b', 'i') } // Generic DIMM last
-                ];
-
-                // Function to search a text source (bullet or title)
-                const searchSource = (source) => {
-                    if (!source) return null;
-                    for (const ff of formFactors) {
-                        if (ff.regex.test(source)) {
-                            return ff.name; // Return the standardized name
-                        }
-                    }
-                    return null;
-                };
-
-                // 1. Try extracting from bullets first
-                if (bullets && Array.isArray(bullets)) {
-                    for (const bullet of bullets) {
-                        const found = searchSource(bullet);
-                        if (found) return found;
-                    }
-                }
-
-                // 2. If not found in bullets, try extracting from title
-                const foundInTitle = searchSource(title);
-                if (foundInTitle) return foundInTitle;
-                
-                // 3. If not found in either, return N/A
-                return 'N/A';
-            };
-
-            const memorySize = parseInt(getSpecValue('Computer Memory Size', '0'));
-            
-            // Handle null price values
-            const price = item.price ? item.price.value : null;
-            const symbol = item.price ? item.price.symbol : '$';
-            
-            // Get memory speed and validate it
-            let memorySpeed = getSpecValue('Memory Speed');
-            if (!memorySpeed.toLowerCase().includes('mhz')) {
-                const speedFromTitle = extractMemorySpeedFromTitle(item.title);
-                memorySpeed = speedFromTitle || `${memorySpeed} MHz`;
+        // 2. Fallback: Technical Specs
+        const specNames = ['Computer Memory Type', 'RAM Memory Technology', 'RAM'];
+        for (const name of specNames) {
+            const specValue = getSpecValue(item.technicalSpecifications, name);
+            if (specValue) {
+                if (specValue.match(/DDR5/i)) return 'DDR5';
+                if (specValue.match(/DDR4/i)) return 'DDR4';
+                if (specValue.match(/DDR3L/i)) return 'DDR3L';
+                if (specValue.match(/DDR3/i)) return 'DDR3';
+                if (specValue.match(/DDR2/i)) return 'DDR2';
+                if (specValue.match(/DDR\b/i)) return 'DDR';
+                // Potentially return specValue directly if it's informative but not DDRx?
+                // For now, stick to DDR types.
             }
-            // Clean up the memory speed value
-            memorySpeed = cleanMemorySpeed(memorySpeed);
-            
-            // Calculate price per GB - store it as a string with fixed 2 decimal places
-            let pricePerGB = 0;
-            if (memorySize > 0 && price) {
-                pricePerGB = parseFloat((price / memorySize).toFixed(2));
+        }
+        return 'N/A';
+    };
+
+     /**
+     * Extracts Computer Memory Type (Form Factor).
+     * Priority: Title -> Specific Technical Specs.
+     * @param {object} item - Product or variant object.
+     * @returns {string} Form Factor (e.g., "SODIMM", "UDIMM") or "N/A".
+     */
+     const extractComputerType = (item) => {
+        const title = item.title || '';
+        // Define form factors and their regex patterns with variations (case-insensitive)
+        // Order determines priority (more specific first)
+        const formFactors = [
+            { name: 'SODIMM',    regex: /\b(SO-?DIMM|Small\s*Outline)\b/i },
+            { name: 'MicroDIMM', regex: /\bMicro-?DIMM\b/i },
+            { name: 'LRDIMM',    regex: /\bLR-?DIMM|Load\s*Reduced\b/i },
+            { name: 'RDIMM',     regex: /\bR-?DIMM|Registered\b/i },
+            { name: 'FBDIMM',    regex: /\bFB-?DIMM|Fully\s*Buffered\b/i },
+            { name: 'UDIMM',     regex: /\bU-?DIMM|Unbuffered\b/i },
+            { name: 'DIMM',      regex: /\bDIMM\b/i } // Generic DIMM last
+        ];
+
+        // 1. Try title extraction
+        for (const ff of formFactors) {
+            if (title.match(ff.regex)) return ff.name;
+        }
+
+        // 2. Fallback: Technical Specs
+        const specNames = ['Computer Memory Type', 'RAM Memory Technology', 'RAM'];
+        for (const name of specNames) {
+            const specValue = getSpecValue(item.technicalSpecifications, name);
+            if (specValue) {
+                for (const ff of formFactors) {
+                    if (specValue.match(ff.regex)) return ff.name;
+                }
+                // If spec exists but doesn't match known types, maybe return it?
+                // Or stick to N/A if no known type found. For now, N/A.
             }
-            
-            // Also create a formatted version for display with 2 decimal places
-            const pricePerGBFormatted = pricePerGB.toFixed(2);
-            
-            // Get and normalize compatible devices
-            const compatibleDevices = normalizeCompatibleDevices(getSpecValue('Compatible Devices'));
-            
-            // Extract latency using the enhanced helper function (passing bullets and title)
-            const latency = extractLatencyFromSource(item.featureBullets, item.title);
+        }
+        return 'N/A';
+     };
 
-            // --- DEBUG LOG --- REMOVED --- 
-            // Check the value of latency just before creating the object
-            // Use ASIN if available, otherwise index, for easier identification
-            // const debugId = item.asin ? `ASIN ${item.asin}` : `Index ${index}`;
-            // console.log(`Debug Map [${debugId}]: Latency value before return = ${latency}`); 
-            // --- END DEBUG LOG --- REMOVED ---
+    /**
+     * Processes a single product or variant item.
+     * @param {object} item - The product or variant object.
+     * @param {object} [parentProduct=null] - The parent product (if item is a variant).
+     * @returns {object|null} The processed item object or null if invalid.
+     */
+    const processItem = (item, parentProduct = null) => {
+        // --- Validation ---
+        if (!item || !item.price?.value) {
+            // console.log(`Skipping item (ASIN: ${item?.asin || parentProduct?.asin || 'unknown'}) - Missing price.`);
+            return null; // Skip items without a price
+        }
 
-            return {
-                id: (index + 1).toString(),
-                title: item.title,
-                computer_memory_size: memorySize,
-                memory_speed: memorySpeed,
-                latency: latency, // Use the extracted latency
-                ram_memory_technology: getSpecValue('RAM Memory Technology'),
-                price: price,
-                price_per_gb: pricePerGB, // For sorting and calculations
-                price_per_gb_formatted: pricePerGBFormatted, // For display with 2 decimal places
-                symbol: symbol,
-                url: cleanUrl(item.url),
-                rating: item.rating,
-                ratings_total: item.ratingsTotal,
-                brand: item.brand,
-                compatible_devices: compatibleDevices,
-                computer_memory_type: extractFormFactor(item.featureBullets, item.title), // Use the new extractor
-                is_new: item.isNew
-            };
-        });
-        
-    // Sort by price per GB (ascending)
-    convertedData.sort((a, b) => a.price_per_gb - b.price_per_gb);
+        // --- Field Extraction & Derivation ---
+        const computer_memory_size = extractMemorySize(item);
+        const price = parseFloat(item.price.value);
 
-    // Add the current date and time in a date element.
+        // Calculate price per GB
+        let price_per_gb = 0;
+        if (computer_memory_size > 0 && price) {
+            price_per_gb = parseFloat((price / computer_memory_size).toFixed(2));
+        }
+        const price_per_gb_formatted = price_per_gb.toFixed(2);
+
+        const title = item.title || parentProduct?.title || 'N/A'; // Use parent title as fallback only if needed? Stick to item's title.
+
+        return {
+            // --- Mapped Fields ---
+            id: item.asin, // Use ASIN as the unique ID
+            title: item.title || 'N/A',
+            price: price,
+            symbol: item.price?.symbol || '$',
+            url: cleanUrl(item.url || parentProduct?.url), // Use parent URL as fallback for variants if needed
+            rating: item.rating || 0,
+            ratings_total: item.ratingsTotal || 0,
+            brand: item.brand || parentProduct?.brand || 'N/A', // Use parent brand for variants
+            is_new: item.isNew !== undefined ? item.isNew : (parentProduct?.isNew !== undefined ? parentProduct.isNew : true), // Inherit isNew status
+
+            // --- Derived Fields ---
+            computer_memory_size: computer_memory_size, // number (GB)
+            memory_speed: extractMemorySpeed(item), // string (e.g., "3200 MHz")
+            latency: extractLatency(item), // string (e.g., "CL16")
+            ram_memory_technology: extractRamTech(item), // string (e.g., "DDR4")
+            computer_memory_type: extractComputerType(item), // string (e.g., "SODIMM")
+            amd_expo_ready: /amd expo/i.test(title), // boolean
+            intel_xmp_3_ready: /intel xmp/i.test(title), // boolean
+
+            // --- Calculated Fields ---
+            price_per_gb: price_per_gb, // number (for sorting/filtering)
+            price_per_gb_formatted: price_per_gb_formatted, // string (for display)
+
+            // --- Extracted from Specs ---
+            compatible_devices: getSpecValue(item.technicalSpecifications, 'Compatible Devices') || 'N/A', // string
+            color: getSpecValue(item.technicalSpecifications, 'Color') || 'N/A', // Add color field
+            voltage: (() => { // Extract numeric voltage
+                const voltageString = getSpecValue(item.technicalSpecifications, 'Voltage');
+                if (voltageString) {
+                    const numericMatch = voltageString.match(/(\d+(\.\d+)?)/); // Match integer or decimal
+                    if (numericMatch && numericMatch[0]) {
+                        return parseFloat(numericMatch[0]);
+                    }
+                }
+                return null; // Return null if not found or not numeric
+            })()
+        };
+    };
+
+    // --- Main Processing Loop ---
+    rawResults.forEach((product, index) => {
+        // console.log(`Processing product ${index + 1}: ${product.asin}`); // Debug logging
+
+        // Process the main product directly, ignoring variants for now
+        const processedProduct = processItem(product);
+
+        // Add to results ONLY if valid and memory size is greater than 0
+        if (processedProduct && processedProduct.computer_memory_size > 0) {
+            convertedData.push(processedProduct);
+        } else {
+             // Optional: Log if the product was skipped due to missing price or zero memory size
+             // console.log(`Skipped product (ASIN: ${product?.asin || 'unknown'}) - Invalid price or zero memory size.`);
+        }
+    });
+
+    console.log(`Processed ${convertedData.length} valid product items with memory size > 0.`); // Update log message
+
+    // --- Final Output Structure ---
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString('en-US', {
+        year: 'numeric', month: '2-digit', day: '2-digit'
+    });
+    const formattedTime = now.toLocaleTimeString('en-US', {
+        hour: '2-digit', minute: '2-digit', hour12: false
+    });
+    const outputDate = `${formattedDate} ${formattedTime}`; // Format: MM/DD/YYYY HH:mm
+
     const outputData = {
-        date: new Date().toLocaleString('en-US', { hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }),
+        date: outputDate,
         data: convertedData
     };
-    
-    // Format the price_per_gb with 2 decimal places in the final JSON
-    // REMOVED REPLACER FUNCTION FOR TESTING
-    const outputJson = JSON.stringify(outputData, null, 2);
-    
-    // Write the output file.
-    fs.writeFileSync(outputFilePath, outputJson, 'utf-8');
+
+    // --- Save Data ---
+    try {
+        const outputJson = JSON.stringify(outputData, null, 2); // Pretty print
+        fs.writeFileSync(outputFilePath, outputJson, 'utf-8');
+        console.log(`Data successfully converted and saved to: ${outputFilePath}`);
+    } catch (error) {
+        console.error(`Error writing output file ${outputFilePath}:`, error);
+    }
 }
 
-// Run the function
-convertAndSaveData()
-console.log('Data converted and saved!');
+// --- Run the Conversion ---
+convertAndSaveData();
