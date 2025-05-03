@@ -66,8 +66,23 @@ function convertAndSaveData() {
             return null; // Skip items without a price
         }
 
+        const targetAsin = "B07DRFVY7J";
+        const isTarget = item.asin === targetAsin;
+
+        // --- Targeted Logging for B07DRFVY7J --- 
+        if (isTarget) {
+            console.log(`\n--- Processing Item for ASIN: ${item.asin} ---`);
+            console.log(`  Input Title: "${item.title}"`);
+            console.log(`  Variant Text (_variantText): "${item._variantText || 'N/A'}"`);
+        }
+
         // --- Field Extraction & Derivation ---
         const computer_memory_size = extractMemorySize(item);
+
+        if (isTarget) {
+            console.log(`  Extracted Size (GB): ${computer_memory_size}`);
+        }
+
         const price = parseFloat(item.price.value);
 
         // Calculate price per GB
@@ -154,79 +169,48 @@ function convertAndSaveData() {
             product.variants.forEach(variant => {
                 // Skip variant if it doesn't have a valid price
                 if (!variant.price?.value) {
-                    // console.log(`  Skipping variant (ASIN: ${variant.asin}) - Missing price.`);
                     return; // continue to next variant
                 }
 
-                // Generate the specific title for this variant
-                const variantTitle = generateVariantTitle(parentTitle, variant.text);
+                // --- Iterative Refinement Logic ---
+                let processedItemData;
+                const variantAsin = variant.asin;
 
-                // Construct item data for the variant, inheriting from parent
-                // but overriding key fields (asin, price, url)
-                const variantItemData = {
-                    ...product, // Start with parent product data
-                    asin: variant.asin,       // Use variant's ASIN
-                    price: variant.price,     // Use variant's price object
-                    url: variant.url,         // Use variant's URL
-                    title: variantTitle,      // Use the generated variant title
-                    _variantText: variant.text, // Pass original variant text for extraction priority
-                    // Specs, brand, etc., are still inherited from product for processItem
-                    // processItem will use these inherited fields for extraction
-                };
+                if (processedItemsMap.has(variantAsin)) {
+                    // --- Build upon existing item --- 
+                    const existingItem = processedItemsMap.get(variantAsin);
+                    const refinedTitle = generateVariantTitle(existingItem.title, variant.text);
+                    
+                    const currentVariantInput = {
+                        ...existingItem, // Start with previous state
+                        asin: variant.asin, // Ensure current ASIN is used
+                        price: variant.price, // Update price from current variant
+                        url: variant.url,     // Update URL from current variant
+                        title: refinedTitle, // Use title refined from previous state
+                        _variantText: variant.text // Current variant text for prioritized extraction
+                    };
+                    processedItemData = processItem(currentVariantInput);
 
-                // Process this constructed variant data
-                const currentProcessedVariant = processItem(variantItemData);
-
-                // Merge with existing data in the map if any
-                if (currentProcessedVariant) { // Only proceed if processing was successful
-                    const variantAsin = currentProcessedVariant.id; // which is variant.asin
-
-                    if (processedItemsMap.has(variantAsin)) {
-                        // --- Merge with Existing --- 
-                        const existingItem = processedItemsMap.get(variantAsin);
-                        const mergedItem = { ...existingItem }; // Start with existing data
-
-                        // Update Price & URL from the latest variant encounter
-                        mergedItem.price = currentProcessedVariant.price;
-                        mergedItem.symbol = currentProcessedVariant.symbol;
-                        mergedItem.url = currentProcessedVariant.url;
-                        mergedItem.price_per_gb = currentProcessedVariant.price_per_gb;
-                        mergedItem.price_per_gb_formatted = currentProcessedVariant.price_per_gb_formatted;
-
-                        // Update Title if the new one seems more specific (simple check: longer)
-                        // A more robust check might be needed depending on title generation results
-                        if (currentProcessedVariant.title.length > existingItem.title.length) {
-                             mergedItem.title = currentProcessedVariant.title;
-                        }
-
-                        // Update derived fields ONLY if the current variant provided a valid value
-                        // AND the existing value was a default/placeholder
-                        const fieldsToUpdate = ['computer_memory_size', 'memory_speed', 'latency', 'color', 'voltage'];
-                        fieldsToUpdate.forEach(field => {
-                            const currentValue = currentProcessedVariant[field];
-                            const existingValue = existingItem[field];
-                            const isCurrentValid = !(currentValue === null || currentValue === 0 || currentValue === 'N/A');
-                            // Update if current is valid and existing is not, OR if current simply has a value (for cases like 0 voltage being valid?)
-                            // Let's prioritize any value from the current processing pass for now
-                            if (isCurrentValid) {
-                                mergedItem[field] = currentValue;
-                            } 
-                            // If current wasn't valid, we keep the existing value (which might also be default)
-                        });
-                        
-                        // Update ratings/flags if current has values
-                        if (currentProcessedVariant.rating > 0) mergedItem.rating = currentProcessedVariant.rating;
-                        if (currentProcessedVariant.ratings_total > 0) mergedItem.ratings_total = currentProcessedVariant.ratings_total;
-                        mergedItem.amd_expo_ready = mergedItem.amd_expo_ready || currentProcessedVariant.amd_expo_ready; // Keep true if ever true
-                        mergedItem.intel_xmp_3_ready = mergedItem.intel_xmp_3_ready || currentProcessedVariant.intel_xmp_3_ready; // Keep true if ever true
-
-                        processedItemsMap.set(variantAsin, mergedItem);
-                        
-                    } else {
-                        // --- Add New Entry --- 
-                        processedItemsMap.set(variantAsin, currentProcessedVariant);
-                    }
+                } else {
+                    // --- First encounter for this variant ASIN --- 
+                    const initialTitle = generateVariantTitle(parentTitle, variant.text);
+                    
+                    const initialVariantInput = {
+                        ...product, // Start with parent product data
+                        asin: variant.asin, // Use variant's ASIN
+                        price: variant.price, // Use variant's price
+                        url: variant.url, // Use variant's URL
+                        title: initialTitle, // Use title generated from parent
+                        _variantText: variant.text // Current variant text for prioritized extraction
+                    };
+                    processedItemData = processItem(initialVariantInput);
                 }
+
+                // Update the map with the latest processed state for this ASIN
+                if (processedItemData) {
+                    processedItemsMap.set(variantAsin, processedItemData);
+                }
+                // --- End Iterative Refinement Logic ---
             });
         } else {
             // --- Product has No Variants --- 
