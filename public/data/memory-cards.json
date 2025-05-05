@@ -1,5 +1,5 @@
 {
-  "date": "05/05/2025 11:23",
+  "date": "05/05/2025 11:40",
   "data": [
     {
       "id": "B0D8PN66PR",
@@ -29714,30 +29714,6 @@
       "link_title": "Timetec 32GB Desktop Memory DDR4 3600MHz CL18 Color Heatsink Black"
     },
     {
-      "id": "B0DQPYFNL3",
-      "title": "Timetec Pinnacle Konduit 32GB KIT(2x16GB) DDR4 3600MHz PC4-28800 CL18-22-22-42 XMP2.0 Overclocking 1.35V Dual Rank Compatible for AMD and Intel Desktop Gaming PC Memory Module - Black",
-      "price": 6.99,
-      "symbol": "$",
-      "url": "https://amazon.com/dp/B0DQPYFNL3?th=1&psc=1&tag=accentiofinde-20",
-      "rating": 4.5,
-      "ratings_total": 478,
-      "brand": "Timetec",
-      "is_new": true,
-      "computer_memory_size": 32,
-      "memory_speed": 3600,
-      "latency": "CL18",
-      "ram_memory_technology": "DDR4",
-      "computer_memory_type": "N/A",
-      "amd_expo_ready": false,
-      "intel_xmp_3_ready": false,
-      "price_per_gb": 0.22,
-      "price_per_gb_formatted": "0.22",
-      "compatible_devices": "Desktop",
-      "color": "Heatsink Black",
-      "voltage": 1.35,
-      "link_title": "Timetec 32GB Desktop Memory DDR4 3600MHz CL18 Color Heatsink Black"
-    },
-    {
       "id": "B0BCHK7HMM",
       "title": "Timetec Pinnacle Konduit 16GB KIT(2x16GB) DDR4 3600MHz PC4-28800 CL18-22-22-42 XMP2.0 Overclocking 1.35V Dual Rank Compatible for AMD and Intel Desktop Gaming PC Memory Module - Black",
       "price": 27.99,
@@ -29760,30 +29736,6 @@
       "color": "Heatsink Black",
       "voltage": 1.35,
       "link_title": "Timetec 16GB Desktop Memory DDR4 3600MHz CL18 Color Heatsink Black"
-    },
-    {
-      "id": "B0DDSYQKNC",
-      "title": "Timetec Pinnacle Konduit 32GB KIT(2x16GB) DDR4 3600MHz PC4-28800 CL18-22-22-42 XMP2.0 Overclocking 1.35V Dual Rank Compatible for AMD and Intel Desktop Gaming PC Memory Module - Black",
-      "price": 6.99,
-      "symbol": "$",
-      "url": "https://amazon.com/dp/B0DDSYQKNC?th=1&psc=1&tag=accentiofinde-20",
-      "rating": 4.5,
-      "ratings_total": 478,
-      "brand": "Timetec",
-      "is_new": true,
-      "computer_memory_size": 32,
-      "memory_speed": 3600,
-      "latency": "CL18",
-      "ram_memory_technology": "DDR4",
-      "computer_memory_type": "N/A",
-      "amd_expo_ready": false,
-      "intel_xmp_3_ready": false,
-      "price_per_gb": 0.22,
-      "price_per_gb_formatted": "0.22",
-      "compatible_devices": "Desktop",
-      "color": "Heatsink Black",
-      "voltage": 1.35,
-      "link_title": "Timetec 32GB Desktop Memory DDR4 3600MHz CL18 Color Heatsink Black"
     },
     {
       "id": "B0BCHDVD3W",

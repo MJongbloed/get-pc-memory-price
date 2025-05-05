@@ -158,6 +158,13 @@ function convertAndSaveData() {
                     return; // continue to next variant
                 }
 
+                // --- Skip "Heatsink for" variants ---
+                if (/heatsink for/i.test(variant.text)) {
+                    // console.log(`  Skipping heatsink variant: ${variant.asin} - ${variant.text}`); // Optional debug log
+                    return; // Skip this variant entirely
+                }
+                // --- End Skip ---
+
                 // --- Iterative Refinement Logic ---
                 let processedItemData;
                 const variantAsin = variant.asin;
