@@ -62,26 +62,11 @@ function convertAndSaveData() {
     const processItem = (item, parentProduct = null) => {
         // --- Validation ---
         if (!item || !item.price?.value) {
-            // console.log(`Skipping item (ASIN: ${item?.asin || parentProduct?.asin || 'unknown'}) - Missing price.`);
             return null; // Skip items without a price
-        }
-
-        const targetAsin = "B07DRFVY7J";
-        const isTarget = item.asin === targetAsin;
-
-        // --- Targeted Logging for B07DRFVY7J --- 
-        if (isTarget) {
-            console.log(`\n--- Processing Item for ASIN: ${item.asin} ---`);
-            console.log(`  Input Title: "${item.title}"`);
-            console.log(`  Variant Text (_variantText): "${item._variantText || 'N/A'}"`);
         }
 
         // --- Field Extraction & Derivation ---
         const computer_memory_size = extractMemorySize(item);
-
-        if (isTarget) {
-            console.log(`  Extracted Size (GB): ${computer_memory_size}`);
-        }
 
         const price = parseFloat(item.price.value);
 

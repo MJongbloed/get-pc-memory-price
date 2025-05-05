@@ -83,18 +83,29 @@ export const extractMemorySize = (item) => {
  */
 export const extractMemorySpeed = (item) => {
     let speedString = null;
+    let isMtSpeed = false; // Flag to track if speed source was MT/s
 
     // Priority 1: Extract from variant text if available (MHz pattern)
     if (item._variantText) {
         const variantMatchMHz = item._variantText.match(/(\d+)\s?MHz/i);
         if (variantMatchMHz && variantMatchMHz[1]) {
             speedString = variantMatchMHz[1]; // Store numeric part
+            isMtSpeed = false;
+        }
+        // Check for MT/s pattern in variant text
+        if (!speedString) {
+            const variantMatchMTs = item._variantText.match(/(\d+)\s?MT\/s/i);
+            if (variantMatchMTs && variantMatchMTs[1]) {
+                speedString = variantMatchMTs[1];
+                isMtSpeed = true;
+            }
         }
         // Check for standalone 4-digit number in variant text
         if (!speedString) {
             const variantMatch4Digit = item._variantText.match(/\b(\d{4})\b/);
             if (variantMatch4Digit && variantMatch4Digit[1]) {
                 speedString = variantMatch4Digit[1]; // Use the 4-digit number
+                isMtSpeed = false; // Assume MHz if only 4 digits found
             }
         }
     }
@@ -104,6 +115,15 @@ export const extractMemorySpeed = (item) => {
         const titleMatch = extractFromTitle(item.title, /(\d+)\s?MHz/i);
         if (titleMatch) {
             speedString = titleMatch; // Store the numeric part string
+            isMtSpeed = false;
+        }
+        // Check for MT/s in title if MHz not found
+        if (!speedString) {
+            const titleMatchMTs = extractFromTitle(item.title, /(\d+)\s?MT\/s/i);
+            if (titleMatchMTs) {
+                speedString = titleMatchMTs;
+                isMtSpeed = true;
+            }
         }
     }
 
@@ -114,6 +134,8 @@ export const extractMemorySpeed = (item) => {
             const numericMatch = specValue.match(/(\d+)/);
             if (numericMatch && numericMatch[1]) {
                 speedString = numericMatch[1];
+                // Assuming spec value is usually MHz if unit not specified
+                isMtSpeed = specValue.includes('MT/s') || false;
             }
         }
     }
@@ -122,7 +144,8 @@ export const extractMemorySpeed = (item) => {
     if (speedString) {
         const speedNumber = parseInt(speedString, 10);
         if (!isNaN(speedNumber)) {
-            return speedNumber; // Return the parsed number
+            // Divide by 2 if the source was MT/s
+            return isMtSpeed ? Math.floor(speedNumber / 2) : speedNumber;
         }
     }
 
@@ -263,11 +286,18 @@ export const generateVariantTitle = (parentTitle, variantText) => {
             if (potentialNewTitle !== newTitle) return potentialNewTitle;
         }
 
-        // 3. Handle Speed (MHz)
+        // 3. Handle Speed (MHz or MT/s)
         let variantSpeedString = null;
         const speedMatchMHz = variantText.match(/(\d+)\s?MHz/i);
-        if (speedMatchMHz && speedMatchMHz[1]) {
+        if (speedMatchMHz && speedMatchMHz[0]) {
             variantSpeedString = speedMatchMHz[0];
+        }
+        if (!variantSpeedString) {
+            // Check for MT/s in variant text
+            const speedMatchMTs = variantText.match(/(\d+)\s?MT\/s/i);
+            if (speedMatchMTs && speedMatchMTs[0]) {
+                variantSpeedString = speedMatchMTs[0]; // Use the full "5600MT/s"
+            }
         }
         if (!variantSpeedString) {
             const speedMatchDDR = variantText.match(/DDR\d-(\d{4})/i);
@@ -276,7 +306,8 @@ export const generateVariantTitle = (parentTitle, variantText) => {
             }
         }
         if (variantSpeedString) {
-            const parentRegex = /(\d+)\s?MHz/i;
+            // Regex to find speed (MHz or MT/s) in parent title
+            const parentRegex = /(\d+)\s?(?:MHz|MT\/s)/i;
             const potentialNewTitle = newTitle.replace(parentRegex, variantSpeedString);
             if (potentialNewTitle !== newTitle) return potentialNewTitle;
         }
