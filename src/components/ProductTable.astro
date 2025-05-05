@@ -51,7 +51,7 @@ const accentioAssociatesTag = 'accentiofinde-20';
                 <td>{card.computer_memory_size ? card.computer_memory_size : 0} GB</td>
                 <td>{card.memory_speed}</td>
                 <td>{card.rating ? card.rating.toFixed(1) : "N/A"} ({card.ratings_total || 0})</td>
-                <td><a href={`${card.url}&tag=${accentioAssociatesTag}`} target="_blank">{card.title}</a></td>
+                <td><a href={`${card.url}&tag=${accentioAssociatesTag}`} target="_blank">{card.link_title || card.title}</a></td>
             </tr>
     ))}
     </tbody>

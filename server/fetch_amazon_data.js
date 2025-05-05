@@ -48,6 +48,14 @@ query amazonProduct {
             name
             value
           }
+          attributes {
+            name
+            value
+          }
+          attributes {
+            name
+            value
+          }
           text
           url
           price {
