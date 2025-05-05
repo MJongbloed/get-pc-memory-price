@@ -13,7 +13,8 @@ import {
     extractLatency,
     extractRamTech,
     extractComputerType,
-    generateVariantTitle
+    generateVariantTitle,
+    generateLinkTitle
 } from './conversionHelpers.js';
 
 /**
@@ -212,10 +213,20 @@ function convertAndSaveData() {
 
     // --- Final Filtering and Conversion --- 
     const finalDataArray = Array.from(processedItemsMap.values());
+
+    // --- Generate Verified Link Titles --- 
+    const dataWithLinkTitles = finalDataArray.map(item => {
+        const linkTitle = generateLinkTitle(item);
+        return { ...item, link_title: linkTitle };
+    });
+
     const filteredData = finalDataArray.filter(item => item.computer_memory_size > 0);
 
+    // Use the array with link titles for filtering and output
+    const filteredDataWithLinkTitles = dataWithLinkTitles.filter(item => item.computer_memory_size > 0);
+
     console.log(`Processed ${processedItemsMap.size} unique ASINs initially.`);
-    console.log(`Filtered down to ${filteredData.length} valid items with memory size > 0.`);
+    console.log(`Filtered down to ${filteredDataWithLinkTitles.length} valid items with memory size > 0.`);
 
     // --- Final Output Structure ---
     const now = new Date();
@@ -229,7 +240,7 @@ function convertAndSaveData() {
 
     const outputData = {
         date: outputDate,
-        data: filteredData // Use the filtered array from the map values
+        data: filteredDataWithLinkTitles // Use the array containing link_title
     };
 
     // --- Save Data ---

@@ -340,4 +340,95 @@ export const generateVariantTitle = (parentTitle, variantText) => {
     }
 
     return parentTitle;
+};
+
+/**
+ * Constructs a title string from verified data components.
+ * Includes kit information only if found in the source title and consistent with total size.
+ * @param {object} item - The processed item object containing title and extracted specs.
+ * @returns {string} The verified and potentially corrected title string.
+ */
+export const generateLinkTitle = (item) => {
+    if (!item || !item.title) return item.title || 'N/A';
+
+    const titleParts = [];
+    
+    const actualSize = item.computer_memory_size;
+    const actualSpeedMHz = item.memory_speed; // Assumes this is already in MHz
+    const actualLatency = item.latency; // e.g., "CL16"
+    const actualTechnology = item.ram_memory_technology;
+    const actualType = item.computer_memory_type; // DIMM/SODIMM etc
+
+    // 1. Add Brand
+    if (item.brand && item.brand !== 'N/A') {
+        titleParts.push(item.brand);
+    }
+
+    try {
+        // 2. Add Size Part
+        titleParts.push(`${actualSize}GB`);
+
+        // 3. Add Memory Descriptor (Laptop/Desktop/Type)
+        let descriptorAdded = false;
+        if (item.compatible_devices && item.compatible_devices !== 'N/A') {
+            if (item.compatible_devices.toLowerCase().includes('laptop')) {
+                titleParts.push('Laptop Memory');
+                descriptorAdded = true;
+            } else if (item.compatible_devices.toLowerCase().includes('desktop')) {
+                titleParts.push('Desktop Memory');
+                descriptorAdded = true;
+            } else {
+                 // Add specific device type if not Desktop/Laptop
+                 titleParts.push(`${item.compatible_devices} Memory`); 
+                 descriptorAdded = true;
+            }
+        }
+        // Fallback to Form Factor if no compatible device descriptor was added
+        if (!descriptorAdded && actualType && actualType !== 'N/A') {
+             titleParts.push(actualType);
+        }
+
+        // 4. Add Technology
+        if (actualTechnology && actualTechnology !== 'N/A') {
+            titleParts.push(actualTechnology);
+        }
+
+        // 5. Add Speed
+        if (actualSpeedMHz !== null) {
+            titleParts.push(`${actualSpeedMHz}MHz`);
+        }
+
+        // 6. Add Latency
+        if (actualLatency && actualLatency !== 'N/A') {
+            titleParts.push(actualLatency);
+        }
+
+        // 7. Add Optional Extra Details
+        // Color
+        if (item.color && item.color !== 'N/A') {
+            titleParts.push(`Color ${item.color}`); // Format as "Color [name]"
+        }
+
+        // AMD EXPO
+        if (item.amd_expo_ready) {
+            titleParts.push('AMD EXPO Ready');
+        }
+
+        // Intel XMP
+        if (item.intel_xmp_3_ready) {
+            titleParts.push('Intel XMP 3.0 Ready');
+        }
+
+        // Voltage (Optional - might make title too long)
+        // if (item.color && item.color !== 'N/A') titleParts.push(item.color);
+        // if (item.voltage !== null) titleParts.push(`${item.voltage}V`);
+
+    } catch(error) {
+        console.warn(`Warning: Error during link title construction for ${item.id}:`, error);
+        // Fallback to the iteratively generated title if construction fails
+        return item.title.replace(/\s{2,}/g, ' ').trim(); // Fallback to item.title
+    }
+
+    // Join parts to create the final link title
+    return titleParts.join(' ').replace(/\s{2,}/g, ' ').trim();
 }; 
