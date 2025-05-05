@@ -166,9 +166,11 @@ const accentioAssociatesTag = 'accentiofinde-20';
         const maxPriceInput = document.getElementById("filter-price-max") as HTMLInputElement;
         const minCapacityInput = document.getElementById("filter-capacity-min") as HTMLInputElement;
         const maxCapacityInput = document.getElementById("filter-capacity-max") as HTMLInputElement;
+        const minSpeedInput = document.getElementById("filter-speed-min") as HTMLInputElement;
+        const maxSpeedInput = document.getElementById("filter-speed-max") as HTMLInputElement;
 
         function filterTable() {
-            if (!minPriceInput || !maxPriceInput || !minCapacityInput || !maxCapacityInput) return;
+            if (!minPriceInput || !maxPriceInput || !minCapacityInput || !maxCapacityInput || !minSpeedInput || !maxSpeedInput) return;
             
             const tableRows = document.querySelectorAll("#memoryTable tbody tr");
 
@@ -251,8 +253,13 @@ const accentioAssociatesTag = 'accentiofinde-20';
                 const maxCapacity = parseFloat(maxCapacityInput.value) || Infinity;
                 const rowCapacity = parseFloat(row.getAttribute('data-capacity') || '0');
 
+                // Read speed filter values
+                const minSpeed = parseFloat(minSpeedInput.value) || 0;
+                const maxSpeed = parseFloat(maxSpeedInput.value) || Infinity;
+                const rowSpeed = parseFloat(row.getAttribute('data-speed') || '0');
+
                 // Decide if a row should be visible or not, based on the filters.
-                if (rowPrice < minPrice || rowPrice > maxPrice || rowCapacity < minCapacity || rowCapacity > maxCapacity) {
+                if (rowPrice < minPrice || rowPrice > maxPrice || rowCapacity < minCapacity || rowCapacity > maxCapacity || rowSpeed < minSpeed || rowSpeed > maxSpeed) {
                     rowVisible = false;
                 }
 
@@ -314,11 +321,13 @@ const accentioAssociatesTag = 'accentiofinde-20';
         });
 
         // Attach event listeners for the numeric inputs
-        if (minPriceInput && maxPriceInput && minCapacityInput && maxCapacityInput) {
+        if (minPriceInput && maxPriceInput && minCapacityInput && maxCapacityInput && minSpeedInput && maxSpeedInput) {
             minPriceInput.addEventListener("input", filterTable);
             maxPriceInput.addEventListener("input", filterTable);
             minCapacityInput.addEventListener("input", filterTable);
             maxCapacityInput.addEventListener("input", filterTable);
+            minSpeedInput.addEventListener("input", filterTable);
+            maxSpeedInput.addEventListener("input", filterTable);
         }
 
         // Initial call to apply styles on page load

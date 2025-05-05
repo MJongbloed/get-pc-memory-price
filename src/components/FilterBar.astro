@@ -39,6 +39,14 @@ try {
     </fieldset>
 
     <fieldset class="filter-wrapper">
+        <legend class="filter-legend">Speed (MHz)</legend>
+        <label for="filter-speed-min">
+            <input type="number" class="numeric-input" id="filter-speed-min" min="0" />Min</label>
+        <label for="filter-speed-max">
+            <input type="number" class="numeric-input" id="filter-speed-max" min="0" />Max</label>
+    </fieldset>
+
+    <fieldset class="filter-wrapper">
         <legend class="filter-legend">Technology</legend>
         <label for="filter-technology-ddr" class="filter-label">
             <input type="checkbox" class="filter-checkbox" id="filter-technology-ddr" checked="checked" />DDR</label>
