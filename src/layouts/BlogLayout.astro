@@ -9,14 +9,6 @@ const { title, pubDate, tags, description, image } = Astro.props;
     <title>{title}</title>
     {/* You might want to add other meta tags like description here */}
     {/* Link to your CSS file(s) if not handled by Astro integration */} 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CJMVEBH5EH"></script>
-    <script is:inline>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-CJMVEBH5EH');
-    </script>
 </head>
 <body>
     <article class="prose mx-auto px-4 py-8 dark:prose-invert">
