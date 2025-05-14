@@ -1,5 +1,5 @@
 ---
-const { title, pubDate, tags, description, image } = Astro.props;
+const { title, pubDate, tags, description, image, author, keywords, canonicalUrl } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +7,18 @@ const { title, pubDate, tags, description, image } = Astro.props;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
-    {/* You might want to add other meta tags like description here */}
+    <meta name="description" content={description}>
+    <meta name="author" content={author}>
+    {keywords && <meta name="keywords" content={keywords.join(', ')}>}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
+    {image && <meta property="og:image" content={image}>}
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl}>}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    {image && <meta name="twitter:image" content={image}>}
     {/* Link to your CSS file(s) if not handled by Astro integration */}
     <script>
       !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
@@ -19,11 +30,60 @@ const { title, pubDate, tags, description, image } = Astro.props;
 </head>
 <body>
     <article class="prose mx-auto px-4 py-8 dark:prose-invert">
+      {image && (
+        <img src={image} alt={title} class="w-full h-auto mb-8 rounded-lg shadow-lg" />
+      )}
+      
+      <div class="mb-8">
+        <h1 class="text-4xl font-bold mb-4">{title}</h1>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">{description}</p>
+        <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
+          {author && (
+            <span class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+              </svg>
+              {author}
+            </span>
+          )}
+          <span class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+            </svg>
+            <time datetime={pubDate}>
+              {new Date(pubDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+          </span>
+        </div>
+        {keywords && keywords.length > 0 && (
+          <div class="text-xs text-gray-500 dark:text-gray-400">
+            <strong>Keywords:</strong> {keywords.join(', ')}
+          </div>
+        )}
+      </div>
+
       <slot />
 
-      <div class="mt-10 text-sm text-gray-600">
+      <div class="mt-10 space-y-4">
         {tags && tags.length > 0 && (
-          <><strong>Tags:</strong> {tags.join(', ')}</>
+          <div class="text-sm text-gray-600 dark:text-gray-400">
+            <div class="flex flex-wrap gap-2">
+              <strong>Tags:</strong>
+              {tags.map((tag: string) => (
+                <span class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md">{tag}</span>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {canonicalUrl && (
+          <div class="text-sm text-gray-500 dark:text-gray-400">
+            <strong>Canonical URL:</strong> <a href={canonicalUrl} class="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300">{canonicalUrl}</a>
+          </div>
         )}
       </div>
     </article>
