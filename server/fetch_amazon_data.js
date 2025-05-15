@@ -13,7 +13,13 @@ dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 // Validate that API key exists
 if (!process.env.CANOPY_API_KEY) {
-    throw new Error('CANOPY_API_KEY environment variable is not set');
+    console.error('\x1b[31m%s\x1b[0m', 'Error: CANOPY_API_KEY environment variable is not set');
+    console.log('\nTo fix this:');
+    console.log('1. Create a .env file in the root directory of your project');
+    console.log('2. Add your Canopy API key to the file like this:');
+    console.log('   CANOPY_API_KEY=your_canopy_api_key_here');
+    console.log('\nMake sure to replace "your_canopy_api_key_here" with your actual Canopy API key.');
+    process.exit(1);
 }
 
 async function fetchAmazonData() {

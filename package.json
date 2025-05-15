@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-filters": "node --experimental-json-modules server/generate-product-filters.js"
+    "generate-filters": "node --experimental-json-modules server/generate-product-filters.js",
+    "fetch-amazon": "node server/fetch_amazon_data.js"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.3",
