@@ -159,7 +159,7 @@ const accentioAssociatesTag = 'accentiofinde-20';
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Defer execution by 1 second
+        // Get all filter elements
         const selectFilters = document.querySelectorAll(".filter-checkbox:not(.select-all)");
         const selectAllFilters = document.querySelectorAll(".filter-checkbox.select-all");
         const minPriceInput = document.getElementById("filter-price-min") as HTMLInputElement;
@@ -169,101 +169,69 @@ const accentioAssociatesTag = 'accentiofinde-20';
         const minSpeedInput = document.getElementById("filter-speed-min") as HTMLInputElement;
         const maxSpeedInput = document.getElementById("filter-speed-max") as HTMLInputElement;
 
+        // Function to handle filtering of table rows
         function filterTable() {
-            if (!minPriceInput || !maxPriceInput || !minCapacityInput || !maxCapacityInput || !minSpeedInput || !maxSpeedInput) return;
-            
             const tableRows = document.querySelectorAll("#memoryTable tbody tr");
+            const enabledFilters = new Map();
 
-            // First, collect all checked compatibility filters
-            const enabledCompatibilityFilters = new Set<string>();
+            // Collect all enabled filters
             selectFilters.forEach(filter => {
                 const filterId = filter.id;
-                const filterValue = (filter as HTMLInputElement).checked;
-                const filterGroupName = filterId.split('-')[1];
-                const filterSelectedName = filterId.split('-')[2].toLowerCase();
-                
-                if (filterGroupName === 'compatibility' && filterValue) {
-                    // Handle the special case for "Rack Server"
-                    const compatibilityName = filterSelectedName === 'rackserver' ? 'rack server' : filterSelectedName;
-                    enabledCompatibilityFilters.add(compatibilityName);
+                const [_, group, value] = filterId.split('-');
+                if (!(filter as HTMLInputElement).checked) {
+                    if (!enabledFilters.has(group)) {
+                        enabledFilters.set(group, new Set());
+                    }
+                    enabledFilters.get(group).add(value.toLowerCase());
                 }
             });
 
+            // Get numeric filter values
+            const priceRange = {
+                min: parseFloat(minPriceInput?.value || '0'),
+                max: parseFloat(maxPriceInput?.value || 'Infinity')
+            };
+            const capacityRange = {
+                min: parseFloat(minCapacityInput?.value || '0'),
+                max: parseFloat(maxCapacityInput?.value || 'Infinity')
+            };
+            const speedRange = {
+                min: parseFloat(minSpeedInput?.value || '0'),
+                max: parseFloat(maxSpeedInput?.value || 'Infinity')
+            };
+
+            // Filter rows
             tableRows.forEach(row => {
-                let rowVisible = true;
-                let hasCompatibilityFilter = false;
-                let matchesAnyCompatibility = false;
+                let shouldShow = true;
 
-                // Get the row's compatibility values
-                const rowCompatibilityAttr = row.getAttribute('data-compatibility');
-                const rowCompatibilities = rowCompatibilityAttr ? rowCompatibilityAttr.split(',').map(v => v.trim().toLowerCase()) : [];
-
-                selectFilters.forEach(filter => {
-                    const filterId = filter.id;
-                    const filterValue = (filter as HTMLInputElement).checked;
-                    const filterGroupName = filterId.split('-')[1];
-                    const filterSelectedName = filterId.split('-')[2].toLowerCase();
-                    const rowValue = row.getAttribute('data-' + filterGroupName);
-                    
-                    // Special handling for condition filters
-                    if (filterGroupName === 'condition') {
-                        const rowCondition = rowValue?.toLowerCase() || '';
-                        if (rowCondition === filterSelectedName && !filterValue) {
-                            rowVisible = false;
-                        }
-                    } 
-                    // Special handling for brand filters
-                    else if (filterGroupName === 'brand') {
-                        // Get the original brand name from the data attribute
-                        const originalBrand = (filter as HTMLInputElement).getAttribute('data-original-brand');
-                        if (originalBrand && rowValue === originalBrand && !filterValue) {
-                            rowVisible = false;
-                        }
-                    }
-                    // Special handling for compatibility filters - just track if this is a compatibility filter
-                    else if (filterGroupName === 'compatibility') {
-                        hasCompatibilityFilter = true;
-                        
-                        // If it's checked, see if the row matches this compatibility
-                        if (filterValue) {
-                            const compatibilityName = filterSelectedName === 'rackserver' ? 'rack server' : filterSelectedName;
-                            if (rowCompatibilities.includes(compatibilityName)) {
-                                matchesAnyCompatibility = true;
-                            }
-                        }
-                    }
-                    else {
-                        const rowMatch = rowValue ? rowValue.toLowerCase() === filterSelectedName : false;
-                        if (rowMatch && !filterValue) {
-                            rowVisible = false;
+                // Check each filter group
+                enabledFilters.forEach((values, group) => {
+                    const rowValue = row.getAttribute(`data-${group}`)?.toLowerCase();
+                    if (values.size > 0 && rowValue) {
+                        if (group === 'compatibility') {
+                            const rowCompatibilities = rowValue.split(',').map(v => v.trim().toLowerCase());
+                            const hasMatch = [...values].some(value => 
+                                rowCompatibilities.includes(value === 'rackserver' ? 'rack server' : value)
+                            );
+                            if (hasMatch) shouldShow = false;
+                        } else if (values.has(rowValue)) {
+                            shouldShow = false;
                         }
                     }
                 });
 
-                // If we have compatibility filters and the row doesn't match any of them, hide it
-                if (hasCompatibilityFilter && enabledCompatibilityFilters.size > 0 && !matchesAnyCompatibility) {
-                    rowVisible = false;
-                }
-
-                const minPrice = parseFloat(minPriceInput.value) || 0;
-                const maxPrice = parseFloat(maxPriceInput.value) || Infinity;
+                // Check numeric ranges
                 const rowPrice = parseFloat(row.getAttribute('data-price') || '0');
-
-                const minCapacity = parseFloat(minCapacityInput.value) || 0;
-                const maxCapacity = parseFloat(maxCapacityInput.value) || Infinity;
                 const rowCapacity = parseFloat(row.getAttribute('data-capacity') || '0');
-
-                // Read speed filter values
-                const minSpeed = parseFloat(minSpeedInput.value) || 0;
-                const maxSpeed = parseFloat(maxSpeedInput.value) || Infinity;
                 const rowSpeed = parseFloat(row.getAttribute('data-speed') || '0');
 
-                // Decide if a row should be visible or not, based on the filters.
-                if (rowPrice < minPrice || rowPrice > maxPrice || rowCapacity < minCapacity || rowCapacity > maxCapacity || rowSpeed < minSpeed || rowSpeed > maxSpeed) {
-                    rowVisible = false;
+                if (rowPrice < priceRange.min || rowPrice > priceRange.max ||
+                    rowCapacity < capacityRange.min || rowCapacity > capacityRange.max ||
+                    rowSpeed < speedRange.min || rowSpeed > speedRange.max) {
+                    shouldShow = false;
                 }
 
-                (row as HTMLElement).style.display = rowVisible ? '' : 'none';
+                (row as HTMLElement).style.display = shouldShow ? '' : 'none';
             });
         }
 
@@ -272,47 +240,34 @@ const accentioAssociatesTag = 'accentiofinde-20';
             const group = selectAllCheckbox.getAttribute('data-group');
             const isChecked = selectAllCheckbox.checked;
             
-            // Find all checkboxes that belong to this group
-            const groupCheckboxes = document.querySelectorAll(`.filter-checkbox[id^="filter-${group}-"]:not(.select-all)`);
-            
-            // Set all checkboxes in the group to match the "Select All" state
-            groupCheckboxes.forEach((checkbox) => {
-                (checkbox as HTMLInputElement).checked = isChecked;
-            });
-            
-            // Update the table filtering
-            filterTable();
+            if (group) {
+                const groupCheckboxes = document.querySelectorAll(`.filter-checkbox[id^="filter-${group}-"]:not(.select-all)`);
+                groupCheckboxes.forEach((checkbox) => {
+                    (checkbox as HTMLInputElement).checked = isChecked;
+                });
+                filterTable();
+            }
         }
-        
-        // Update "Select All" checkbox state when individual filters change
+
+        // Update "Select All" state when individual filters change
         function updateSelectAllState(changedCheckbox: HTMLInputElement) {
-            const filterId = changedCheckbox.id;
-            const filterGroupName = filterId.split('-')[1];
-            const selectAllCheckbox = document.getElementById(`filter-${filterGroupName}-all`) as HTMLInputElement;
+            const [_, group] = changedCheckbox.id.split('-');
+            const selectAllCheckbox = document.getElementById(`filter-${group}-all`) as HTMLInputElement;
             
             if (selectAllCheckbox) {
-                const groupCheckboxes = document.querySelectorAll(`.filter-checkbox[id^="filter-${filterGroupName}-"]:not(.select-all)`);
-                let allChecked = true;
-                
-                groupCheckboxes.forEach((checkbox) => {
-                    if (!(checkbox as HTMLInputElement).checked) {
-                        allChecked = false;
-                    }
-                });
-                
-                // Update the "Select All" checkbox without triggering its change event
+                const groupCheckboxes = document.querySelectorAll(`.filter-checkbox[id^="filter-${group}-"]:not(.select-all)`);
+                const allChecked = Array.from(groupCheckboxes).every((checkbox) => (checkbox as HTMLInputElement).checked);
                 selectAllCheckbox.checked = allChecked;
             }
         }
 
-        // Attach event listeners for the "Select All" checkboxes
+        // Add event listeners
         selectAllFilters.forEach(filter => {
             filter.addEventListener("change", function(this: HTMLInputElement) {
                 handleSelectAll(this);
             });
         });
 
-        // Attach event listeners for the individual checkboxes
         selectFilters.forEach(filter => {
             filter.addEventListener("change", function(this: HTMLInputElement) {
                 updateSelectAllState(this);
@@ -320,17 +275,11 @@ const accentioAssociatesTag = 'accentiofinde-20';
             });
         });
 
-        // Attach event listeners for the numeric inputs
-        if (minPriceInput && maxPriceInput && minCapacityInput && maxCapacityInput && minSpeedInput && maxSpeedInput) {
-            minPriceInput.addEventListener("input", filterTable);
-            maxPriceInput.addEventListener("input", filterTable);
-            minCapacityInput.addEventListener("input", filterTable);
-            maxCapacityInput.addEventListener("input", filterTable);
-            minSpeedInput.addEventListener("input", filterTable);
-            maxSpeedInput.addEventListener("input", filterTable);
-        }
-
-        // Initial call to apply styles on page load
-        filterTable();
+        // Add event listeners for numeric inputs
+        [minPriceInput, maxPriceInput, minCapacityInput, maxCapacityInput, minSpeedInput, maxSpeedInput].forEach(input => {
+            if (input) {
+                input.addEventListener("input", filterTable);
+            }
+        });
     });
 </script>
