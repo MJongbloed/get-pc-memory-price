@@ -227,10 +227,11 @@ function convertAndSaveData() {
         return { ...item, link_title: linkTitle };
     });
 
-    const filteredData = finalDataArray.filter(item => item.computer_memory_size > 0);
-
-    // Use the array with link titles for filtering and output
-    const filteredDataWithLinkTitles = dataWithLinkTitles.filter(item => item.computer_memory_size > 0);
+    // Filter out products with invalid memory size and unwanted product types
+    const filteredDataWithLinkTitles = dataWithLinkTitles.filter(item => 
+        item.computer_memory_size > 0 && 
+        !/flash drive|memory storage board|pcie|mac ssd/i.test(item.title)
+    );
 
     console.log(`Processed ${processedItemsMap.size} unique ASINs initially.`);
     console.log(`Filtered down to ${filteredDataWithLinkTitles.length} valid items with memory size > 0.`);
