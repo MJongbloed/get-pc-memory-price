@@ -172,17 +172,21 @@ const accentioAssociatesTag = 'accentiofinde-20';
         // Function to handle filtering of table rows
         function filterTable() {
             const tableRows = document.querySelectorAll("#memoryTable tbody tr");
-            const enabledFilters = new Map();
+            const filterGroups = new Map();
 
-            // Collect all enabled filters
+            // Collect all filter groups and their selected values
             selectFilters.forEach(filter => {
                 const filterId = filter.id;
                 const [_, group, value] = filterId.split('-');
-                if (!(filter as HTMLInputElement).checked) {
-                    if (!enabledFilters.has(group)) {
-                        enabledFilters.set(group, new Set());
-                    }
-                    enabledFilters.get(group).add(value.toLowerCase());
+                if (!filterGroups.has(group)) {
+                    filterGroups.set(group, { 
+                        selected: new Set(),
+                        total: new Set()
+                    });
+                }
+                filterGroups.get(group).total.add(value.toLowerCase());
+                if ((filter as HTMLInputElement).checked) {
+                    filterGroups.get(group).selected.add(value.toLowerCase());
                 }
             });
 
@@ -205,16 +209,30 @@ const accentioAssociatesTag = 'accentiofinde-20';
                 let shouldShow = true;
 
                 // Check each filter group
-                enabledFilters.forEach((values, group) => {
+                filterGroups.forEach(({selected, total}, group) => {
+                    // Skip if all filters in the group are selected or if the group has no filters
+                    if (selected.size === total.size || total.size === 0) {
+                        return;
+                    }
+
                     const rowValue = row.getAttribute(`data-${group}`)?.toLowerCase();
-                    if (values.size > 0 && rowValue) {
-                        if (group === 'compatibility') {
-                            const rowCompatibilities = rowValue.split(',').map(v => v.trim().toLowerCase());
-                            const hasMatch = [...values].some(value => 
-                                rowCompatibilities.includes(value === 'rackserver' ? 'rack server' : value)
-                            );
-                            if (hasMatch) shouldShow = false;
-                        } else if (values.has(rowValue)) {
+                    if (!rowValue) {
+                        shouldShow = false;
+                        return;
+                    }
+
+                    if (group === 'compatibility') {
+                        const rowCompatibilities = rowValue.split(',').map(v => v.trim().toLowerCase());
+                        // Show only if at least one of the row's compatibilities is in the selected set
+                        const hasSelectedMatch = rowCompatibilities.some(compatibility => 
+                            selected.has(compatibility === 'rack server' ? 'rackserver' : compatibility)
+                        );
+                        if (!hasSelectedMatch) {
+                            shouldShow = false;
+                        }
+                    } else {
+                        // For other groups, show only if the row's value is in the selected set
+                        if (!selected.has(rowValue)) {
                             shouldShow = false;
                         }
                     }
