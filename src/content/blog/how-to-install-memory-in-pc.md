@@ -6,7 +6,7 @@ author: "Michel Jongbloed"
 tags: ["PC memory installation", "DIY RAM upgrade", "computer performance", "install RAM", "memory upgrade guide"]
 keywords: ["how to install memory in pc", "how to add memory to pc", "installing memory in pc", "random access memory installation", "how to install ram in computer", "install memory pc", "how to remove the ram from a computer"]
 image: "/images/how-to-install-memory-in-pc.png"
-canonicalUrl: "https://pcmemoryfinder.com/blog/how-to-install-memory-in-pc"
+canonicalUrl: "https://pcmemoryfinder.com/blog/how-to-install-memory-in-pc/"
 ---
 
 # How to Install Memory in PC – DIY Upgrade Guide
@@ -15,7 +15,7 @@ canonicalUrl: "https://pcmemoryfinder.com/blog/how-to-install-memory-in-pc"
 
 Installing memory in your PC is a straightforward process that can significantly enhance your computer's performance. By learning how to install memory in PC step-by-step, you'll improve speed, multitasking ability, and extend the life of your system.
 
-Whether you're a gamer, a content creator, or just want a snappier computer, installing RAM in your computer is one of the most cost-effective upgrades. In this guide, you’ll learn how to add memory to PC systems safely and correctly — even if it’s your first time. As a PC hardware specialist with years of DIY experience, I’ll walk you through the essentials so you can feel confident.
+Whether you're a gamer, a content creator, or just want a snappier computer, installing RAM in your computer is one of the most cost-effective upgrades. In this guide, you'll learn how to add memory to PC systems safely and correctly — even if it's your first time. As a PC hardware specialist with years of DIY experience, I'll walk you through the essentials so you can feel confident.
 
 We'll cover how to identify compatible memory, prepare your system, perform the random access memory installation, and check if everything works — all in easy-to-follow steps.
 
@@ -23,7 +23,7 @@ We'll cover how to identify compatible memory, prepare your system, perform the 
 
 ## Why Upgrade Your PC's RAM?
 
-Upgrading RAM improves your computer’s ability to handle more tasks at once. You’ll notice:
+Upgrading RAM improves your computer's ability to handle more tasks at once. You'll notice:
 
 - Faster response times when switching programs
 - Improved performance in games or creative applications
@@ -35,21 +35,21 @@ If your PC struggles with basic tasks or loads slowly, it may be time to install
 
 ## Step 1: Check What RAM Your System Supports
 
-Before buying RAM, you’ll need to identify what your motherboard supports.
+Before buying RAM, you'll need to identify what your motherboard supports.
 
-**Here’s how to check:**
+**Here's how to check:**
 
 - Look up your **motherboard model** and see whether it supports **DDR3, DDR4, or DDR5**.
 - Confirm the **maximum RAM capacity** (e.g., 32GB, 64GB).
 - Identify how many **RAM slots** you have (usually 2 or 4).
 
-You can use tools like [PCMemoryFinder.com](https://pcmemoryfinder.com) to search for compatible RAM by brand, price per GB, form factor (DIMM or SO-DIMM), memory speed, and more. This makes it easy to find upgrade options that will work for your machine.
+You can use tools like [PCMemoryFinder.com](https://pcmemoryfinder.com/) to search for compatible RAM by brand, price per GB, form factor (DIMM or SO-DIMM), memory speed, and more. This makes it easy to find upgrade options that will work for your machine.
 
 ---
 
 ## Step 2: Power Down and Prepare
 
-Safety first. Here’s what to do before installing:
+Safety first. Here's what to do before installing:
 
 1. Shut down your PC and unplug all cables.
 2. Press the power button for 5–10 seconds to discharge static electricity.
@@ -91,32 +91,32 @@ If everything was installed correctly, the system should boot normally.
 
 ## Step 6: Verify RAM Installation
 
-You’ll want to confirm that your new memory is recognized.
+You'll want to confirm that your new memory is recognized.
 
 ### On Windows:
 
 - Open the File Explorer
 - Right-click on **This PC** → **Properties**
-- Check **Installed RAM** under **System** → **About** → “Device specifications”
+- Check **Installed RAM** under **System** → **About** → "Device specifications"
 
 Or:
 
 - Press `Ctrl + Shift + Esc` to open Task Manager
 - Click on the **Performance** tab → **Memory**
 
-If you don’t see the correct amount, check that the modules are seated correctly and consult your motherboard manual for slot configuration.
+If you don't see the correct amount, check that the modules are seated correctly and consult your motherboard manual for slot configuration.
 
 ---
 
 ## Troubleshooting Tips
 
-If the system doesn’t boot or you hear beeping:
+If the system doesn't boot or you hear beeping:
 
 - Reseat the RAM modules.
 - Check for dust or misalignment.
 - Verify module compatibility.
 
-For additional help, check your motherboard’s error codes or user manual.
+For additional help, check your motherboard's error codes or user manual.
 
 ---
 
@@ -131,7 +131,7 @@ For additional help, check your motherboard’s error codes or user manual.
 
 Knowing how to install RAM in your computer gives you more control over its performance and longevity. Whether you're upgrading from 8GB to 32GB, replacing slow modules, or maximizing your machine for gaming or work, this DIY task pays off.
 
-Need help choosing the right RAM? Browse [PCMemoryFinder.com](https://pcmemoryfinder.com) to explore and filter options based on your budget, capacity, and compatibility. Let your next memory upgrade be smarter — and faster.
+Need help choosing the right RAM? Browse [PCMemoryFinder.com](https://pcmemoryfinder.com/) to explore and filter options based on your budget, capacity, and compatibility. Let your next memory upgrade be smarter — and faster.
 
 ---
 

@@ -6,7 +6,7 @@ author: "Michel Jongbloed"
 tags: ["PC RAM", "PC upgrades", "memory performance", "Crucial Memory"]
 keywords: ["DDR4 vs DDR5", "DDR4 vs DDR5 gaming", "DDR5 RAM", "DDR5 memory RAM", "benchmark CPU", "benchmark GPU"]
 image: "/images/close-up-of-ddr4-and-ddr5-ram.png"
-canonicalUrl: "https://pcmemoryfinder.com/blog/ddr4-vs-ddr5-ram"
+canonicalUrl: "https://pcmemoryfinder.com/blog/ddr4-vs-ddr5-ram/"
 ---
 
 # DDR4 vs DDR5 RAM, Does DDR5 Make a Noticeable Difference?
@@ -55,7 +55,7 @@ Whether or not you should upgrade to DDR5 RAM depends on your system and usage. 
 
 However, for budget-conscious builders or those looking for incremental upgrades, DDR4 still offers excellent value. It's cheaper, widely available, and supported by a broader range of motherboards.
 
-Visit [pcmemoryfinder.com](https://pcmemoryfinder.com) to explore compatible RAM options, prices, and speed comparisons.
+Visit [pcmemoryfinder.com](https://pcmemoryfinder.com/) to explore compatible RAM options, prices, and speed comparisons.
 
 ---
 
@@ -73,6 +73,6 @@ If you're building a brand-new PC or doing professional-level content creation, 
 
 But if you're focused on cost-effectiveness, gaming on a budget, or doing standard productivity tasks, DDR4 still holds its ground. When comparing *DDR4 vs DDR5*, think about your specific use case, and consult benchmark GPU and CPU data before deciding.
 
-Whichever path you choose, be sure to check compatibility and performance specs using tools like [pcmemoryfinder.com](https://pcmemoryfinder.com) to make the most informed decision.
+Whichever path you choose, be sure to check compatibility and performance specs using tools like [pcmemoryfinder.com](https://pcmemoryfinder.com/) to make the most informed decision.
 
 Also be sure to check out my [Memory RAM Speeds Explained: The Affordable Key to Better Performance?](https://pcmemoryfinder.com/blog/memory-ram-speeds-explained/) blog to learn more about the all imporant memory speeds.

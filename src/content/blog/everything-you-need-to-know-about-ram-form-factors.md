@@ -6,7 +6,7 @@ author: "Michel Jongbloed"
 tags: [RAM upgrade, PC hardware, RAM form factor, computer memory types, PC building guide]
 keywords: ["What should I uprade on my PC?", "How do I find out what RAM is compatible with my PC?", "What is form factor in computer?"]
 image: "/images/ram-form-factors.png"
-canonicalUrl: "https://pcmemoryfinder.com/blog/everything-you-need-to-know-about-ram-form-factors"
+canonicalUrl: "https://pcmemoryfinder.com/blog/everything-you-need-to-know-about-ram-form-factors/"
 ---
 
 # Everything You Need To Know About RAM Form Factors
@@ -63,7 +63,7 @@ To find RAM that fits and functions with your system:
 
 1. **Identify your motherboard** (model number).
 2. Check the **supported RAM type, max capacity, and form factor**.
-3. Use [PC Memory Finder](https://pcmemoryfinder.com) to search and filter hundreds of RAM memory sticks by form factor, capacity, speed, and the best price per GB.
+3. Use [PC Memory Finder](https://pcmemoryfinder.com/) to search and filter hundreds of RAM memory sticks by form factor, capacity, speed, and the best price per GB.
 
 Never buy RAM based on capacity or speed alone. Form factor and type matter just as much.
 
@@ -95,7 +95,7 @@ If you're upgrading and wondering *"What should I upgrade on my PC?"*, RAM is a 
 
 Start by checking your motherboard specs. Then, determine if you need DIMM, SO-DIMM, or something more specialized like RDIMM. Finally, make sure your module type (e.g., buffered or registered) is also supported.
 
-To find compatible memory options and compare hundreds of memory sticks by form factor, capacity, and price per GB, visit [pcmemoryfinder.com](https://pcmemoryfinder.com).
+To find compatible memory options and compare hundreds of memory sticks by form factor, capacity, and price per GB, visit [pcmemoryfinder.com](https://pcmemoryfinder.com/).
 
 ---
 
