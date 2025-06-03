@@ -1,0 +1,58 @@
+# Enable rewriting
+RewriteEngine On
+RewriteBase /
+
+# If the request is not for a file that exists
+RewriteCond %{REQUEST_FILENAME} !-f
+# If the request is not for a directory that exists
+RewriteCond %{REQUEST_FILENAME} !-d
+# Rewrite all requests to index.html
+RewriteRule . /index.html [L]
+
+# Set proper MIME types
+AddType application/javascript .js
+AddType text/css .css
+AddType image/svg+xml .svg
+AddType application/font-woff2 .woff2
+AddType application/font-woff .woff
+
+# Basic security headers
+Header set X-Content-Type-Options "nosniff"
+Header set X-XSS-Protection "1; mode=block"
+Header set X-Frame-Options "SAMEORIGIN"
+
+# Error handling
+ErrorDocument 500 /500.html
+ErrorDocument 404 /404.html
+
+# Directory listing
+Options -Indexes
+
+# Basic compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript
+</IfModule>
+
+# Basic caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+</IfModule>
+
+# Directory Options
+Options -Indexes +FollowSymLinks
+
+# Default handler
+DirectoryIndex index.html index.htm
+
+# PHP Settings (even though we're not using PHP, some hosts require these)
+<IfModule mod_php.c>
+    php_flag display_errors off
+    php_value max_execution_time 60
+    php_value memory_limit 256M
+    php_value post_max_size 64M
+    php_value upload_max_filesize 64M
+</IfModule> 

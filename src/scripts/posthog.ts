@@ -1,70 +1,90 @@
-// PostHog initialization script
+// Type definitions for PostHog
+interface PostHogConfig {
+    api_host: string;
+    persistence?: string;
+    cookie_name?: string;
+    persistence_name?: string;
+    autocapture?: boolean;
+    cross_subdomain_cookie?: boolean;
+    secure_cookie?: boolean;
+    loaded?: (posthog: any) => void;
+    bootstrap?: any;
+    [key: string]: any;
+}
+
 declare global {
     interface Window {
         posthog: any;
     }
 }
 
-export function initializePostHog() {
-    if (typeof window === 'undefined') return; // Skip if not in browser
+const POSTHOG_API_KEY = 'phc_7o2uZwISUxOtzUOUbilRsrGaImrah9WuIO2BtEJgsyu';
+const POSTHOG_CONFIG: PostHogConfig = {
+    api_host: 'https://eu.i.posthog.com',
+    persistence: 'localStorage',
+    cookie_name: '_ph_pcmemoryfinder',
+    persistence_name: '_ph_pcmemoryfinder',
+    autocapture: true,
+    cross_subdomain_cookie: false,
+    secure_cookie: true,
+    loaded: (posthog) => {
+        // Disable automatic capturing of pageviews to prevent double tracking
+        posthog.config.capture_pageview = false;
+        // Manually capture the initial pageview
+        try {
+            posthog.capture('$pageview');
+        } catch (error) {
+            console.warn('Failed to capture initial pageview:', error);
+        }
+    }
+};
 
-    const posthog = window.posthog || [];
-    
-    if (posthog.__SV) return;
-    
-    window.posthog = posthog;
-    posthog._i = [];
-    
-    posthog.init = function(apiKey: string, config: any, namespace?: string) {
-        function registerMethod(obj: any, method: string) {
-            const parts = method.split('.');
-            if (parts.length === 2) {
-                obj = obj[parts[0]];
-                method = parts[1];
-            }
-            obj[method] = function() {
-                obj.push([method].concat(Array.prototype.slice.call(arguments, 0)));
+export function initializePostHog(): void {
+    try {
+        // Skip if not in browser
+        if (typeof window === 'undefined') return;
+
+        // Skip if already initialized
+        if (window.posthog?.__loaded) return;
+
+        // Initialize PostHog array
+        const posthog = window.posthog = window.posthog || [];
+        
+        if (posthog.__SV) return;
+        
+        // Add methods to the PostHog instance
+        const methods = [
+            'init', 'capture', 'identify', 'register', 'register_once', 'unregister',
+            'opt_in_capturing', 'opt_out_capturing', 'has_opted_in_capturing',
+            'has_opted_out_capturing', 'reset', 'group', 'page', 'track'
+        ];
+
+        for (const method of methods) {
+            posthog[method] = (...args: any[]) => {
+                posthog.push([method, ...args]);
             };
         }
 
+        // Load the PostHog script
         const script = document.createElement('script');
         script.type = 'text/javascript';
-        script.crossOrigin = 'anonymous';
         script.async = true;
-        script.src = config.api_host.replace('.i.posthog.com', '-assets.i.posthog.com') + '/static/array.js';
-        
+        script.src = `${POSTHOG_CONFIG.api_host}/static/array.js`;
+        script.onerror = () => {
+            console.warn('Failed to load PostHog script');
+        };
+
+        // Insert the script into the DOM
         const firstScript = document.getElementsByTagName('script')[0];
         firstScript?.parentNode?.insertBefore(script, firstScript);
 
-        const instance = posthog;
-        const ns = namespace || 'posthog';
+        // Initialize PostHog with configuration
+        posthog.init(POSTHOG_API_KEY, POSTHOG_CONFIG);
         
-        instance.people = instance.people || [];
-        instance.toString = function(stub?: boolean) {
-            let name = 'posthog';
-            if (ns !== 'posthog') name += '.' + ns;
-            if (!stub) name += ' (stub)';
-            return name;
-        };
-        
-        instance.people.toString = function() {
-            return instance.toString(true) + '.people (stub)';
-        };
+        // Mark as loaded
+        posthog.__SV = 1;
 
-        const methods = "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" ");
-        
-        for (const method of methods) {
-            registerMethod(instance, method);
-        }
-
-        posthog._i.push([apiKey, config, namespace]);
-    };
-
-    posthog.__SV = 1;
-
-    // Initialize PostHog with configuration
-    posthog.init('phc_7o2uZwISUxOtzUOUbilRsrGaImrah9WuIO2BtEJgsyu', {
-        api_host: 'https://eu.i.posthog.com',
-        person_profiles: 'identified_only'
-    });
+    } catch (error) {
+        console.warn('Failed to initialize PostHog:', error);
+    }
 } 

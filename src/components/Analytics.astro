@@ -1,0 +1,23 @@
+---
+// Analytics.astro - PostHog initialization component
+---
+
+<script>
+    import { initializePostHog } from '../scripts/posthog';
+    
+    // Initialize PostHog when the page loads
+    if (typeof window !== 'undefined') {
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePostHog();
+        });
+
+        // Also track client-side navigation if using a SPA
+        document.addEventListener('astro:page-load', () => {
+            // Ensure PostHog is loaded
+            if (window.posthog && typeof window.posthog.capture === 'function') {
+                window.posthog.capture('$pageview');
+            }
+        });
+    }
+</script> 

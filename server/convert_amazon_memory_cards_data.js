@@ -18,6 +18,42 @@ import {
 } from './conversionHelpers.js';
 
 /**
+ * Checks if a string contains JavaScript code
+ * @param {string} str - The string to check
+ * @returns {boolean} - True if JavaScript code is detected
+ */
+function containsJavaScript(str) {
+    if (typeof str !== 'string') return false;
+    return str.includes('function(') || 
+           str.includes('window.') || 
+           str.includes('document.') ||
+           str.includes('execute(') ||
+           str.includes('_np.') ||
+           str.includes('guardFatal');
+}
+
+/**
+ * Cleans a text field by removing JavaScript and extracting meaningful content
+ * @param {string} str - The string to clean
+ * @returns {string} - The cleaned string
+ */
+function cleanTextField(str) {
+    if (typeof str !== 'string') return 'N/A';
+    
+    // If it contains JavaScript, try to extract meaningful content
+    if (containsJavaScript(str)) {
+        // Extract device list if present
+        const deviceMatch = str.match(/DS\d+\+|DS\d+xs\+|DS\d+|RS\d+\+|RS\d+RP\+|DVA\d+|FS\d+/g);
+        if (deviceMatch) {
+            return deviceMatch.join(', ');
+        }
+        return 'N/A';
+    }
+    
+    return str;
+}
+
+/**
  * Rewrites the conversion logic for Amazon memory card data.
  * Loads raw data, processes products and their variants,
  * extracts and derives fields based on specified rules,
@@ -66,6 +102,13 @@ function convertAndSaveData() {
             return null; // Skip items without a price
         }
 
+        // Check for JavaScript in critical fields
+        if (containsJavaScript(item.title) || 
+            containsJavaScript(item.brand) || 
+            containsJavaScript(item.url)) {
+            return null; // Skip items with JavaScript in critical fields
+        }
+
         // --- Field Extraction & Derivation ---
         const computer_memory_size = extractMemorySize(item);
 
@@ -78,49 +121,48 @@ function convertAndSaveData() {
         }
         const price_per_gb_formatted = price_per_gb.toFixed(2);
 
-        const title = item.title || parentProduct?.title || 'N/A'; // Use parent title as fallback only if needed? Stick to item's title.
+        const title = cleanTextField(item.title || parentProduct?.title || 'N/A');
 
         return {
             // --- Mapped Fields ---
-            id: item.asin, // Use ASIN as the unique ID
-            title: item.title || 'N/A',
+            id: item.asin,
+            title: title,
             price: price,
             symbol: item.price?.symbol || '$',
-            url: cleanUrl(item.url || parentProduct?.url), // Use parent URL as fallback for variants if needed
+            url: cleanUrl(item.url || parentProduct?.url),
             rating: item.rating || 0,
             ratings_total: item.ratingsTotal || 0,
-            brand: item.brand || parentProduct?.brand || 'N/A', // Use parent brand for variants
-            is_new: item.isNew !== undefined ? item.isNew : (parentProduct?.isNew !== undefined ? parentProduct.isNew : true), // Inherit isNew status
+            brand: cleanTextField(item.brand || parentProduct?.brand || 'N/A'),
+            is_new: item.isNew !== undefined ? item.isNew : (parentProduct?.isNew !== undefined ? parentProduct.isNew : true),
 
             // --- Derived Fields ---
-            computer_memory_size: computer_memory_size, // number (GB)
-            memory_speed: extractMemorySpeed(item), // string (e.g., "3200 MHz")
-            latency: extractLatency(item), // string (e.g., "CL16")
-            ram_memory_technology: extractRamTech(item), // string (e.g., "DDR4")
-            computer_memory_type: extractComputerType(item), // string (e.g., "SODIMM")
-            amd_expo_ready: /amd expo/i.test(title), // boolean
-            intel_xmp_3_ready: /intel xmp/i.test(title), // boolean
+            computer_memory_size: computer_memory_size,
+            memory_speed: extractMemorySpeed(item),
+            latency: extractLatency(item),
+            ram_memory_technology: extractRamTech(item),
+            computer_memory_type: extractComputerType(item),
+            amd_expo_ready: /amd expo/i.test(title),
+            intel_xmp_3_ready: /intel xmp/i.test(title),
 
             // --- Calculated Fields ---
-            price_per_gb: price_per_gb, // number (for sorting/filtering)
-            price_per_gb_formatted: price_per_gb_formatted, // string (for display)
+            price_per_gb: price_per_gb,
+            price_per_gb_formatted: price_per_gb_formatted,
 
             // --- Extracted from Specs ---
-            compatible_devices: getSpecValue(item.technicalSpecifications, 'Compatible Devices') || 'N/A', // string - No variant priority needed
+            compatible_devices: cleanTextField(getSpecValue(item.technicalSpecifications, 'Compatible Devices') || 'N/A'),
 
             // Color: Priority: Variant Text -> Spec
-            color: (() => {
+            color: cleanTextField((() => {
                 if (item._variantText) {
                     const commonColors = ['Black', 'White', 'Red', 'Blue', 'Green', 'Silver', 'Gray', 'Gold', 'Pink', 'Purple', 'Orange', 'Yellow', 'Brown'];
                     const variantIsColor = commonColors.find(c => c.toLowerCase() === item._variantText.toLowerCase());
                     if (variantIsColor) return variantIsColor;
                 }
                 return getSpecValue(item.technicalSpecifications, 'Color') || 'N/A';
-            })(),
+            })()),
 
-            // Voltage: Priority: Variant Text -> Spec
-            voltage: (() => { // Extract numeric voltage
-                // Priority 1: Variant Text
+            // Voltage
+            voltage: (() => {
                 if (item._variantText) {
                     const variantMatch = item._variantText.match(/(\d+(\.\d+)?)\s?(V|Volt)/i);
                     if (variantMatch && variantMatch[1]) {
@@ -128,15 +170,14 @@ function convertAndSaveData() {
                         if (!isNaN(voltNum)) return voltNum;
                     }
                 }
-                // Priority 2: Spec
                 const specVoltageString = getSpecValue(item.technicalSpecifications, 'Voltage');
                 if (specVoltageString) {
-                    const numericMatch = specVoltageString.match(/(\d+(\.\d+)?)/); // Match integer or decimal
+                    const numericMatch = specVoltageString.match(/(\d+(\.\d+)?)/);
                     if (numericMatch && numericMatch[0]) {
                         return parseFloat(numericMatch[0]);
                     }
                 }
-                return null; // Return null if not found or not numeric
+                return 1.2; // Default voltage if not found
             })()
         };
     };

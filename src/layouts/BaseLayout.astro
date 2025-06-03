@@ -1,0 +1,47 @@
+---
+import Analytics from '../components/Analytics.astro';
+
+interface Props {
+    title: string;
+    description?: string;
+    image?: string;
+    canonicalUrl?: string;
+}
+
+const {
+    title,
+    description = "PC Memory Finder - Find the best RAM prices from Amazon, sorted by price per GB.",
+    image,
+    canonicalUrl = "https://pcmemoryfinder.com"
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl}>}
+    {image && <meta property="og:image" content={image}>}
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl}>}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    {image && <meta name="twitter:image" content={image}>}
+    <link rel="manifest" href="/static/manifest.webmanifest"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/ram-memory-slot-16.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/ram-memory-slot-32.png"/>
+    <link rel="mask-icon" href="/images/ram-memory-slot.svg" color="#000000"/>
+    <meta name="theme-color" content="#ffffff"/>
+    
+    <!-- Initialize PostHog Analytics -->
+    <Analytics />
+</head>
+<body>
+    <slot />
+</body>
+</html> 

@@ -1,0 +1,66 @@
+# Disable HTTP/2 and use HTTP/1.1
+SetEnv no-gzip 1
+SetEnv no-http2 1
+
+# Enable rewriting
+RewriteEngine On
+RewriteBase /
+
+# Handle Front Controller Pattern
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.html [L,QSA]
+
+# Proper MIME types
+AddType application/javascript .js
+AddType text/css .css
+AddType image/svg+xml .svg
+AddType application/font-woff2 .woff2
+AddType application/font-woff .woff
+
+# Basic compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript
+</IfModule>
+
+# Basic caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+</IfModule>
+
+# Error Documents
+ErrorDocument 500 /500.html
+ErrorDocument 404 /404.html
+
+# Set security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    
+    # Remove server signature
+    ServerSignature Off
+    
+    # Set default charset
+    AddDefaultCharset UTF-8
+</IfModule>
+
+# Directory Options
+Options -Indexes +FollowSymLinks
+
+# Default handler
+DirectoryIndex index.html index.htm
+
+# PHP Settings (even though we're not using PHP, some hosts require these)
+<IfModule mod_php.c>
+    php_flag display_errors off
+    php_value max_execution_time 60
+    php_value memory_limit 256M
+    php_value post_max_size 64M
+    php_value upload_max_filesize 64M
+</IfModule> 
