@@ -26,7 +26,7 @@ export const extractFromTitle = (title, regex, groupIndex = 1) => {
 };
 
 /**
- * Cleans a URL by removing specific query parameters and adding the required tag parameter.
+ * Cleans a URL by removing specific query parameters.
  * @param {string} url - The original URL.
  * @returns {string} The cleaned URL or the original if cleaning fails.
  */
@@ -36,7 +36,16 @@ export const cleanUrl = (url) => {
         const urlObj = new URL(url);
         urlObj.searchParams.delete('dib');
         urlObj.searchParams.delete('dib_tag');
-        urlObj.searchParams.set('tag', 'accentiofinde-20');
+        
+        // Get the pathname without query parameters
+        let pathname = urlObj.pathname;
+        
+        // Add trailing slash to pathname if not present and not a file path
+        if (!pathname.endsWith('/') && !pathname.split('/').pop().includes('.')) {
+            pathname += '/';
+            urlObj.pathname = pathname;
+        }
+        
         return urlObj.toString();
     } catch (error) {
         // console.warn(`Warning: Could not parse or clean URL "${url}". Returning original. Error: ${error.message}`);

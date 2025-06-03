@@ -1,0 +1,4 @@
+[2025-06-01T14:52:27.699Z] [INFO] Starting product update process...
+[2025-06-01T14:52:27.703Z] [ERROR] CANOPY_API_KEY not found in environment variables
+[2025-06-01T14:52:27.703Z] [ERROR] Please ensure your .env file contains a valid CANOPY_API_KEY
+[2025-06-01T14:52:27.704Z] [ERROR] Product update process failed: Validation failed. Please check the logs for details.
