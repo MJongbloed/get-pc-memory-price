@@ -18,7 +18,7 @@ declare global {
     }
 }
 
-const POSTHOG_API_KEY = 'phc_7o2uZwISUxOtzUOUbilRsrGaImrah9WuIO2BtEJgsyu';
+const POSTHOG_API_KEY = process.env.NEXT_PUBLIC_POSTHOG_API_KEY;
 const POSTHOG_CONFIG: PostHogConfig = {
     api_host: 'https://eu.i.posthog.com',
     persistence: 'localStorage',
